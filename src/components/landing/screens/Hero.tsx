@@ -1,6 +1,4 @@
-import * as THREE from "three";
 import { Sparkles } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
 import React from "react";
 import clouds from "../assets/clouds.png";
 import logo from "../assets/logo.png";
@@ -9,20 +7,7 @@ import wave2 from "../assets/waves/2.png";
 import wave3 from "../assets/waves/3.png";
 import wave4 from "../assets/waves/4.png";
 import wave5 from "../assets/waves/5.png";
-
-function Layers({ pos, args, img }: any) {
-    const texture = useLoader(THREE.TextureLoader as any, img);
-    const sizes = {
-        width: window.innerWidth,
-        height: window.innerHeight,
-    };
-    return (
-        <mesh position={pos}>
-            <planeGeometry attach="geometry" args={args} />
-            <meshBasicMaterial attach="material" map={texture} transparent />
-        </mesh>
-    );
-}
+import { Layers } from "@/lib/layers";
 
 export const SparklesStory = ({ random, size, amount, ...props }: any) => {
     const sizes = React.useMemo(() => {
@@ -43,6 +28,7 @@ export const SparklesStory = ({ random, size, amount, ...props }: any) => {
 };
 
 function Hero() {
+    // TODO : reponsive for mobile
     const sizes = {
         width: window.innerWidth,
         height: window.innerHeight,

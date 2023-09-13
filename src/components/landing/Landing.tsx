@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 import Loader from "../Loader";
 import { Scroll, ScrollControls } from "@react-three/drei";
 import Hero from "./screens/Hero";
+import About from "./screens/About";
 
 function Rig() {
     const { camera, mouse } = useThree();
@@ -24,6 +25,7 @@ function GroupPages() {
                 <Scroll>
                     <group>
                         <Hero />
+                        <About />
                     </group>
                 </Scroll>
             </ScrollControls>
