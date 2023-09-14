@@ -5,6 +5,7 @@ import Loader from "../Loader";
 import { Scroll, ScrollControls } from "@react-three/drei";
 import Hero from "./screens/Hero";
 import About from "./screens/About";
+import Info from "./screens/Info";
 
 function Rig() {
     const { camera, mouse } = useThree();
@@ -26,6 +27,7 @@ function GroupPages() {
                     <group>
                         <Hero />
                         <About />
+                        <Info />
                     </group>
                 </Scroll>
             </ScrollControls>
