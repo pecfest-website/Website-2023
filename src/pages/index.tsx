@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Landing from '@/components/landing/Landing'
 import LandingNavbar from '@/components/landing/LandingNavbar'
-import Loader from '@/components/Loader'
+import Schedule from '@/components/Schedule'
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
       <main>
         <LandingNavbar />
-        <Landing />
+        <Schedule />
       </main>
     </>
   )
