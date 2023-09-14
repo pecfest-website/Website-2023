@@ -48,7 +48,7 @@ function Landing() {
                 }}
             >
                 <Suspense fallback={<Loader />}>
-                    <GroupPages />
+                    <Loader />
                 </Suspense>
                 <Rig />
             </Canvas>

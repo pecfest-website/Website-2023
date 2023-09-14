@@ -36,11 +36,11 @@ function Hero() {
     return (
         <>
             <Layers pos={[0, 28, -40]} args={[120, 30]} img={clouds.src} />
-            <Layers pos={[0, -10, -30]} args={[100, 10]} img={wave1.src} />
-            <Layers pos={[0, -13, -30]} args={[100, 10]} img={wave2.src} />
-            <Layers pos={[0, -18, -30]} args={[100, 10]} img={wave3.src} />
-            <Layers pos={[0, -22, -30]} args={[100, 10]} img={wave4.src} />
-            <Layers pos={[0, -25, -30]} args={[100, 7]} img={wave5.src} />
+            <Layers pos={[0, -10, -30]} args={[120, 10]} img={wave1.src} />
+            <Layers pos={[0, -13, -30]} args={[120, 10]} img={wave2.src} />
+            <Layers pos={[0, -18, -30]} args={[120, 10]} img={wave3.src} />
+            <Layers pos={[0, -22, -30]} args={[120, 10]} img={wave4.src} />
+            <Layers pos={[0, -25, -30]} args={[120, 7]} img={wave5.src} />
             <Layers pos={[0, 0, -30]} args={[30, 30]} img={logo.src} />
 
             {/* TODO : hills */}
