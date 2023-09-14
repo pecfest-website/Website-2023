@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import styles from '@/styles/Home.module.css'
-
+import Landing from '@/components/landing/Landing'
+import LandingNavbar from '@/components/landing/LandingNavbar'
+import Loader from '@/components/Loader'
 
 export default function Home() {
   return (
@@ -12,7 +13,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1>Coming Soon!</h1>
+        <LandingNavbar />
+        <Landing />
       </main>
     </>
   )
