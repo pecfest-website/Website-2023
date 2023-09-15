@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Narnoor&display=swap');
+
+.container {
+    font-family: 'Inclusive Sans', sans-serif;
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}

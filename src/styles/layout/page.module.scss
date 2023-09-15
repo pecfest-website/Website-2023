@@ -1,0 +1,12 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    min-height: 100vh;
+    
+    .children {
+        overflow: hidden;
+        margin-top: 70px;
+
+    }
+}
