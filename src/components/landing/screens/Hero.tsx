@@ -7,9 +7,9 @@ import wave2 from "../assets/waves/2.png";
 import wave3 from "../assets/waves/3.png";
 import wave4 from "../assets/waves/4.png";
 import wave5 from "../assets/waves/5.png";
-import orange from "../assets/bg/orange screen@10x.png";
-import hills from "../assets/hills/orange hills.png";
-import birds from "../assets/birds.png";
+import orange from "../assets/bg/orange screen@10x (1).png";
+import hills from "../assets/hills/orange hills1.png";
+import birds from "../assets/birds1.png";
 
 import { Layers } from "@/lib/layers";
 

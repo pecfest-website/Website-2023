@@ -2,7 +2,7 @@ import { Layers } from "@/lib/layers";
 import React from "react";
 import waterDrops from "../assets/fishes/water_drops.png";
 import smallFishes from "../assets/fishes/small fishes@4x.png";
-import blue from "../assets/bg/blue screen@10x.png";
+import blue from "../assets/bg/blue screen@10x (1).png";
 import aboutBig from "../assets/about big.png";
 import aboutSmall from "../assets/about small.png";
 
