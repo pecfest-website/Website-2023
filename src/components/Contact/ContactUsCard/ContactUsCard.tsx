@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "../../../styles/Contacts/contactUsCard.module.css";
+import styles from "@/styles/Contacts/contactUsCard.module.css";
 
 
 type ContactCardProp = {
@@ -9,7 +9,7 @@ type ContactCardProp = {
     paras: string[]
 }
 
-export default function ContactUsCard({key, icon, heading, paras} : ContactCardProp) {
+export default function ContactUsCard({ icon, heading, paras} : ContactCardProp) {
     return (
         <div className={styles.container}>
             <div className={styles.icon}>{icon}</div>

@@ -1,10 +1,13 @@
 import React from 'react'
-import styles from '../../../styles/Contacts/teamCard.module.css';
+import styles from '@/styles/Contacts/teamCard.module.css';
 
-export default function ContactCard() {
-    const imgUrl = "https://images.unsplash.com/photo-1621246159024-e53b1d25fc1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80";
-    const name = "PERSON NAME";
-    const post = "POST"
+type Props = {
+    name?: string,
+    post?: string,
+    imgUrl?: string,
+}
+
+export default function ContactCard({name="John Doe", post="", imgUrl="/assets/logos/logo.png"}: Props) {
 
     return (
         <div 
