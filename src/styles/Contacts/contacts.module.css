@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Narnoor&display=swap');
+
+.heading {
+    font-family: 'Inclusive Sans', sans-serif;
+    font-size: 36px;
+    padding: 30px;
+    text-align: center;
+}
+
+.contactCards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.contactCard {
+    height: 300px;
+    width: 300px;
+    margin: 20px 0;
+}
+
+.contactUsContainer {
+    font-family: 'Inclusive Sans', sans-serif;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    background-color: gray;
+    width: 70%;
+    margin: auto;
+    padding: 3% 2%;
+    justify-content: center;
+    background-color: rgba(236, 236, 236, 0.5);
+}
+
+/* .followUsContainer {
+    font-family: 'Inclusive Sans', sans-serif;
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+} */
+
+.icon {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+} 
+
+.socialIcon {
+    margin-right: 8px;
+}
