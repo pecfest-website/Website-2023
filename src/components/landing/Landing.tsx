@@ -19,10 +19,11 @@ function Rig() {
 }
 
 function GroupPages() {
-    const { width } = useThree((state) => state.viewport);
+    const { height } = useThree((state) => state.viewport);
+    console.log(height);
     return (
         <>
-            <ScrollControls distance={0.1} pages={210 / width}>
+            <ScrollControls distance={0.1} pages={210 / height}>
                 <Scroll>
                     <group>
                         <Hero />
