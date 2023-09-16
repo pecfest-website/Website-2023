@@ -28,7 +28,8 @@
     "react-grid-gallery": "^1.0.0",
     "react-icons": "^4.10.1",
     "three": "^0.156.1",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "yet-another-react-lightbox": "^3.12.2"
   },
   "devDependencies": {
     "sass": "^1.67.0"
