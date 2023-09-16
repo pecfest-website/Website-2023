@@ -19,7 +19,7 @@ function Schedule() {
                 </div>
             </div>
 
-            {day == 1 ? <ScheduleTable /> : <></>}
+            {day ? <ScheduleTable dayNumber={day} /> : <></>}
         </div >
     );
 }

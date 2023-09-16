@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Landing from '@/components/landing/Landing'
 import LandingNavbar from '@/components/landing/LandingNavbar'
+import Schedule from '@/components/Schedule/index'
 
 export default function Home() {
   return (
