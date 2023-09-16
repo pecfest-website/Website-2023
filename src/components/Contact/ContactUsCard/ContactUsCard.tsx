@@ -1,12 +1,11 @@
 import React from 'react'
 import styles from "@/styles/Contacts/contactUsCard.module.css";
 
-
 type ContactCardProp = {
     key: number;
     icon: JSX.Element;
     heading: string;
-    paras: string[]
+    paras: JSX.Element[] | string[];
 }
 
 export default function ContactUsCard({ icon, heading, paras} : ContactCardProp) {
@@ -18,7 +17,7 @@ export default function ContactUsCard({ icon, heading, paras} : ContactCardProp)
                 {
                     paras?.map((para, i) => {
                         return (
-                            <p key={i}>{para}</p>
+                            <p key={i} className={styles.para}>{para}</p>
                         )
                     })
                 }
