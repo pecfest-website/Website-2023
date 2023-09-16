@@ -7,9 +7,9 @@ function Wave({ pos, args, img, direction }: any) {
     const meshRef = useRef<any>();
     useFrame((state, delta) => {
         if (direction === "left")
-            meshRef.current.position.x = - 1 - Math.sin(state.clock.elapsedTime)*2;
+            meshRef.current.position.x = - 1 - Math.sin(state.clock.elapsedTime);
         else
-            meshRef.current.position.x = 1 + Math.sin(state.clock.elapsedTime)*2;
+            meshRef.current.position.x = 1 + Math.sin(state.clock.elapsedTime);
     });
     return (
         <mesh position={pos} ref={meshRef}>

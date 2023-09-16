@@ -6,6 +6,7 @@ import { Scroll, ScrollControls } from "@react-three/drei";
 import Hero from "./screens/Hero";
 import About from "./screens/About";
 import Info from "./screens/Info";
+import Underwater from "./screens/Underwater";
 
 function Rig() {
     const { camera, mouse } = useThree();
@@ -28,6 +29,7 @@ function GroupPages() {
                         <Hero />
                         <About />
                         <Info />
+                        <Underwater />
                     </group>
                 </Scroll>
             </ScrollControls>
