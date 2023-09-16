@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Narnoor&display=swap');
+
+.container {
+    font-family: 'Inclusive Sans', sans-serif;
+    border: 2px solid blue;
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column-reverse;
+    text-align: center;
+    color: #5e2a0e;
+    border-radius: 0.5rem;
+}
+
+.name, .post {
+    font-size: 1.2rem;
+    word-break: break-all;
+}
+
+.name {
+    font-size: 2rem;
+    font-weight: 900;
+}

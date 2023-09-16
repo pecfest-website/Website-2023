@@ -5,6 +5,7 @@ import Loader from "../Loader";
 import { Scroll, ScrollControls } from "@react-three/drei";
 import Hero from "./screens/Hero";
 import About from "./screens/About";
+import Info from "./screens/Info";
 
 function Rig() {
     const { camera, mouse } = useThree();
@@ -18,14 +19,16 @@ function Rig() {
 }
 
 function GroupPages() {
-    const { width } = useThree((state) => state.viewport);
+    const { height } = useThree((state) => state.viewport);
+    console.log(height);
     return (
         <>
-            <ScrollControls distance={0.1} pages={210 / width}>
+            <ScrollControls distance={0.1} pages={210 / height}>
                 <Scroll>
                     <group>
                         <Hero />
                         <About />
+                        <Info />
                     </group>
                 </Scroll>
             </ScrollControls>
