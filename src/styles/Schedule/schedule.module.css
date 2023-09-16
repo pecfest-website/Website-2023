@@ -1,0 +1,31 @@
+.cardWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px;
+    gap: 2rem;
+}
+
+.cardItem {
+    width: 20px !important;
+}
+
+.unClicked {
+    height: 100vh;
+}
+
+.dayText {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    color: white;
+    text-align: center;
+    margin: 0;
+    font-size: 8em;
+}
+
+@media screen and (max-width: 700px) {
+    .cardWrapper {
+        display: none;
+    }
+}

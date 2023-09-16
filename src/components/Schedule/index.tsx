@@ -1,33 +1,27 @@
-import React from "react";
-import { Epg, Layout } from "planby";
-
-// Import hooks
-import { useApp } from "./useApp";
-
-// Import components
-import { Timeline, ChannelItem, ProgramItem } from "./components";
+import React, { useState } from "react";
+import DayCard from "./DayCard";
+import ScheduleTable from "./ScheduleTable";
+import styles from "@/styles/Schedule/schedule.module.css"
 
 function Schedule() {
-  const { isLoading, getEpgProps, getLayoutProps } = useApp();
+    const [day, setDay] = useState(0);
+    return (
+        <div>
+            <div className={styles.cardWrapper + ' ' + (day == 0 ? styles.unClicked : '')}>
+                <div onClick={() => setDay(1)}>
+                    <DayCard dayNumber={1} />
+                </div>
+                <div onClick={() => setDay(2)}>
+                    <DayCard dayNumber={2} />
+                </div>
+                <div onClick={() => setDay(3)}>
+                    <DayCard dayNumber={3} />
+                </div>
+            </div>
 
-  return (
-    <div>
-      <div style={{ height: "80vh", width: "100%" }}>
-        <Epg isLoading={isLoading} {...getEpgProps()}>
-          <Layout
-            {...getLayoutProps()}
-            renderTimeline={(props) => <Timeline {...props} />}
-            renderProgram={({ program, ...rest }) => (
-              <ProgramItem key={program.data.id} program={program} {...rest} />
-            )}
-            renderChannel={({ channel }) => (
-              <ChannelItem key={channel.uuid} channel={channel} />
-            )}
-          />
-        </Epg>
-      </div>
-    </div>
-  );
+            {day == 1 ? <ScheduleTable /> : <></>}
+        </div >
+    );
 }
 
 export default Schedule;
