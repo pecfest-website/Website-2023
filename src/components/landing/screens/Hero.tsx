@@ -10,8 +10,11 @@ import wave5 from "../assets/waves/5.png";
 import orange from "../assets/bg/orange screen@10x (1).png";
 import hills from "../assets/hills/orange hills1.png";
 import birds from "../assets/birds1.png";
+import ship from "../assets/ship.png";
 
-import { Layers } from "@/lib/layers";
+import { Layers } from "@/components/landing/util/layers";
+import Wave from "../util/Wave";
+import Ship from "../util/Ship";
 
 export const SparklesStory = ({ random, size, amount, ...props }: any) => {
     const sizes = React.useMemo(() => {
@@ -38,15 +41,16 @@ function Hero() {
     };
     return (
         <>
-            <Layers pos={[0, 10, -30]} args={[500, 50]} img={orange.src} />
+            <Layers pos={[0, 10, -40]} args={[500, 50]} img={orange.src} />
             <Layers pos={[0, 20, -30]} args={[100, 20]} img={clouds.src} />
             <Layers pos={[0, -5, -30]} args={[120, 60]} img={hills.src} />
-            <Layers pos={[0, -10, -30]} args={[120, 10]} img={wave1.src} />
-            <Layers pos={[0, -13, -30]} args={[120, 10]} img={wave2.src} />
-            <Layers pos={[0, -18, -30]} args={[120, 10]} img={wave3.src} />
-            <Layers pos={[0, -22, -30]} args={[120, 10]} img={wave4.src} />
-            <Layers pos={[0, -25, -30]} args={[120, 7]} img={wave5.src} />
+            <Wave pos={[0, -10, -30]} args={[120, 10]} img={wave1.src} direction='left' />
             <Layers pos={[0, 0, -30]} args={[30, 30]} img={logo.src} />
+            <Wave pos={[0, -13, -30]} args={[120, 10]} img={wave2.src} direction='left'/>
+            {sizes.width > 500 ? <Ship pos={[30, -5, -30]} args={[32, 24]} img={ship.src} /> : null}
+            <Wave pos={[0, -18, -30]} args={[120, 10]} img={wave3.src} />
+            <Wave pos={[0, -22, -30]} args={[120, 10]} img={wave4.src} />
+            {/* <Wave pos={[0, -25, -30]} args={[120, 7]} img={wave5.src} direction='left' /> */}
             <Layers pos={[0, 0, -30]} args={[100, 80]} img={birds.src} />
         </>
     );

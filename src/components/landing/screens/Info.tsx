@@ -1,7 +1,7 @@
 import React from 'react'
 import shark from '../assets/fishes/shark@4x.png';
 import longNose from '../assets/fishes/fish lmbi sundh@4x.png';
-import { Layers } from '@/lib/layers';
+import { Layers } from '@/components/landing/util/layers';
 
 function Info() {
     const sizes = {

@@ -1,4 +1,4 @@
-import { Layers } from "@/lib/layers";
+import { Layers } from "@/components/landing/util/layers";
 import buildings from '../assets/underwater/hill last.png';
 import blue from '../assets/bg/blue.png';
 
@@ -10,7 +10,7 @@ function Hero() {
     };
     return (
         <>
-            <Layers pos={[0, -200, -30]} args={[500, 300]} img={blue.src} />
+            {/* <Layers pos={[0, -200, -30]} args={[500, 300]} img={blue.src} /> */}
             
         </>
     );
