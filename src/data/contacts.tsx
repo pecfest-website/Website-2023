@@ -1,6 +1,23 @@
 import PhoneSharpIcon from "@mui/icons-material/PhoneSharp";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import BookMark from "@mui/icons-material/Bookmark";
+import { SOCIALICONS } from "@/data/socials";
+import styles from "@/styles/Contacts/contacts.module.css";
+
+const getSocialIconSpan = () => {
+    const spans = SOCIALICONS.map((socialIcon, id) => (
+        <span key={id} className={styles.socialIcon}>
+            {socialIcon.icon}
+        </span>
+    ))
+
+    return (
+        <div className={styles.socialWrapper}>
+            {spans}
+        </div>
+    )
+}
 
 export const CONTACTUSINFO = [
     {
@@ -19,4 +36,9 @@ export const CONTACTUSINFO = [
         icon: <LocationOnIcon fontSize="large" />,
         paras: ["Punjab Engineering College", "Sector-12, Chandigarh"],
     },
+    {
+        heading: "Follow Us on Social",
+        icon: <BookMark fontSize="large" />,
+        paras: [getSocialIconSpan()]
+    }
 ];

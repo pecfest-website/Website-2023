@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@/styles/Contacts/contacts.module.css";
-import ContactCard from "@/components/Contact/TeamCard/TeamCard";
+import TeamCard from "@/components/Contact/TeamCard/TeamCard";
 import ContactUsCard from "@/components/Contact/ContactUsCard/ContactUsCard";
 import { SOCIALICONS } from "@/data/socials";
 import { CONTACTUSINFO } from "@/data/contacts";
@@ -25,27 +25,14 @@ function Contacts() {
                             />
                         );
                     })}
-                    <div>
-                        {/* <div className={styles.icon}><BookmarkIcon fontSize='large' /></div> */}
-                        {/* <div> */}
-                        <h2>Follow us at</h2>
-                        <div className={styles.socialIcons}>
-                            {SOCIALICONS.map((socialIcon, id) => (
-                                <span key={id} className={styles.socialIcon}>
-                                    {socialIcon.icon}
-                                </span>
-                            ))}
-                            {/* </div> */}
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.heading}>Our Team</div>
-                <div className={styles.contactCards}>
+                <div className={styles.teamCards}>
                     {Array.apply(null, Array(6)).map((_, i) => {
                         return (
-                            <div key={i} className={styles.contactCard}>
-                                <ContactCard />
+                            <div key={i} className={styles.teamCard}>
+                                <TeamCard />
                             </div>
                         );
                     })}
