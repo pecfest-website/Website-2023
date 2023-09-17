@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { Button, Container, Grid } from '@mui/material';
 import EventCard from '../components/events/eventCard';
 import styles from '@/styles/Events/events.module.css';
-import animationData from '../assets/lottie/priateShip.json'
 import PirateShipLottie from '@/components/events/shipLottieAnimation';
+import { GetServerSideProps } from 'next';
+
+interface EventPageProps {
+  isEventDoneEnv: string;
+}
 
 interface Event {
   id: number;
@@ -14,18 +18,13 @@ interface Event {
 
 const EventTypes = {
   cultural: 'cultural',
-  technical: 'technical'
+  technical: 'technical',
+  megashows: 'megashows'
 } 
 
-const Events: React.FC = () => {
+function Events({ isEventDoneEnv }: EventPageProps){
   const [eventType, setEventType] = useState<string | null>(null);
   const [events, setEvents] = useState<Event[]>([]);
-  
-  const defaultOption = {
-    loop: false,
-    autoplay: true,
-    animationData: animationData
-  }
 
   const fetchEvents = async () => {
     console.log('fetch events')
@@ -49,19 +48,27 @@ const Events: React.FC = () => {
       console.error('Error fetching data:', error);
     }
   }
+  
+  if (isEventDoneEnv == 'false') {
+    return <div>
+      <h1>COMING SOON...</h1>
+      <PirateShipLottie loop={true} onComplete={() => {fetchEvents()}} />
+    </div>
+  }
 
   if (eventType == null) {
     return (
       <div>
         <Button onClick={() => setEventType(EventTypes.cultural)}>Cultural Events</Button>
         <Button onClick={() => setEventType(EventTypes.technical)}>Technical Events</Button>
+        <Button onClick={() => setEventType(EventTypes.megashows)}>Mega Shows</Button>
       </div>
     );
   }
 
   if (events == null || events.length == 0) {
     return (
-      <PirateShipLottie onComplete={() => {fetchEvents()}} />
+      <PirateShipLottie loop={false} onComplete={() => {fetchEvents()}} />
     )
   }
 
@@ -77,6 +84,15 @@ const Events: React.FC = () => {
       </Grid>
     </Container>
   );
+};
+
+export const getServerSideProps: GetServerSideProps<EventPageProps> = async () => {
+  const isEventDoneEnv = process.env.EVENTS_DONE || '';
+  return {
+    props: {
+      isEventDoneEnv,
+    },
+  };
 };
 
 export default Events;

@@ -38,7 +38,6 @@ const EventCard: React.FC<EventCardProps> = ({ data }) => {
       <ModalContainer
         isOpen={open}
         close={() => setOpen(false)}
-        style={{ backgroundColor: "rgb(47 47 47 / 98%)" }}
         className=''
         padding={0}
       >

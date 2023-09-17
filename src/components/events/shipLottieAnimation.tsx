@@ -4,11 +4,12 @@ import pirateShip from '../../assets/lottie/priateShip.json';
 
 interface shipLottieAnimationProps {
   onComplete: () => void;
+  loop: boolean;
 }
 
-const PirateShipLottie: React.FC<shipLottieAnimationProps> = ({ onComplete }) => {
+const PirateShipLottie: React.FC<shipLottieAnimationProps> = ({ onComplete, loop }) => {
   const defaultOptions = {
-    loop: false,
+    loop: loop,
     autoplay: true,
     animationData: pirateShip,
   };
