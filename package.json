@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.9",
     "@mui/material": "^5.14.8",
     "@react-three/drei": "^9.83.9",
     "@react-three/fiber": "^8.14.1",
@@ -32,6 +33,6 @@
   },
   "devDependencies": {
     "@types/react-lottie": "^1.2.6",
-    "sass": "^1.65.1"
+    "sass": "^1.67.0"
   }
 }
