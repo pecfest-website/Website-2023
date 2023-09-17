@@ -6,32 +6,26 @@ interface shipLottieAnimationProps {
   onComplete: () => void;
 }
 
-const LottieAnimation1: React.FC<shipLottieAnimationProps> = ({ onComplete }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
+const PirateShipLottie: React.FC<shipLottieAnimationProps> = ({ onComplete }) => {
   const defaultOptions = {
     loop: false,
-    autoplay: false,
+    autoplay: true,
     animationData: pirateShip,
   };
 
-  const playAnimation = () => {
-    setIsPlaying(true);
-  };
-
   return (
-    <div onClick={playAnimation}>
-      <Lottie
-        options={defaultOptions}
-        eventListeners={[
-          {
-            eventName: 'complete',
-            callback: onComplete,
-          },
-        ]}
-      />
-    </div>
+    <Lottie
+      options={defaultOptions}
+      height={400}
+      width={400}
+      eventListeners={[
+        {
+          eventName: 'complete',
+          callback: onComplete,
+        },
+      ]}
+    />
   );
 };
 
-export default LottieAnimation1;
+export default PirateShipLottie;
