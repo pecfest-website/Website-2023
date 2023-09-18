@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Narnoor&display=swap');
 
 .heading {
-    font-family: 'Inclusive Sans', sans-serif;
+    /* font-family: 'Inclusive Sans', sans-serif; */
     font-size: 36px;
     padding: 30px;
     text-align: center;
@@ -20,7 +20,7 @@
 }
 
 .contactUsContainer {
-    font-family: 'Inclusive Sans', sans-serif;
+    /* font-family: 'Inclusive Sans', sans-serif; */
     border-radius: 0.5rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
