@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Button, Container, Grid } from '@mui/material';
 import EventCard from '../components/events/eventCard';
 import styles from '@/styles/Events/events.module.css';
 import PirateShipLottie from '@/components/events/shipLottieAnimation';
 import { GetServerSideProps } from 'next';
+import LargeButton from '@/components/events/largeButton';
 
 interface EventPageProps {
   isEventDoneEnv: string;
@@ -56,12 +57,18 @@ function Events({ isEventDoneEnv }: EventPageProps){
     </div>
   }
 
-  if (eventType == null) {
+  if (eventType == null) {  
     return (
-      <div>
-        <Button onClick={() => setEventType(EventTypes.cultural)}>Cultural Events</Button>
-        <Button onClick={() => setEventType(EventTypes.technical)}>Technical Events</Button>
-        <Button onClick={() => setEventType(EventTypes.megashows)}>Mega Shows</Button>
+      <div className={styles.eventTypeButtonDiv}>
+        {Object.keys(EventTypes).map((eventType) => (
+            <LargeButton
+              key={eventType}
+              onClick={() => setEventType(eventType)}
+              className={styles.eventTypeButton}
+            >
+              {eventType.charAt(0).toUpperCase() + eventType.slice(1)} Events
+            </LargeButton>
+          ))}
       </div>
     );
   }
