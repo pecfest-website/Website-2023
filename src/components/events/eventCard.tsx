@@ -2,39 +2,27 @@
 import React, { useState } from 'react';
 import { Button, Card, CardContent, Typography } from '@mui/material';
 import ModalContainer from './ModalContainer/ModalContainer.js' 
+import styles from '@/styles/Events/eventCard.module.css';
+
 interface Event {
-  id: number;
-  title: string;
-  date: string;
-  location: string;
-  // Add more event properties as needed
+
 }
 
 interface EventCardProps {
-  data: Event;
+  id: number;
+  title: string;
+  event_date: string;
+  location: string;
+  tags: string[];
 }
 
-function ItemSepWithDot(items: string[]) {
-  var f = items?.length;
-  f -= 1;
-  const jsx_items = [];
-  for (let i = 0; i < items?.length; i++) {
-    jsx_items.push(
-      <div key={i} className="genre-list">
-        {" "}
-        {items[i]}
-        <span className={f-- !== 0 ? `center-dot` : ``}></span>
-      </div>
-    );
-  }
-  return jsx_items;
-}
 
-const EventCard: React.FC<EventCardProps> = ({ data }) => {
+const EventCard: React.FC<EventCardProps> = ({ id, title, event_date, location, tags }) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="movieCardContainer">
+    <div className={styles.eventCardContainer}>
+      <div className={styles.eventCardGlossContainer}></div>
       <ModalContainer
         isOpen={open}
         close={() => setOpen(false)}
@@ -45,23 +33,32 @@ const EventCard: React.FC<EventCardProps> = ({ data }) => {
       </ModalContainer>
 
       <div
-        className="posterContainer"
+        className={styles.posterContainer}
         style={{
-          backgroundImage: `url()`,
+          backgroundImage: `url(https://images.unsplash.com/photo-1682686578289-cf9c8c472c9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
         }}
       >
-        <h3>1200 registered </h3>
       </div>
 
-      <div className="movieData">
-        <div className="movieDetailContainer">
-          <div className="movieName">{'title'}</div>
-          <div className="genre">{ItemSepWithDot(['genres'])}</div>
+      <div className={styles.eventData}>
+        <div className={styles.eventDetailContainer}>
+          <div className={styles.eventName}>{title}</div>
+          <div className={styles.tags}>
+          {tags.map((tag, index) => (<>
+            <div className={styles.tagList}>
+              {tag}
+            </div>
+            {index < tags.length -1 && (
+              <span className={styles.seperator}></span>
+            )}
+          </>
+            ))}
+          </div>
 
-          <div className="releaseDate">
-            <div className="content">{'release_data'}</div>
+          <div className={styles.eventDate}>
+            <div className="content">{event_date}</div>
             <Button
               variant="contained"
               sx={{

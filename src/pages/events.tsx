@@ -15,6 +15,7 @@ interface Event {
   title: string;
   date: string;
   location: string;
+  tags: string[];
 }
 
 const EventTypes = {
@@ -36,13 +37,15 @@ function Events({ isEventDoneEnv }: EventPageProps){
           id: 123,
           title: 'Megashow 1',
           date: '12/11/2023',
-          location: 'PEC'
+          location: 'PEC',
+          tags: ['Star night', 'Bollywood']
         },
         {
-          id: 123,
-          title: 'Megashow 2',
+          id: 3,
+          title: 'Ideathon',
           date: '12/12/2023',
-          location: 'PEC'
+          location: 'Remote',
+          tags: ['Coding', 'Hackathon']
         }
       ]);
     } catch (error) {
@@ -81,11 +84,13 @@ function Events({ isEventDoneEnv }: EventPageProps){
 
   return (
     <Container>
-      <h1 className="text-3xl font-bold mt-8 mb-4">Competitions</h1>
+      <h1 className="text-3xl font-bold mt-8 mb-4">
+        {eventType.charAt(0).toUpperCase() + eventType.slice(1)} Events
+      </h1>
       <Grid container spacing={3}>
         {events.map((event) => (
           <Grid className={styles.card} item key={event.id} xs={12} sm={6} md={4}>
-            <EventCard data={event} />
+            <EventCard id={event.id} title={event.title} event_date={event.date} location={event.location} tags={event.tags}/>
           </Grid>
         ))}
       </Grid>
