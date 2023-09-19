@@ -52,12 +52,19 @@ function Info() {
                 <Images pos={[-20, -150, -30]} args={[24, 18]} imgname={sukhi.src} />
                 <Images pos={[30, -150, -30]} args={[30, 17]} imgname={vishalshekhar.src} /> */}
 
-            <Images
-                pos={[0, -140, -30]}
-                args={[85, 50]}
-                imgname={disxover.src}
-            />
-
+            {sizes.width > 960 ? (
+                <Images
+                    pos={[0, -140, -30]}
+                    args={[85, 50]}
+                    imgname={disxover.src}
+                />
+            ) : (
+                <Images
+                    pos={[0, -170, -30]}
+                    args={[51, 30]}
+                    imgname={disxover.src}
+                />
+            )}
             <Layers pos={[-60, -150, -40]} args={[20, 15]} img={seabat.src} />
 
             {/* <Layers pos={[-60, -150, -40]} args={[20, 15]} img={tortoise.src} /> */}
