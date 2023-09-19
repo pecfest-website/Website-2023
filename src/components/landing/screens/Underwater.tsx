@@ -18,7 +18,7 @@ function Underwater() {
             <Layers pos={[0, -200, -40]} args={[150, 77]} img={underwater.src} /> 
             {sizes.width > 960 ? (
                 <Layers
-                    pos={[0, -170, -30]}
+                    pos={[0, -175, -30]}
                     args={[96, 54]}
                     img={statisticsText.src}
                 />
