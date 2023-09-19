@@ -5,9 +5,10 @@ import styles from '@/styles/Events/events.module.css';
 import PirateShipLottie from '@/components/events/shipLottieAnimation';
 import { GetServerSideProps } from 'next';
 import LargeButton from '@/components/events/largeButton';
+import PageLayout from '@/components/layout/PageLayout';
 
 interface EventPageProps {
-  isEventDoneEnv: string;
+  isEventDoneEnv: string | null;
 }
 
 interface Event {
@@ -31,33 +32,17 @@ function Events({ isEventDoneEnv }: EventPageProps){
   const fetchEvents = async () => {
     console.log('fetch events')
     try {
-      // fetch and set events for the eventType
-      setEvents([
-        {
-          id: 123,
-          title: 'Megashow 1',
-          date: '12/11/2023',
-          location: 'PEC',
-          tags: ['Star night', 'Bollywood']
-        },
-        {
-          id: 3,
-          title: 'Ideathon',
-          date: '12/12/2023',
-          location: 'Remote',
-          tags: ['Coding', 'Hackathon']
-        }
-      ]);
+        // Fetch events
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   }
   
-  if (isEventDoneEnv == 'false') {
-    return <div>
-      <h1>COMING SOON...</h1>
-      <PirateShipLottie loop={true} onComplete={() => {fetchEvents()}} />
-    </div>
+  if (!isEventDoneEnv) {
+    return <PageLayout title='Events | Pecfest' noHeader>
+      <PirateShipLottie loop={true} />
+      <h1 className={styles.comingSoon}>Coming Soon</h1>
+    </PageLayout>
   }
 
   if (eventType == null) {  
@@ -99,7 +84,7 @@ function Events({ isEventDoneEnv }: EventPageProps){
 };
 
 export const getServerSideProps: GetServerSideProps<EventPageProps> = async () => {
-  const isEventDoneEnv = process.env.EVENTS_DONE || '';
+  const isEventDoneEnv = process.env.EVENTS_DONE || null;
   return {
     props: {
       isEventDoneEnv,
