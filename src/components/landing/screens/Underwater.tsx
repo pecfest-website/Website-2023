@@ -13,10 +13,10 @@ function Underwater() {
     };
     return (
         <>
-            <Layers pos={[0, -190, -40]} args={[100, 50]} img={buildings.src} />
+            {/* <Layers pos={[0, -190, -40]} args={[100, 50]} img={buildings.src} />
             <Layers pos={[0, -200, -40]} args={[150, 75]} img={hill3.src} />
             <Layers pos={[0, -200, -40]} args={[150, 75]} img={hill2.src} />
-            <Layers pos={[0, -200, -40]} args={[150, 75]} img={hill1.src} />
+            <Layers pos={[0, -200, -40]} args={[150, 75]} img={hill1.src} /> */}
 
             {sizes.width > 960 ? (
                 <Layers
