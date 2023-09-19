@@ -6,14 +6,11 @@ import styles from "@/styles/layout/page.module.scss";
 type Props = {
     title: string;
     description?: string;
-    heading?: string | JSX.Element;
     children?: ReactNode;
-    footerColor?: string;
-    branch?: string;
-    headerImgUrl?: string;
+    noHeader?: boolean;
 };
 
-function PageLayout({ title, children, description }: Props) {
+function PageLayout({ title, children, description, noHeader }: Props) {
     return (
         <div>
             <Head>
@@ -58,7 +55,7 @@ function PageLayout({ title, children, description }: Props) {
                 />
                 <meta name="theme-color" content="#ffffff" />
             </Head>
-            <Header />
+            {noHeader ? null : <Header />}
             <div className={styles.children}>{children}</div>
         </div>
     );
