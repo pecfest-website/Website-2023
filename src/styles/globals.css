@@ -14,7 +14,3 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
-
-body {
-    cursor: url('/assets/fonts/ship.cur') 36 36,auto
-}
