@@ -87,7 +87,7 @@ export const getServerSideProps: GetServerSideProps<EventPageProps> = async () =
   const isEventDoneEnv = process.env.EVENTS_DONE || null;
   return {
     props: {
-      isEventDoneEnv,
+      isEventDoneEnv
     },
   };
 };

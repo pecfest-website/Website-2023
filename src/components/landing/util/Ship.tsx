@@ -1,19 +1,23 @@
-import { useFrame, useLoader } from "@react-three/fiber";
-import React, { useRef } from "react";
-import * as THREE from "three";
+import { useLoader } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 
-function Ship({ pos, args, img }: any) {
-    const texture = useLoader(THREE.TextureLoader as any, img);
-    const meshRef = useRef<any>();
-    useFrame((state, delta) => {
-        meshRef.current.position.y = pos[1] - Math.sin(state.clock.elapsedTime);
-    });
+export function Ship({pos}: any) {
+    const gltf = useLoader(
+        GLTFLoader as any,
+        "/assets/models/pirate_ship/scene.gltf"
+    );
     return (
-        <mesh position={pos} ref={meshRef}>
-            <planeGeometry attach="geometry" args={args} />
-            <meshBasicMaterial attach="material" map={texture} transparent />
-        </mesh>
+        <primitive object={gltf.scene} scale={0.001} position={pos} />
     );
 }
 
-export default Ship;
+export function Ship2({pos}: any) {
+    const fbx = useLoader(
+        FBXLoader as any,
+        "/assets/models/shipp.fbx"
+    );
+    return (
+        <primitive object={fbx} scale={0.001} position={pos} />
+    );
+}

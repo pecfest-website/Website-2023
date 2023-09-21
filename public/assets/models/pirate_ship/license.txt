@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pirate Ship
+* source:	https://sketchfab.com/3d-models/pirate-ship-fe0ea2cee119476fb1a7524d5ff380dc
+* author:	Oleg Muzyka (https://sketchfab.com/olemuzyka)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pirate Ship" (https://sketchfab.com/3d-models/pirate-ship-fe0ea2cee119476fb1a7524d5ff380dc) by Oleg Muzyka (https://sketchfab.com/olemuzyka) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
