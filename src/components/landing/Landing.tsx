@@ -1,41 +1,11 @@
-import * as THREE from "three";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import React, { Suspense } from "react";
 import Loader from "../Loader";
-import { Scroll, ScrollControls } from "@react-three/drei";
-import Hero from "./screens/Hero";
-import About from "./screens/About";
-import Info from "./screens/Info";
-import Underwater from "./screens/Underwater";
+import Ocean from "./Ocean";
+import Sky from "./Sky";
+import { Layers } from "./util/layers";
+import logo from "./assets/logo.png";
 
-function Rig() {
-    const { camera, mouse } = useThree();
-    const vec = new THREE.Vector3();
-    return useFrame(() =>
-        camera.position.lerp(
-            vec.set(mouse.x * 0.5, camera.position.y, camera.position.z),
-            0.02
-        )
-    );
-}
-
-function GroupPages() {
-    const { height } = useThree((state) => state.viewport);
-    return (
-        <>
-            <ScrollControls distance={0.1} pages={210 / height}>
-                <Scroll>
-                    <group>
-                        <Hero />
-                        <About />
-                        <Info />
-                        <Underwater />
-                    </group>
-                </Scroll>
-            </ScrollControls>
-        </>
-    );
-}
 function Landing() {
     return (
         <div
@@ -45,16 +15,24 @@ function Landing() {
             }}
         >
             <Canvas
+                camera={{ position: [0, 5, 100], fov: 55, near: 1, far: 20000 }}
                 gl={{
-                    powerPreference: "high-performance",
+                    powerPreference: "default",
                     antialias: false,
                     alpha: false,
                 }}
             >
+                <pointLight position={[100, 0, 100]} />
+                <pointLight position={[-100, -100, -100]} />
                 <Suspense fallback={<Loader />}>
-                    <GroupPages />
+                    <Ocean />
+                    <Sky />
+                    <Layers
+                        pos={[0, 15, -30]}
+                        args={[100, 100]}
+                        img={logo.src}
+                    />
                 </Suspense>
-                <Rig />
             </Canvas>
         </div>
     );
