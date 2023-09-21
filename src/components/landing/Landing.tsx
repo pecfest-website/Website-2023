@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 import Loader from "../Loader";
 import Ocean from "./Ocean";
 import Sky from "./Sky";
-import { Layers } from "./util/Layers";
+import { Layers } from "./util/LayerComponent";
 import logo from "./assets/logo.png";
 import * as THREE from "three";
 import { useWindowSize } from "usehooks-ts";

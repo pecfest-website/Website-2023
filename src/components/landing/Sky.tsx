@@ -1,6 +1,6 @@
 import { Sky } from "@react-three/drei";
 import React from "react";
-import { Layers } from "./util/Layers";
+import { Layers } from "./util/LayerComponent";
 import clouds from "./assets/clouds.png";
 
 function OceanSky() {
