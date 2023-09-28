@@ -2,33 +2,36 @@ import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { HtmlTooltip } from "../Tooltip";
+import { Clone } from "@react-three/drei";
+import { useEffect, useState } from "react";
+import HoverBox from "./HoverBox";
 
-export function Ship({pos, onClick}: any) {
-    const gltf = useLoader(
-        GLTFLoader as any,
-        "/assets/models/pirate_ship/scene.gltf"
-    );
+export function Boat({ pos, onClick }: any) {
+    const fbx = useLoader(FBXLoader as any, "/assets/models/shipp.fbx");
     return (
-            <primitive object={gltf.scene} scale={0.001} position={pos} onClick={onClick} />
+        <Clone object={fbx} scale={0.001} position={pos} onClick={onClick} />
     );
 }
 
-export function Ship2({pos, onClick}: any) {
-    const fbx = useLoader(
-        FBXLoader as any,
-        "/assets/models/shipp.fbx"
-    );
-    return (
-        <primitive object={fbx} scale={0.001} position={pos} onClick={onClick} />
-    );
-}
+export function Ship({ pos, onClick, title, description }: any) {
+    const gltf = useLoader(GLTFLoader as any, "/assets/models/pirate_ship.glb");
+    const [hover, setHover] = useState(false);
 
-export function Ship3({pos, onClick}: any) {
-    const gltf = useLoader(
-        GLTFLoader as any,
-        "/assets/models/pirate_ship.glb"
-    );
+    useEffect(() => {}, [hover]);
+
     return (
-        <primitive object={gltf.scene} scale={0.001} position={pos} onClick={onClick} />
+        <>
+            {hover ? (
+                <HoverBox title={title} description={description} />
+            ) : null}
+            <Clone
+                object={gltf.scene}
+                scale={0.001}
+                position={pos}
+                onClick={onClick}
+                onPointerEnter={() => setHover(true)}
+                onPointerLeave={() => setHover(false)}
+            />
+        </>
     );
 }

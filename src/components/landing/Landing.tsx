@@ -7,8 +7,7 @@ import { Layers } from "./util/LayerComponent";
 import logo from "./assets/logo.png";
 import * as THREE from "three";
 import { useWindowSize } from "usehooks-ts";
-import { Ship, Ship2, Ship3 } from "./util/Ship";
-import { OrbitControls } from "@react-three/drei";
+import { Boat, Ship } from "./util/Ship";
 
 function Rig() {
     const { camera, mouse } = useThree();
@@ -42,7 +41,12 @@ function Landing() {
                 <pointLight position={[-100, -100, -100]} />
 
                 <ambientLight intensity={5} position={[0, 0, 0]} />
-                <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={100} />
+                <spotLight
+                    position={[10, 10, 10]}
+                    angle={0.15}
+                    penumbra={1}
+                    intensity={100}
+                />
 
                 <Suspense fallback={<Loader />}>
                     <Sky />
@@ -63,18 +67,22 @@ function Landing() {
                     <Rig />
                     {width > 720 ? (
                         <>
+                            <Ship pos={[-15, 0, 75]} onClick={() => {}} />
                             <Ship pos={[-10, 0, 80]} onClick={() => {}} />
-                            <Ship2 pos={[0, 0, 90]} onClick={() => {}} />
-                            <Ship3 pos={[10,0,80]} onClick={()=>{}} />
+                            <Ship pos={[-5, 0, 85]} onClick={() => {}} />
+                            <Boat pos={[0, 0, 90]} onClick={() => {}} />
+                            <Ship pos={[5, 0, 85]} onClick={() => {}} />
+                            <Ship pos={[10, 0, 80]} onClick={() => {}} />
+                            <Ship pos={[15, 0, 75]} onClick={() => {}} />
+
                         </>
                     ) : (
                         <>
                             <Ship pos={[-10, 0, 60]} onClick={() => {}} />
-                            <Ship2 pos={[0, 0, 70]} onClick={() => {}} />
-                            <Ship3 pos={[10,0,60]} onClick={()=>{}} />
+                            <Boat pos={[0, 0, 70]} onClick={() => {}} />
+                            <Ship pos={[10, 0, 60]} onClick={() => {}} />
                         </>
                     )}
-                    {/* <OrbitControls /> */}
                 </Suspense>
             </Canvas>
         </div>
