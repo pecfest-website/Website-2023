@@ -7,6 +7,7 @@ import { GetServerSideProps } from "next";
 import LargeButton from "@/components/events/largeButton";
 import PageLayout from "@/components/layout/PageLayout";
 import EventCard from "@/components/events/eventCard";
+import TwoHeadingSelector from "@/components/TwoHeadingSelector/TwoHeadingSelector";
 
 interface EventPageProps {
     isEventDoneEnv: string | null;
@@ -39,7 +40,7 @@ function Events({ isEventDoneEnv }: EventPageProps) {
         }
     };
 
-    if (!isEventDoneEnv) {
+    if (isEventDoneEnv) {
         return (
             <PageLayout title="Events | Pecfest" noHeader>
                 <PirateShipLottie loop={true} />
@@ -50,19 +51,15 @@ function Events({ isEventDoneEnv }: EventPageProps) {
 
     if (eventType == null) {
         return (
-            <div className={styles.eventTypeButtonDiv}>
-                {Object.keys(EventTypes).map((eventType) => (
-                    <LargeButton
-                        key={eventType}
-                        onClick={() => setEventType(eventType)}
-                        className={styles.eventTypeButton}
-                    >
-                        {eventType.charAt(0).toUpperCase() + eventType.slice(1)}{" "}
-                        Events
-                    </LargeButton>
-                ))}
-            </div>
-        );
+            <TwoHeadingSelector
+                leftImageUrl="/FestPics/workshop.jpg"
+                rightImageUrl="/FestPics/megashows.jpg"
+                leftRoute="/eventList"
+                rightRoute="/eventList"
+                leftName="Workshops"
+                rightName="Megashows"
+            />
+        )
     }
 
     if (events == null || events.length == 0) {
