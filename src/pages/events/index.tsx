@@ -34,6 +34,15 @@ function Events({ isEventDoneEnv }: EventPageProps) {
         console.log("fetch events");
         try {
             // Fetch events
+            setEvents([
+                {
+                    id: 12,
+                    title: 'Ideathon',
+                    date: '12/01/2222',
+                    location: 'PEC',
+                    tags: ['Coding']
+                }
+            ])
         } catch (error) {
             console.error("Error fetching data:", error);
         }
