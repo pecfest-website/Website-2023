@@ -12,26 +12,27 @@ const slides = IMAGES.map(({ src, width, height }) => ({
     height: 800,
 }));
 
-function gallery() {
+function GalleryView() {
     const [index, setIndex] = useState(-1);
     const handleClick = (index: number, _: any) => setIndex(index);
 
     return (
-        <PageLayout title="Gallery | Pecfest" noHeader>
-        <h2 className={styles.heading}>Past Events and Competition</h2>
-            <Gallery 
-                images={IMAGES} 
+        <PageLayout title="Gallery | Pecfest">
+            <h2 className={styles.heading}>Past Events and Competition</h2>
+            <Gallery
+                images={IMAGES}
                 enableImageSelection={false}
-                onClick={handleClick} 
-                rowHeight={300} />
+                onClick={handleClick}
+                rowHeight={300}
+            />
             <Lightbox
                 slides={slides}
                 open={index >= 0}
                 index={index}
                 close={() => setIndex(-1)}
             />
-    </PageLayout>
+        </PageLayout>
     );
 }
 
-export default gallery;
+export default GalleryView;
