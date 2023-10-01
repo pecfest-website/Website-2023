@@ -63,10 +63,7 @@ function Events({ isEventDoneEnv }: EventPageProps) {
             <TwoHeadingSelector
                 leftImageUrl="/FestPics/workshop.jpg"
                 rightImageUrl="/FestPics/megashows.jpg"
-                leftRoute="/eventList"
-                rightRoute="/eventList"
-                leftName="Workshops"
-                rightName="Megashows"
+                setEventType={setEventType}
             />
         )
     }

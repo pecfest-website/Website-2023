@@ -1,53 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import classes from './TwoHeadingSelector.module.css';
 import Image from 'next/image';
 
 function TwoHeadingSelector({
-  leftName = 'Technical',
-  rightName = 'Cultural',
-  leftRoute,
-  rightRoute,
+  // leftName = 'Technical',
+  // rightName = 'Cultural',
+  // leftRoute,
+  // rightRoute,
   leftImageUrl,
   rightImageUrl,
+  setEventType
 }) {
   const [openTechnical, setOpenTechnical] = useState(false);
   const [openCultural, setOpenCultural] = useState(false);
   const [isHoveredOnTechnical, setHoveredOnTechnical] = useState(false);
   const [isHoveredOnCultural, setHoveredOnCultural] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (openTechnical || openCultural) {
-      setTimeout(() => {
-        if (openTechnical) {
-          localStorage.setItem('filters', [leftName.toLowerCase()]);
-          router.push({
-            pathname: leftRoute,
-            query: {
-              typeOfEvent: leftName.toUpperCase(),
-            },
-          });
-          return;
-        }
-        localStorage.setItem('filters', [rightName.toLowerCase()]);
-        router.push({
-          pathname: rightRoute,
-          query: {
-            typeOfEvent: rightName.toUpperCase(),
-          },
-        });
-      }, 400);
-    }
-  }, [
-    openTechnical,
-    openCultural,
-    leftRoute,
-    rightRoute,
-    router,
-    leftName,
-    rightName,
-  ]);
+  // useEffect(() => {
+  //   if (openTechnical || openCultural) {
+  //     setTimeout(() => {
+  //       if (openTechnical) {
+  //         localStorage.setItem('filters', [leftName.toLowerCase()]);
+  //         router.push({
+  //           pathname: leftRoute,
+  //           query: {
+  //             typeOfEvent: leftName.toUpperCase(),
+  //           },
+  //         });
+  //         return;
+  //       }
+  //       localStorage.setItem('filters', [rightName.toLowerCase()]);
+  //       router.push({
+  //         pathname: rightRoute,
+  //         query: {
+  //           typeOfEvent: rightName.toUpperCase(),
+  //         },
+  //       });
+  //     }, 400);
+  //   }
+  // }, [
+  //   openTechnical,
+  //   openCultural,
+  //   leftRoute,
+  //   rightRoute,
+  //   router,
+  //   leftName,
+  //   rightName,
+  // ]);
 
   return (
     <div style={{ position: 'fixed' }}>
@@ -72,11 +73,12 @@ function TwoHeadingSelector({
         >
           <h1
             onClick={() => {
-              setOpenTechnical(true);
+              setEventType('technical')
+              // setOpenTechnical(true);
             }}
             className={`${classes.header_large}`}
           >
-            {leftName}
+            Technical
           </h1>
           <Image
             layout="fill"
@@ -103,12 +105,13 @@ function TwoHeadingSelector({
         >
           <h1
             onClick={() => {
-              setOpenCultural(true);
+              setEventType('cultural')
+              // setOpenCultural(true);
             }}
             style={{ right: '0' }}
             className={`${classes.header_large}`}
           >
-            {rightName}
+            Cultural
           </h1>
           <Image
             layout="fill"
@@ -142,7 +145,7 @@ function TwoHeadingSelector({
               }}
               className={`${classes.header_large}`}
             >
-              {leftName}
+              Technical
             </h1>
           )}
 
@@ -176,7 +179,7 @@ function TwoHeadingSelector({
               }}
               className={`${classes.header_large}`}
             >
-              {rightName}
+              Cultural
             </h1>
           )}
 
