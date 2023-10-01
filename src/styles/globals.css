@@ -14,3 +14,13 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
+
+.progress {
+    background: transparent;
+    position: fixed;
+    top: 0;
+}
+
+.progress-bar {
+    background-color: blue;
+}

@@ -1,0 +1,95 @@
+  .eventCardContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
+  }
+
+  .eventCardGlossContainer {
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    pointer-events: none;
+    transition: transform 2s ease, box-shadow 0.5s ease-in-out;
+  }
+
+  .eventCardContainer:hover {
+    transform: skewY(2deg) scale(1.01);
+    box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .eventCardContainer:hover .eventCardGlossContainer {
+    left: 0%;
+    width: 100%;
+    background-color: none;
+  }
+  
+  .posterContainer {
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    height: max(50vh, 250px);
+  }
+  
+  .tags {
+    display: flex;
+    border: 2px solid #fff;
+    border-left: 0;
+    border-radius: 10px 0 10px 0;
+    flex-wrap: wrap;
+  }
+   
+  .tagList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .eventData {
+    background-color: rgb(47, 39, 39);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: var(--movieCardWidth);
+    height: 227px;
+  }
+  
+  .eventDetailContainer > * {
+    padding: min(8px, 3vmin);
+    font-family: "Lalezar", cursive;
+    font-size: min(9vmin, 18px);
+  }
+  
+  .eventName {
+    font-size: min(10vmin, 25px);
+    text-transform: uppercase;
+    font-family: "Coda", cursive;
+    font-weight: bold;
+  }
+  
+  .eventOverview {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .seperator {
+    height: min(2vmin, 5px);
+    width: min(2vmin, 5px);
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    align-self: center;
+    margin: auto min(2vmin, 8px);
+  }
+  
+  .eventDate {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
