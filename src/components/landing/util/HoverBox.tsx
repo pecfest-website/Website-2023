@@ -7,7 +7,8 @@ function HoverBox({
     title: string;
     description: string;
 }) {
-    return <></>;
+    return <>
+    </>;
 }
 
 export default HoverBox;
