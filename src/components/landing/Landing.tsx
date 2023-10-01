@@ -8,6 +8,9 @@ import logo from "./assets/logo.png";
 import * as THREE from "three";
 import { useWindowSize } from "usehooks-ts";
 import { Boat, Ship } from "./util/Ship";
+import useSound from "use-sound";
+import { OrbitControls } from "@react-three/drei";
+import { useRouter } from "next/router";
 
 function Rig() {
     const { camera, mouse } = useThree();
@@ -22,12 +25,20 @@ function Rig() {
 
 function Landing() {
     const { width } = useWindowSize();
+    const [play] = useSound("/assets/audio/ocean.mp3");
+    const router = useRouter();
+
+    const pushRoute = (route: string) => {
+        router.push(route);
+    };
+
     return (
         <div
             style={{
                 height: "100vh",
                 zIndex: 0,
             }}
+            // onMouseOver={() => play()}
         >
             <Canvas
                 camera={{ position: [0, 5, 100], fov: 60, near: 1, far: 20000 }}
@@ -67,20 +78,57 @@ function Landing() {
                     <Rig />
                     {width > 720 ? (
                         <>
-                            <Ship pos={[-15, 0, 75]} onClick={() => {}} />
-                            <Ship pos={[-10, 0, 80]} onClick={() => {}} />
-                            <Ship pos={[-5, 0, 85]} onClick={() => {}} />
-                            <Boat pos={[0, 0, 90]} onClick={() => {}} />
-                            <Ship pos={[5, 0, 85]} onClick={() => {}} />
-                            <Ship pos={[10, 0, 80]} onClick={() => {}} />
-                            <Ship pos={[15, 0, 75]} onClick={() => {}} />
-
+                            <Ship
+                                pos={[-15, 0, 75]}
+                                onClick={() => {
+                                    pushRoute("/contacts");
+                                }}
+                            />
+                            <Ship
+                                pos={[-10, 0, 80]}
+                                onClick={() => {
+                                    pushRoute("/brochure");
+                                }}
+                            />
+                            <Ship
+                                pos={[-5, 0, 85]}
+                                onClick={() => {
+                                    pushRoute("/schedule");
+                                }}
+                            />
+                            <Boat
+                                pos={[0, 0, 90]}
+                                onClick={() => {
+                                    pushRoute("/about");
+                                }}
+                            />
+                            <Ship
+                                pos={[5, 0, 85]}
+                                onClick={() => {
+                                    pushRoute("/events");
+                                }}
+                            />
+                            <Ship
+                                pos={[10, 0, 80]}
+                                onClick={() => {
+                                    pushRoute("/team");
+                                }}
+                            />
+                            <Ship
+                                pos={[15, 0, 75]}
+                                onClick={() => {
+                                    pushRoute("/gallery");
+                                }}
+                            />
                         </>
                     ) : (
                         <>
-                            <Ship pos={[-10, 0, 60]} onClick={() => {}} />
-                            <Boat pos={[0, 0, 70]} onClick={() => {}} />
-                            <Ship pos={[10, 0, 60]} onClick={() => {}} />
+                            <Boat
+                                pos={[0, 0, 70]}
+                                onClick={() => {
+                                    pushRoute("/about");
+                                }}
+                            />
                         </>
                     )}
                 </Suspense>

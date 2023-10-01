@@ -5,15 +5,8 @@ import ContactUsCard from "@/components/Contact/ContactUsCard/ContactUsCard";
 import { SOCIALICONS } from "@/data/socials";
 import { CONTACTUSINFO } from "@/data/contacts";
 import PageLayout from "@/components/layout/PageLayout";
-import PirateShipLottie from "@/components/events/shipLottieAnimation";
 
 function Contacts() {
-    return (
-        <PageLayout title="Contact Us | Pecfest" noHeader>
-            <PirateShipLottie loop={true} />
-            <h1 className={styles.comingSoon}>Coming Soon</h1>
-        </PageLayout>
-    );
     return (
         <PageLayout
             title="Contact Us"
