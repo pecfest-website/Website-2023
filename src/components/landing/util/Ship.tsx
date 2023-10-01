@@ -1,36 +1,67 @@
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
-import { HtmlTooltip } from "../Tooltip";
 import { Clone } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import HoverBox from "./HoverBox";
 
-export function Boat({ pos, onClick }: any) {
+export function Boat({ pos, onClick, img }: any) {
     const fbx = useLoader(FBXLoader as any, "/assets/models/shipp.fbx");
-    return (
-        <Clone object={fbx} scale={0.001} position={pos} onClick={onClick} />
-    );
-}
-
-export function Ship({ pos, onClick, title, description }: any) {
-    const gltf = useLoader(GLTFLoader as any, "/assets/models/pirate_ship.glb");
     const [hover, setHover] = useState(false);
 
-    useEffect(() => {}, [hover]);
+    useEffect(() => {
+        document.body.style.cursor = hover ? "pointer" : "auto";
+    }, [hover]);
 
     return (
         <>
             {hover ? (
-                <HoverBox title={title} description={description} />
+                <HoverBox
+                    title={"About"}
+                    description={"Discover PECFEST"}
+                    pos={[pos[0], pos[1] + 3, pos[2]]}
+                    args={[15, 7]}
+                    img={img}
+                />
+            ) : null}
+            <Clone
+                object={fbx}
+                scale={0.001}
+                position={pos}
+                onClick={onClick}
+                onPointerOver={() => setHover(true)}
+                onPointerOut={() => setHover(false)}
+            />
+        </>
+    );
+}
+
+export function Ship({ pos, onClick, title, description, img }: any) {
+    const gltf = useLoader(GLTFLoader as any, "/assets/models/pirate_ship.glb");
+    const [hover, setHover] = useState(false);
+
+    useEffect(() => {
+        document.body.style.cursor = hover ? "pointer" : "auto";
+    }, [hover]);
+
+    return (
+        <>
+            {hover ? (
+                <HoverBox
+                    title={title}
+                    description={description}
+                    pos={[pos[0], pos[1] + 3, pos[2]]}
+                    args={[10, 5]}
+                    img={img}
+                />
             ) : null}
             <Clone
                 object={gltf.scene}
                 scale={0.001}
                 position={pos}
                 onClick={onClick}
-                onPointerEnter={() => setHover(true)}
-                onPointerLeave={() => setHover(false)}
+                onPointerOver={() => setHover(true)}
+                onPointerOut={() => setHover(false)}
             />
         </>
     );

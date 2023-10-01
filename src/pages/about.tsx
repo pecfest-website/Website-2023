@@ -1,9 +1,8 @@
-import React from 'react'
+import PageLayout from "@/components/layout/PageLayout";
+import React from "react";
 
 function About() {
-  return (
-    <div>About</div>
-  )
+    return <PageLayout title="About | Pecfest'23"></PageLayout>;
 }
 
-export default About
+export default About;

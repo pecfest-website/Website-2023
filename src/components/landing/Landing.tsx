@@ -5,11 +5,11 @@ import Ocean from "./Ocean";
 import Sky from "./Sky";
 import { Layers } from "./util/LayerComponent";
 import logo from "./assets/logo.png";
+import discover from "./assets/discover.png";
 import * as THREE from "three";
 import { useWindowSize } from "usehooks-ts";
 import { Boat, Ship } from "./util/Ship";
 import useSound from "use-sound";
-import { OrbitControls } from "@react-three/drei";
 import { useRouter } from "next/router";
 
 function Rig() {
@@ -38,7 +38,6 @@ function Landing() {
                 height: "100vh",
                 zIndex: 0,
             }}
-            // onMouseOver={() => play()}
         >
             <Canvas
                 camera={{ position: [0, 5, 100], fov: 60, near: 1, far: 20000 }}
@@ -51,13 +50,7 @@ function Landing() {
                 <pointLight position={[100, 0, 100]} intensity={100} />
                 <pointLight position={[-100, -100, -100]} />
 
-                <ambientLight intensity={5} position={[0, 0, 0]} />
-                <spotLight
-                    position={[10, 10, 10]}
-                    angle={0.15}
-                    penumbra={1}
-                    intensity={100}
-                />
+                <ambientLight intensity={2} position={[0, 0, 0]} />
 
                 <Suspense fallback={<Loader />}>
                     <Sky />
@@ -80,45 +73,59 @@ function Landing() {
                         <>
                             <Ship
                                 pos={[-15, 0, 75]}
+                                title="Contacts"
                                 onClick={() => {
                                     pushRoute("/contacts");
                                 }}
+                                img={discover.src}
                             />
                             <Ship
                                 pos={[-10, 0, 80]}
+                                title="Brochure"
                                 onClick={() => {
                                     pushRoute("/brochure");
                                 }}
+                                img={discover.src}
                             />
                             <Ship
                                 pos={[-5, 0, 85]}
+                                title="Schedule"
                                 onClick={() => {
                                     pushRoute("/schedule");
                                 }}
+                                img={discover.src}
                             />
                             <Boat
                                 pos={[0, 0, 90]}
+                                title="Discover"
                                 onClick={() => {
                                     pushRoute("/about");
                                 }}
+                                img={discover.src}
                             />
                             <Ship
                                 pos={[5, 0, 85]}
+                                title="Events"
                                 onClick={() => {
                                     pushRoute("/events");
                                 }}
+                                img={discover.src}
                             />
                             <Ship
                                 pos={[10, 0, 80]}
+                                title="Team"
                                 onClick={() => {
                                     pushRoute("/team");
                                 }}
+                                img={discover.src}
                             />
                             <Ship
                                 pos={[15, 0, 75]}
+                                title="Gallery"
                                 onClick={() => {
                                     pushRoute("/gallery");
                                 }}
+                                img={discover.src}
                             />
                         </>
                     ) : (
@@ -128,6 +135,7 @@ function Landing() {
                                 onClick={() => {
                                     pushRoute("/about");
                                 }}
+                                img={discover.src}
                             />
                         </>
                     )}
