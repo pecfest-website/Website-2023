@@ -1,0 +1,164 @@
+export const sponsors = {
+    "Title Sponsor": [{
+            "Name": "Trident",
+            "Logo": "/assets/logos/logo.png"
+        }
+    ],
+    "Driven By": [{
+            "Name": "Sparx",
+            "Logo": "/sponsors/Sparx.png"
+        }
+    ],
+    "Co Sponsor": [{
+            "Name": "Golmedal",
+            "Logo": "/sponsors/Goldmedal.png"
+        }
+    ],
+    "Associate Partner":[{
+            "Name": "JLPL",
+            "Logo": "/sponsors/Jlpl.png"
+        },   
+        {
+            "Name": "Quark City",
+            "Logo": "/sponsors/Quarkcity.png"
+        },
+        {
+            "Name": "Jubilee Group",
+            "Logo": "/sponsors/Jubilee.png"
+        }
+    ],
+    "Corporate Partner":[{
+            "Name": "Venus Education",
+            "Logo": "/sponsors/Venus.png"
+        },
+        {
+            "Name": "Hit Bulls Eye",
+            "Logo": "/sponsors/Hitbulls.png"
+        },
+        {
+            "Name": "Xeam",
+            "Logo": "/sponsors/xeam.png"
+        },
+        {
+            "Name": "IBS",
+            "Logo": "/sponsors/IBS.png"
+        },
+        {
+            "Name": "Trishla City",
+            "Logo": "/sponsors/Trishla.jpg"
+        },
+        {
+            "Name": "Zoom Car",
+            "Logo": "/sponsors/ZoomCar.png"
+        },
+        {
+            "Name": "Union Bank",
+            "Logo": "/sponsors/UBILogo.png"
+        },
+        {
+            "Name": "HLP Galleria",
+            "Logo": "/sponsors/HLPGalleria.png"
+        },
+        {
+            "Name": "JSW Steel",
+            "Logo": "/sponsors/JSWSteel.png"
+        },
+        {
+            "Name": "Canara",
+            "Logo": "/sponsors/Canara.png"
+        }
+    ],
+    "Merchandise Partner":[{
+            "Name": "Bonkers Corner",
+            "Logo": "/sponsors/bonker.png"
+    }],
+    "Engagement Partner":[{
+            "Name": "100 things in Ldh",
+            "Logo": "/sponsors/100things.png"
+        },
+        {
+            "Name": "Chandigarh Bytes",
+            "Logo": "/sponsors/CHD BYTES.jpg"
+        }
+    ],
+    "Experience Partner":[{
+            "Name": "Tinder",
+            "Logo": "/sponsors/tinder.png"
+        }
+    ],
+    "Official Hydration Partner": [{
+            "Name": "Jal",
+            "Logo": "/sponsors/Jal.png"
+        }
+    ],
+    "Official Snack Partner": [{
+            "Name": "Crax",
+            "Logo": "/sponsors/Crax.png"
+        }
+    ],
+    "Official Hospitality Partner": [{
+        "Name": "Lalit Chnadigarh",
+        "Logo": "/sponsors/Lalit.jpg"
+    }
+],
+    "Photography Partner": [{
+            "Name": "Instax",
+            "Logo": "/sponsors/instax.png"
+        }
+    ],
+    "Official Payment Partner": [{
+            "Name": "SBI",
+            "Logo": "/sponsors/sbi.jpg"
+        }
+    ],
+    "Event Sponsors":[{
+            "Name": "Canva",
+            "Logo": "/sponsors/Canva.png"
+        },
+        {
+            "Name": "Crimsoune",
+            "Logo": "/sponsors/Crimsoune.png"
+        },
+        {
+            "Name": "Roadies Koffeehouz",
+            "Logo": "/sponsors/Roadies.png"
+        },
+        {
+            "Name": "Ikarus 3D",
+            "Logo": "/sponsors/icarus3D.jpg"
+        }
+    ],
+    "Food Partner": [{
+            "Name": "Le Burger",
+            "Logo": "/sponsors/LeBurger.png"
+        },
+        {
+            "Name": "Awadhi Central",
+            "Logo": "/sponsors/Avadhi.png"
+        },
+        {
+            "Name": "Baker's In",
+            "Logo": "/sponsors/Bakers.png"
+        },
+        {
+            "Name": "Birinj",
+            "Logo": "/sponsors/birinjlogo.jpg"
+        },
+        {
+            "Name": "Hangry",
+            "Logo": "/sponsors/Hangry.jpg"
+        },
+        {
+            "Name": "Peggy",
+            "Logo": "/sponsors/Peggy.jpg"
+        },
+        {
+            "Name": "Chaat Current",
+            "Logo": "/sponsors/ChaatCurrent.png"
+        },
+        {
+            "Name": "Tandoori Zaika",
+            "Logo": "/sponsors/Tandoori.jpg"
+        }
+    ]
+}
