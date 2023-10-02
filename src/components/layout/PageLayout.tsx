@@ -12,7 +12,7 @@ type Props = {
 
 function PageLayout({ title, children, description, noHeader }: Props) {
     return (
-        <div>
+        <div className={styles.page}>
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />

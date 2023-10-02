@@ -50,8 +50,8 @@ export function Ship({ pos, onClick, title, description, img }: any) {
                 <HoverBox
                     title={title}
                     description={description}
-                    pos={[pos[0], pos[1] + 3, pos[2]]}
-                    args={[10, 5]}
+                    pos={[pos[0], pos[1] + 2, pos[2]]}
+                    args={[15, 9]}
                     img={img}
                 />
             ) : null}
