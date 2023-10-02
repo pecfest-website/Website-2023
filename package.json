@@ -26,16 +26,18 @@
     "lottie-web": "^5.12.2",
     "next": "13.4.13",
     "next-auth": "^4.23.1",
+    "planby": "^1.1.4",
     "react": "18.2.0",
+    "react-animated-3d-card": "^1.0.2",
     "react-dom": "18.2.0",
     "react-grid-gallery": "^1.0.0",
     "react-icons": "^4.10.1",
     "react-lottie": "^1.2.3",
     "three": "^0.156.1",
     "typescript": "5.1.6",
-    "yet-another-react-lightbox": "^3.12.2",
     "use-sound": "^4.0.1",
-    "usehooks-ts": "^2.9.1"
+    "usehooks-ts": "^2.9.1",
+    "yet-another-react-lightbox": "^3.12.2"
   },
   "devDependencies": {
     "@types/react-lottie": "^1.2.6",
