@@ -11,7 +11,7 @@ function TwoHeadingSelector({
   leftImageUrl,
   rightImageUrl,
   setEventType
-}) {
+}: any) {
   const [openTechnical, setOpenTechnical] = useState(false);
   const [openCultural, setOpenCultural] = useState(false);
   const [isHoveredOnTechnical, setHoveredOnTechnical] = useState(false);

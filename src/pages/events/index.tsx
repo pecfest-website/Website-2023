@@ -39,7 +39,7 @@ function Events({ isEventDoneEnv }: EventPageProps) {
             // Fetch events
             setEvents([
                 {
-                    id: 12,
+                    id: '12',
                     title: 'Ideathon',
                     date: '12/01/2222',
                     location: 'PEC',
