@@ -7,13 +7,15 @@ import { GetServerSideProps } from "next";
 import LargeButton from "@/components/events/largeButton";
 import PageLayout from "@/components/layout/PageLayout";
 import EventCard from "@/components/events/eventCard";
+import TwoHeadingSelector from "@/components/TwoHeadingSelector/TwoHeadingSelector";
+import { useRouter } from "next/router";
 
 interface EventPageProps {
     isEventDoneEnv: string | null;
 }
 
 interface Event {
-    id: number;
+    id: string;
     title: string;
     date: string;
     location: string;
@@ -29,17 +31,27 @@ const EventTypes = {
 function Events({ isEventDoneEnv }: EventPageProps) {
     const [eventType, setEventType] = useState<string | null>(null);
     const [events, setEvents] = useState<Event[]>([]);
+    const router = useRouter();
 
     const fetchEvents = async () => {
         console.log("fetch events");
         try {
             // Fetch events
+            setEvents([
+                {
+                    id: '12',
+                    title: 'Ideathon',
+                    date: '12/01/2222',
+                    location: 'PEC',
+                    tags: ['Coding']
+                }
+            ])
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
 
-    if (!isEventDoneEnv) {
+    if (isEventDoneEnv) {
         return (
             <PageLayout title="Events | Pecfest" noHeader>
                 <PirateShipLottie loop={true} />
@@ -50,19 +62,12 @@ function Events({ isEventDoneEnv }: EventPageProps) {
 
     if (eventType == null) {
         return (
-            <div className={styles.eventTypeButtonDiv}>
-                {Object.keys(EventTypes).map((eventType) => (
-                    <LargeButton
-                        key={eventType}
-                        onClick={() => setEventType(eventType)}
-                        className={styles.eventTypeButton}
-                    >
-                        {eventType.charAt(0).toUpperCase() + eventType.slice(1)}{" "}
-                        Events
-                    </LargeButton>
-                ))}
-            </div>
-        );
+            <TwoHeadingSelector
+                leftImageUrl="/FestPics/workshop.jpg"
+                rightImageUrl="/FestPics/megashows.jpg"
+                setEventType={setEventType}
+            />
+        )
     }
 
     if (events == null || events.length == 0) {
@@ -92,6 +97,9 @@ function Events({ isEventDoneEnv }: EventPageProps) {
                             xs={12}
                             sm={6}
                             md={4}
+                            onClick={() => {router.push({
+                                pathname: `events/${event.id}`
+                            })}}
                         >
                             <EventCard
                                 id={event.id}
