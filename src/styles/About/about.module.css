@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Narnoor&display=swap");
+
+@font-face {
+  font-family: caribbean;
+  src: url("/assets/fonts/poc/Caribbean.ttf");
+}
+
+.about {
+  background-image: url("about_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  scroll-behavior: smooth;
+  font-family: caribbean;
+}
+
+.aboutHeading {
+  align-items: center;
+    color: #acebf6;
+    display: flex;
+    font-size: 4rem;
+    justify-content: center;
+    min-height: -webkit-fit-content;
+    min-height: -moz-fit-content;
+    min-height: fit-content;
+    padding-top: 50px;
+    position: relative;
+    width: 100vw;
+    z-index: 0;
+    font-family: caribbean;
+}
+
+.aboutMain {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 4rem auto;
+  text-align: justify;
+  width: 70vw;
+  font-family: caribbean;
+}
+
+.aboutBoxes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 auto 10vh;
+  width: 70vw;
+}
+
+.aboutBox {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 2rem 4rem;
+  width: 25%;
+}
+
+.aboutIcon {
+  width: 64%;
+}
+
+.aboutNum {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-top: 1.75rem;
+  font-family: caribbean;
+}
+
+.aboutTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  font-family: caribbean;
+}
