@@ -7,7 +7,7 @@ import styles from "@/styles/Events/eventCard.module.css";
 interface Event {}
 
 interface EventCardProps {
-  id: number;
+  id: string;
   title: string;
   event_date: string;
   location: string;
@@ -21,18 +21,18 @@ const EventCard: React.FC<EventCardProps> = ({
   location,
   tags,
 }) => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   return (
     <div>
-      <ModalContainer
+      {/* <ModalContainer
         isOpen={open}
         close={() => setOpen(false)}
         className=""
         padding={0}
       >
         Details of the event and registration
-      </ModalContainer>
+      </ModalContainer> */}
       <div className={styles.eventCardContainer}>
         <div className={styles.eventCardGlossContainer}></div>
 
@@ -61,7 +61,7 @@ const EventCard: React.FC<EventCardProps> = ({
 
             <div className={styles.eventDate}>
               <div className="content">{event_date}</div>
-              <Button
+              {/* <Button
                 variant="contained"
                 sx={{
                   margin: 0,
@@ -70,10 +70,10 @@ const EventCard: React.FC<EventCardProps> = ({
                   fontWeight: "bold",
                   backgroundColor: "#EB5353",
                 }}
-                onClick={(e) => setOpen(true)}
+                onClick={(e) => router.push({ pathname: id})}
               >
                 More
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

@@ -8,13 +8,14 @@ import LargeButton from "@/components/events/largeButton";
 import PageLayout from "@/components/layout/PageLayout";
 import EventCard from "@/components/events/eventCard";
 import TwoHeadingSelector from "@/components/TwoHeadingSelector/TwoHeadingSelector";
+import { useRouter } from "next/router";
 
 interface EventPageProps {
     isEventDoneEnv: string | null;
 }
 
 interface Event {
-    id: number;
+    id: string;
     title: string;
     date: string;
     location: string;
@@ -30,6 +31,7 @@ const EventTypes = {
 function Events({ isEventDoneEnv }: EventPageProps) {
     const [eventType, setEventType] = useState<string | null>(null);
     const [events, setEvents] = useState<Event[]>([]);
+    const router = useRouter();
 
     const fetchEvents = async () => {
         console.log("fetch events");
@@ -95,6 +97,9 @@ function Events({ isEventDoneEnv }: EventPageProps) {
                             xs={12}
                             sm={6}
                             md={4}
+                            onClick={() => {router.push({
+                                pathname: `events/${event.id}`
+                            })}}
                         >
                             <EventCard
                                 id={event.id}
