@@ -11,24 +11,25 @@ import Image from "next/image";
 function About() {
   return (
     <PageLayout title="About | Pecfest'23">
-          <div className={styles.about}>
-              <div className={styles.aboutHeading}>
-                  ABOUT
-              </div>
+      <div className={styles.about}>
+        <div className={styles.aboutHeading}>ABOUT</div>
         <div className={styles.aboutMain}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-          scelerisque odio eu ligula pellentesque, id suscipit libero aliquet.
-          Vestibulum auctor fringilla massa a vestibulum. Praesent nec est non
-          odio condimentum convallis. Duis ac dapibus purus. Nunc non erat id ex
-          scelerisque sollicitudin. Pellentesque vel ipsum non sapien gravida
-          consectetur. Proin euismod, ante et commodo aliquet, lorem nulla
-          lacinia nunc, eu bibendum ligula ligula nec nunc. Nullam iaculis,
-          lectus ut dictum bibendum, nunc erat convallis nulla, eu fermentum
-          libero justo vel quam. Integer nec tortor nec dolor fermentum
-          pellentesque. Etiam vitae quam urna. Quisque eget velit ac dolor
-          venenatis bibendum nec a leo. Vestibulum fermentum justo eu ante
-          interdum, nec feugiat arcu volutpat. Integer mattis, odio eu aliquam
-          semper, purus lectus vehicula velit, ac lacinia justo eros in justo.
+          Elevating the spirit of innovation and artistic expression, PECFEST
+          2023 stands as a pinnacle of techno-cultural brilliance. Rooted in a
+          legacy of excellence, we craft an unparalled experience that
+          seamlessly marries culture with cutting-edge technology. As the
+          paramount annual extravaganza of North India, PECFEST is a dynamic
+          convergence of creativity, intellect and pure enjoyment. What truly
+          sets us apart is our unwavering commitment to pushing boundaries. From
+          captivating talks by visionary pioneers to electrifying musical
+          performances by top-tier artists, every moment i sdesigned to ignite
+          isnipration. The canvas of PECFEST unfurls with a rich tapestry of
+          talents,, where diverse voices resonate in harmony. Uniting a vibrant
+          community of over 50,000 enthusiasts from all corners of the country,
+          PECFEST creates a symphony of shared passion. Embrace the pulse of the
+          future, where tradition meets innovation, at PECFEST 2023. Join us and
+          become a part of this remarkable journey, where creativity knows no
+          bounds.
         </div>
         <div className={styles.aboutBoxes}>
           <div className={styles.aboutBox}>
@@ -38,22 +39,22 @@ function About() {
           </div>
           <div className={styles.aboutBox}>
             <Image className={styles.aboutIcon} src={Colleges} alt="" />
-            <div className={styles.aboutNum}>50+</div>
-            <div className={styles.aboutTitle}>COLLEGES</div>
+            <div className={styles.aboutNum}>100000+</div>
+            <div className={styles.aboutTitle}>IMPRESSIONS</div>
           </div>
           <div className={styles.aboutBox}>
             <Image className={styles.aboutIcon} src={Events} alt="" />
-            <div className={styles.aboutNum}>100+</div>
+            <div className={styles.aboutNum}>50+</div>
             <div className={styles.aboutTitle}>EVENTS</div>
           </div>
           <div className={styles.aboutBox}>
             <Image className={styles.aboutIcon} src={Prizes} alt="" />
-            <div className={styles.aboutNum}>10 Lakh+</div>
-            <div className={styles.aboutTitle}>PRIZES</div>
+            <div className={styles.aboutNum}>6000+</div>
+            <div className={styles.aboutTitle}>APP INSTALLS</div>
           </div>
           <div className={styles.aboutBox}>
             <Image className={styles.aboutIcon} src={Participants} alt="" />
-            <div className={styles.aboutNum}>10000+</div>
+            <div className={styles.aboutNum}>8000+</div>
             <div className={styles.aboutTitle}>PARTICIPANTS</div>
           </div>
         </div>
