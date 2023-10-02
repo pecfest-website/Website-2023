@@ -15,13 +15,13 @@ import {
     numberOfHoursInDay,
     offsetStartHoursRange,
     sidebarWidth
-  }) {
+  }: any) {
     const { time, dividers, formatTime } = useTimeline(
       numberOfHoursInDay,
       isBaseTimeFormat
     );
   
-    const renderTime = (index) => (
+    const renderTime = (index: any) => (
       <TimelineBox key={index} width={hourWidth}>
         <TimelineTime>
           {formatTime(index + offsetStartHoursRange).toLowerCase()}

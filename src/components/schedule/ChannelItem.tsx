@@ -1,6 +1,6 @@
 import { ChannelBox, ChannelLogo } from "planby";
 
-export const ChannelItem = ({ channel }) => {
+export const ChannelItem = ({ channel }: any) => {
   const { position, logo } = channel;
   return (
     <ChannelBox {...position}>

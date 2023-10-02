@@ -9,7 +9,7 @@ import {
     useProgram
   } from "planby";
   
-  export const ProgramItem = ({ program, ...rest }) => {
+  export const ProgramItem = ({ program, ...rest }: any) => {
     const {
       styles,
       formatTime,
