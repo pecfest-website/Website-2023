@@ -1,0 +1,148 @@
+.container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.appbar_box {
+    margin-bottom: -50px !important;
+}
+
+.appbar_box a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.appbar_box a:hover {
+    color: #f07b3f;
+}
+
+.appbar {
+    background-color: black;
+    height: 75px;
+}
+
+.appbar button {
+    font-size: 0.9rem;
+}
+
+.navbar_logo {
+    min-width: 0 !important;
+    min-height: 0 !important;
+    width: 8rem !important;
+    height: 8rem !important;
+    top: 20% !important;
+    background-color: black;
+    border-radius: 1rem;
+    z-index: 2 !important;
+    cursor: pointer;
+    transition: ease-out 0.25s;
+}
+
+.navbar_logo_shrunk {
+    min-width: 0 !important;
+    min-height: 0 !important;
+    width: 4.5rem !important;
+    height: 4.5rem !important;
+    transition: ease-in 0.25s;
+}
+
+.toolbar {
+    display: flex !important;
+    justify-content: center;
+    color: white;
+}
+
+.toolbar_box {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.navbar_drawer {
+    background-color: black;
+    color: white;
+    height: 100vh;
+}
+
+.navbar_collapse {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar_drawer > span {
+    max-width: 50% !important;
+}
+
+.navbar-about-menu {
+    background-color: black !important;
+}
+
+.enter_btn {
+    background-color: #f07b3f;
+}
+
+.dropdown_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown_btn:hover {
+    color: #f07b3f !important;
+}
+
+.enter_btn_mobile {
+    display: none;
+}
+
+@media only screen and (max-width: 600px) {
+    .toolbar_box {
+        display: none;
+    }
+
+    .toolbar > span {
+        max-width: 60% !important;
+    }
+
+    .navbar_logo {
+        width: 70px !important;
+        height: 70px !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        top: 0 !important;
+        background-color: none;
+        border-radius: none;
+        z-index: 2 !important;
+        cursor: pointer;
+        transition: none;
+    }
+
+    .navbar_logo_shrunk {
+        min-width: 0 !important;
+        min-height: 0 !important;
+        width: 70px !important;
+        height: 70px !important;
+        transition: none;
+    }
+
+    .enter_btn_mobile {
+        display: flex;
+        background-color: #f07b3f;
+    }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+    .navbar_logo {
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    .navbar_logo_shrunk {
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    .appbar button {
+        font-size: 0.75rem !important;
+    }
+}
