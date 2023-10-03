@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "@/styles/Landing/landingNavbar.module.css";
 import Link from "next/link";
+import { headerItems } from "@/data/headerItems";
 
 function LandingNavbar() {
     const [isExpanded, setExpendState] = useState(false);
@@ -15,12 +16,13 @@ function LandingNavbar() {
                     <button className={styles.closebtn} onClick={onClick}>
                         &times;
                     </button>
-                    <Link href="/events">Competitions</Link>
-                    <Link href="/schedule">Schedule</Link>
-                    <Link href="/gallery">Gallery</Link>
-                    <Link href="/brochure">Brochure</Link>
-                    <Link href="/sponsors">Sponsors</Link>
-                    <Link href="/contacts">Contact Us</Link>
+                    {headerItems.map((headerItem, i) => {
+                        return (
+                            <Link href={headerItem.href} key={i}>
+                                {headerItem.name}
+                            </Link>
+                        );
+                    })}
                 </div>
             )}
             {isExpanded == false && (

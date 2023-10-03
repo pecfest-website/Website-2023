@@ -7,9 +7,9 @@ import styles from "@/styles/Contacts/contacts.module.css";
 
 const getSocialIconSpan = () => {
     const spans = SOCIALICONS.map((socialIcon, id) => (
-        <span key={id} className={styles.socialIcon}>
+        <a href={socialIcon.link} key={id} className={styles.socialIcon}>
             {socialIcon.icon}
-        </span>
+        </a>
     ))
 
     return (
