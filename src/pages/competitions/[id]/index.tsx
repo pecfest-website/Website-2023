@@ -1,6 +1,5 @@
 import EventCard from "@/components/events/eventCard";
 import { Button, Grid } from "@mui/material";
-import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import styles from "@/styles/Events/eventDetails.module.css";
 
@@ -8,38 +7,84 @@ interface EventDetailsProps {
   eventId: string;
 }
 
+enum EventType {individual="Individual",team="Team"}
+enum EventCategory {technical="Technical",cultural="Cultural",megashows="Megashows",workshop="Workshop"}
+enum EventClubType {cultural="Cultural",technical="Technical"}
+
+interface Event {
+    id?: string;
+    name?: string;
+    type?: EventType;
+    category?: EventCategory;
+    description?: string;
+    startDate?: Date;
+    endDate?: Date;
+    venue?: string;
+    club?: string;
+    clubType?: EventClubType;
+    rulebook?: string;
+    subcategory?: string[];
+    image?: string;
+}
+
 function EventDetails({ eventId }: EventDetailsProps) {
-  const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
-  const [location, setLocation] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
+  const [event, setEvent] = useState<Event>({});
 
   useEffect(() => {
     const fetchEventById = async () => {
       // fetch the event by ID
-      setTitle("sample");
-      setDate("12/11/2023");
-      setLocation("PEC Chandigarh");
-      setTags(["conder", "heavy"]);
+      const sampleEvent: Event = {
+        id: "1",
+        name: "Sample Event",
+        type: EventType.individual,
+        category: EventCategory.technical,
+        description: "This is a sample event description.",
+        startDate: new Date("2023-10-10"),
+        endDate: new Date("2023-10-12"),
+        venue: "Sample Venue",
+        club: "Sample Club",
+        clubType: EventClubType.technical,
+        rulebook: "https://example.com/sample-rulebook",
+        subcategory: ["Coding", "Hardware"],
+        image: "https://images.unsplash.com/photo-1682686578289-cf9c8c472c9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      };
+
+      setEvent(sampleEvent)
     };
 
     fetchEventById();
   }, [eventId]);
+
   return (
-    <Grid className={styles.container}>
+    <Grid className={styles.cover}>
       <Grid className={styles.card} item xs={12} sm={6} md={4}>
         <EventCard
-            id={eventId}
-            title={title}
-            event_date={date}
-            location={location}
-            tags={tags}
+            id={event.id}
+            name={event.name}
+            type={event.type}
+            category={event.category}
+            description={event.description}
+            startDate={event.startDate}
+            endDate={event.endDate}
+            venue={event.venue}
+            club={event.club}
+            clubType={event.clubType}
+            rulebook={event.rulebook}
+            subcategory={event.subcategory}
+            image={event.image}
         />
       </Grid>
 
       <Grid className={styles.content} item xs={12} sm={6} md={4}>
-        <h1>Sample Event Details</h1>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        <h1><u>Competition Details</u></h1>
+
+        <p>
+          {event?.category} | {event?.type} | {event?.category} | {event?.venue} | {event?.club} | {event?.clubType}
+        </p>
+
+        <a href={event?.rulebook}>Rulebook</a><br/><br/>
+
+        <p>{event?.description}</p>
         <br/>
         <Button variant="contained">Register</Button>
       </Grid>

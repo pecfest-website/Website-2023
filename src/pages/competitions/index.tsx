@@ -1,10 +1,8 @@
 import React, { ReactNode, useState } from "react";
 import { Button, Container, Grid } from "@mui/material";
-
 import styles from "@/styles/Events/events.module.css";
 import PirateShipLottie from "@/components/events/shipLottieAnimation";
 import { GetServerSideProps } from "next";
-import LargeButton from "@/components/events/largeButton";
 import PageLayout from "@/components/layout/PageLayout";
 import EventCard from "@/components/events/eventCard";
 import TwoHeadingSelector from "@/components/TwoHeadingSelector/TwoHeadingSelector";
@@ -14,19 +12,36 @@ interface EventPageProps {
   isEventDoneEnv: string | null;
 }
 
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  location: string;
-  tags: string[];
+enum EventType {
+  individual = "Individual",
+  team = "Team",
+}
+enum EventCategory {
+  technical = "Technical",
+  cultural = "Cultural",
+  megashows = "Megashows",
+  workshop = "Workshop",
+}
+enum EventClubType {
+  cultural = "Cultural",
+  technical = "Technical",
 }
 
-const EventTypes = {
-  cultural: "cultural",
-  technical: "technical",
-  megashows: "megashows",
-};
+interface Event {
+  id?: string;
+  name?: string;
+  type?: EventType;
+  category?: EventCategory;
+  description?: string;
+  startDate?: Date;
+  endDate?: Date;
+  venue?: string;
+  club?: string;
+  clubType?: EventClubType;
+  rulebook?: string;
+  subcategory?: string[];
+  image?: string;
+}
 
 function Events({ isEventDoneEnv }: EventPageProps) {
   const [eventType, setEventType] = useState<string | null>(null);
@@ -34,18 +49,29 @@ function Events({ isEventDoneEnv }: EventPageProps) {
   const router = useRouter();
 
   const fetchEvents = async () => {
-    console.log("fetch events");
+    console.log("fetch events from competitions");
     try {
       // Fetch events
       setEvents([
         {
-          id: '12',
-          title: 'Ideathon',
-          date: '12/01/2222',
-          location: 'PEC',
-          tags: ['Coding']
-        }
-      ])
+          id: "12",
+          name: "Ideathon",
+          startDate: new Date(),
+          endDate: new Date(),
+          venue: "PEC",
+          subcategory: ["Coding", "Hardware"],
+          type: EventType.team,
+          club: "ACM",
+          clubType: EventClubType.technical,
+          category: EventCategory.cultural,
+          rulebook:
+            "https://docs.google.com/document/d/10flyp_CVGi4BeIJRnF0TXTsWAGG8HN27hSwp8KI6uN0/edit",
+          description:
+            "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
+          image:
+            "https://images.unsplash.com/photo-1682686578289-cf9c8c472c9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        },
+      ]);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -53,9 +79,11 @@ function Events({ isEventDoneEnv }: EventPageProps) {
 
   if (isEventDoneEnv) {
     return (
-      <PageLayout title="Events | Pecfest" noHeader>
-        <PirateShipLottie loop={true} />
-        <h1 className={styles.comingSoon}>Coming Soon</h1>
+      <PageLayout title="Competitions | Pecfest" noHeader>
+        <div className={styles.cover}>
+          <PirateShipLottie loop={true} />
+          <h1 className={styles.comingSoon}>Coming Soon</h1>
+        </div>
       </PageLayout>
     );
   }
@@ -67,7 +95,7 @@ function Events({ isEventDoneEnv }: EventPageProps) {
         rightImageUrl="/FestPics/megashows.jpg"
         setEventType={setEventType}
       />
-    )
+    );
   }
 
   if (events == null || events.length == 0) {
@@ -82,11 +110,10 @@ function Events({ isEventDoneEnv }: EventPageProps) {
   }
 
   return (
-    <PageLayout title="Events | Pecfest'23">
-      <Container>
+    <PageLayout title="Competitions | Pecfest'23">
+      <Container className={styles.cover}>
         <h1 className="text-3xl font-bold mt-8 mb-4">
-          {eventType.charAt(0).toUpperCase() + eventType.slice(1)}{" "}
-          Events
+          {eventType.charAt(0).toUpperCase() + eventType.slice(1)} Events
         </h1>
         <Grid container spacing={3}>
           {events.map((event) => (
@@ -99,16 +126,24 @@ function Events({ isEventDoneEnv }: EventPageProps) {
               md={4}
               onClick={() => {
                 router.push({
-                  pathname: `events/${event.id}`
-                })
+                  pathname: `competitions/${event.id}`,
+                });
               }}
             >
               <EventCard
-                id={event.id}
-                title={event.title}
-                event_date={event.date}
-                location={event.location}
-                tags={event.tags}
+                id={event?.id}
+                name={event?.name}
+                type={event?.type}
+                category={event?.category}
+                description={event?.description}
+                startDate={event?.startDate}
+                endDate={event?.endDate}
+                venue={event?.venue}
+                club={event?.club}
+                clubType={event?.clubType}
+                rulebook={event?.rulebook}
+                subcategory={event?.subcategory}
+                image={event?.image}
               />
             </Grid>
           ))}
