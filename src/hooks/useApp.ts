@@ -23,9 +23,11 @@ export function useApp() {
         itemHeight: 80,
         isSidebar: true,
         isTimeline: true,
+        isInitialScrollToNow: true,
+        isCurrentTime: true,
         isLine: true,
-        startDate: "2022-10-18T00:00:00",
-        endDate: "2022-10-18T24:00:00",
+        startDate: "2023-10-03T00:00:00", //to be set according to the fest day
+        endDate: "2023-10-03T24:00:00",  //to be set according to the fest day
         isBaseTimeFormat: true,
         theme,
     });
