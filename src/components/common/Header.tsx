@@ -21,9 +21,9 @@ function Header() {
     }, [router.pathname]);
 
     return (
-        <nav className={styles.navbar}>
+        <nav className={`${styles.navbar} glassmorphism`}>
             <div className={styles.logo_wrapper}>
-                <Link href={"/"} aria-label="PEC ACM">
+                <Link href={"/"} aria-label="PECFEST">
                     <>
                         <Image
                             height={100}
@@ -65,11 +65,11 @@ function Header() {
                                 </li>
                             );
                         })}
-                        <li>
+                        {/* <li>
                             <Link href={"/login"} aria-label="Login">
                                 <button>Login</button>
                             </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
             </div>

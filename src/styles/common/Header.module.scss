@@ -1,7 +1,7 @@
 @import "../variables";
 
 .navbar {
-    background: white;
+    background: transparent;
     padding: 10px 100px 10px 40px;
     display: flex;
     align-items: center;
@@ -13,7 +13,7 @@
     top: 0;
     left: 0;
     font-weight: 600;
-    box-shadow: 0 0 4px #E2E2E2;
+    // box-shadow: 0 0 4px #E2E2E2;
     // color: $font-primary-color;
 
     .logo_wrapper {
@@ -40,7 +40,7 @@
             .line {
                 fill: none;
                 transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
-                stroke: #000;
+                stroke: #fff;
                 stroke-width: 5.5;
                 stroke-linecap: round;
             }
@@ -85,7 +85,7 @@
                 .nav_link {
                     font-weight: 600;
                     transition: 0.2s;
-
+                    color: white;
                     &:hover {
                         color: $acm-primary;
                     }
@@ -115,7 +115,7 @@
                 display: flex;
             }
             .menu_modal {
-                background: rgba(255, 255, 255, 0.95);
+                background: rgba(0, 0, 0, 0.8);
                 height: 100vh;
                 left: 50vw;
                 overflow-y: scroll;

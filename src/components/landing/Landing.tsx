@@ -90,19 +90,19 @@ function Landing() {
                             />
                             <Ship
                                 pos={[-10, 0, 80]}
-                                title="Competitions"
-                                onClick={() => {
-                                    pushRoute("/competitions");
-                                }}
-                                img={comp.src}
-                            />
-                            <Ship
-                                pos={[-5, 0, 85]}
                                 title="Schedule"
                                 onClick={() => {
                                     pushRoute("/Schedule");
                                 }}
                                 img={schedule.src}
+                                />
+                            <Ship
+                                pos={[-5, 0, 85]}
+                                title="Competitions"
+                                onClick={() => {
+                                    pushRoute("/competitions");
+                                }}
+                                img={comp.src}
                                 front
                             />
                             <Boat

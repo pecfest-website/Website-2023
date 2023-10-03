@@ -1,17 +1,11 @@
-import PirateShipLottie from "@/components/events/shipLottieAnimation";
 import PageLayout from "@/components/layout/PageLayout";
 import React from "react";
 import styles from "@/styles/Sponsors/sponsors.module.css";
-import { GetServerSideProps } from "next";
 import Image from "next/image";
 import { sponsors } from "@/data/sponsors";
 import { typenew } from "@/data/sponsorTitle";
 
-interface SponsorPageProps {
-    isSponsorsDone: string | null;
-}
-
-function Sponsors({ isSponsorsDone }: SponsorPageProps) {
+function Sponsors() {
     const types = typenew.map((title, index) => {
         return (
             <div key={index}>
@@ -39,15 +33,8 @@ function Sponsors({ isSponsorsDone }: SponsorPageProps) {
         );
     });
 
-    // if (!isSponsorsDone) {
-    //   return <PageLayout title='Sponsors | Pecfest' noHeader>
-    //     <PirateShipLottie loop={true} />
-    //     <h1 className={styles.comingSoon}>Coming Soon</h1>
-    //   </PageLayout>
-    // }
-
     return (
-        <PageLayout title="Sponsors | Pecfest" noHeader>
+        <PageLayout title="Sponsors | Pecfest">
             <div className={styles.main}>
                 <div className={styles.heading}>
                     <h1 className={styles.subheading1}>Sponsors</h1>
@@ -59,6 +46,9 @@ function Sponsors({ isSponsorsDone }: SponsorPageProps) {
                         and brand building opportunities offered at PECFEST are
                         unparalleled.
                     </div>
+                    <p>Contact Us</p>
+                    <p>Name1: +91-4567890567</p>
+                    <p>Name2: +91-4567890567</p>
                 </div>
 
                 <div className={styles.section}>{types}</div>
@@ -68,14 +58,3 @@ function Sponsors({ isSponsorsDone }: SponsorPageProps) {
 }
 
 export default Sponsors;
-
-export const getServerSideProps: GetServerSideProps<
-    SponsorPageProps
-> = async () => {
-    const isSponsorsDone = process.env.SPONSORS_DONE || null;
-    return {
-        props: {
-            isSponsorsDone,
-        },
-    };
-};
