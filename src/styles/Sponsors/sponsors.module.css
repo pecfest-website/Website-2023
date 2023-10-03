@@ -111,7 +111,7 @@
 }
 
 
-@media (max-width: 390px) { 
+@media (max-width: 550px) { 
   .subheading1{
   font-size: 50px;
   }
@@ -120,5 +120,11 @@
     }
     .sectionHeading{
       font-size:20px;
+    }
+    .subheading2{
+      display:none;
+    }
+    .main{
+      flex-direction:column;
     }
 }
