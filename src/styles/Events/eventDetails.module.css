@@ -1,11 +1,17 @@
-.container {
+.cover {
+    background-image: url("/assets/images/bg.png");
+    min-width: 100vw;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin: 20px;
-    width: 90vw;
-}
+    padding: 10px 100px;
+    color: white;
+} 
+
 
 .card {
     flex: 1;
@@ -18,7 +24,7 @@
 .content {
     flex: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: column !important;
     align-items: stretch;
     width: 100%;
     padding: 20px;
