@@ -45,6 +45,7 @@
 
 .socialIcon {
     margin-right: 8px;
+    cursor: pointer;
 }
 
 .socialWrapper {

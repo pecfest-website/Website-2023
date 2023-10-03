@@ -15,15 +15,13 @@ export function Boat({ pos, onClick, img }: any) {
 
     return (
         <>
-            {hover ? (
-                <HoverBox
-                    title={"About"}
-                    description={"Discover PECFEST"}
-                    pos={[pos[0], pos[1] + 3, pos[2]]}
-                    args={[15, 7]}
-                    img={img}
-                />
-            ) : null}
+            <HoverBox
+                title={"About"}
+                description={"Discover PECFEST"}
+                pos={[pos[0], pos[1] + 1, pos[2] + 4.5]}
+                args={[6, 3]}
+                img={img}
+            />
             <Clone
                 object={fbx}
                 scale={0.001}
@@ -36,7 +34,15 @@ export function Boat({ pos, onClick, img }: any) {
     );
 }
 
-export function Ship({ pos, onClick, title, description, img }: any) {
+export function Ship({
+    pos,
+    onClick,
+    title,
+    description,
+    img,
+    front,
+    right,
+}: any) {
     const gltf = useLoader(GLTFLoader as any, "/assets/models/pirate_ship.glb");
     const [hover, setHover] = useState(false);
 
@@ -46,15 +52,18 @@ export function Ship({ pos, onClick, title, description, img }: any) {
 
     return (
         <>
-            {hover ? (
-                <HoverBox
-                    title={title}
-                    description={description}
-                    pos={[pos[0], pos[1] + 2, pos[2]]}
-                    args={[15, 9]}
-                    img={img}
-                />
-            ) : null}
+            <HoverBox
+                title={"About"}
+                description={"Discover PECFEST"}
+                pos={
+                    !right
+                        ? [pos[0] - 1, pos[1], pos[2] + 4]
+                        : [pos[0] + 1, pos[1], pos[2] + 4]
+                }
+                args={[8, 4]}
+                img={img}
+            />
+
             <Clone
                 object={gltf.scene}
                 scale={0.001}

@@ -10,10 +10,10 @@ function OceanSky() {
                 mieCoefficient={0.05}
                 sunPosition={[0, -3, -100]}
                 azimuth={180}
-                turbidity={4}
-                // mieDirectionalG={0.791}
+                turbidity={10}
+                mieDirectionalG={0.791}
                 // mieDirectionalG={0.4}
-                rayleigh={0.2}
+                rayleigh={0.4}
             />
 
             <Layers pos={[0, 40, -40]} args={[200, 50]} img={clouds.src} />

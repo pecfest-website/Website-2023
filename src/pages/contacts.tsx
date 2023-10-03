@@ -26,17 +26,6 @@ function Contacts() {
                         );
                     })}
                 </div>
-
-                <div className={styles.heading}>Our Team</div>
-                <div className={styles.teamCards}>
-                    {Array.apply(null, Array(6)).map((_, i) => {
-                        return (
-                            <div key={i} className={styles.teamCard}>
-                                <TeamCard />
-                            </div>
-                        );
-                    })}
-                </div>
             </div>
         </PageLayout>
     );

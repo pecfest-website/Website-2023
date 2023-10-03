@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Hamburger from "./Hamburger";
 import styles from "@/styles/common/Header.module.scss";
+import { headerItems } from "@/data/headerItems";
 
 function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -77,34 +78,3 @@ function Header() {
 }
 
 export default Header;
-
-const headerItems = [
-    {
-        href: "/about",
-        name: "About",
-    },
-    {
-        href: "/competitions",
-        name: "Competitions",
-    },
-    {
-        href: "/events",
-        name: "Events",
-    },
-    {
-        href: "/team",
-        name: "Team",
-    },
-    {
-        href: "/gallery",
-        name: "Gallery",
-    },
-    {
-        href: "/brochure",
-        name: "Brochure",
-    },
-    {
-        href: "/contacts",
-        name: "Contact Us",
-    },
-];

@@ -25,7 +25,7 @@ function Rig() {
     return useFrame(() =>
         camera.position.lerp(
             vec.set(mouse.x * 0.25, camera.position.y, camera.position.z),
-            0.05
+            0.1
         )
     );
 }
@@ -86,6 +86,7 @@ function Landing() {
                                     pushRoute("/contacts");
                                 }}
                                 img={contacts.src}
+                                front
                             />
                             <Ship
                                 pos={[-10, 0, 80]}
@@ -99,12 +100,13 @@ function Landing() {
                                 pos={[-5, 0, 85]}
                                 title="Schedule"
                                 onClick={() => {
-                                    pushRoute("/schedule");
+                                    pushRoute("/Schedule");
                                 }}
                                 img={schedule.src}
+                                front
                             />
                             <Boat
-                                pos={[0, 0, 90]}
+                                pos={[0, 0, 88]}
                                 title="Discover"
                                 onClick={() => {
                                     pushRoute("/about");
@@ -118,6 +120,8 @@ function Landing() {
                                     pushRoute("/events");
                                 }}
                                 img={events.src}
+                                front
+                                right
                             />
                             <Ship
                                 pos={[10, 0, 80]}
@@ -126,6 +130,7 @@ function Landing() {
                                     pushRoute("/team");
                                 }}
                                 img={team.src}
+                                right
                             />
                             <Ship
                                 pos={[15, 0, 75]}
@@ -134,12 +139,14 @@ function Landing() {
                                     pushRoute("/gallery");
                                 }}
                                 img={gallery.src}
+                                front
+                                right
                             />
                         </>
                     ) : (
                         <>
                             <Boat
-                                pos={[0, 0, 70]}
+                                pos={[0, 0, 90]}
                                 onClick={() => {
                                     pushRoute("/about");
                                 }}
