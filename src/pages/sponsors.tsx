@@ -13,26 +13,27 @@ interface SponsorPageProps {
 }
 
 
-
 function Sponsors({isSponsorsDone}: SponsorPageProps) {
 
-  const types=typenew.map((title)=>{
+  const types=typenew.map((title, index)=>{
     return (
       
-      <>
+      <div key={index}>
       
       <h1 className={styles.subheading}>{title}</h1>
       <div className={styles.sectionDesign}>
-        {sponsors[`${title}`].map((item:any)=>{
+        {sponsors[`${title}`].map((item, index)=>{
     return(
+      <div key={index}>
       <div className={styles.subSection}>
           <Image src={item["Logo"]} height={200} width={200}  alt={'image'}/>
           <h1 className={styles.sectionHeading}>{item["Name"]}</h1>
         
         </div>
+      </div>
     )})}
     </div>
-    </>
+    </div>
 
     )
   })

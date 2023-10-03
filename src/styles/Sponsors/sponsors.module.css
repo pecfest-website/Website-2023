@@ -127,4 +127,8 @@
     .main{
       flex-direction:column;
     }
+    .heading{
+      background-color:	
+      rgba(0,0,128,0.4);
+    }
 }

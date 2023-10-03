@@ -1,4 +1,4 @@
-export const sponsors = {
+export const sponsors: { [key: string]: { Logo: string; Name: string }[] } = {
     "Title Sponsor": [{
             "Name": "Trident",
             "Logo": "/assets/logos/logo.png"

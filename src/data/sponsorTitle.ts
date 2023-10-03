@@ -1,4 +1,4 @@
-export const typenew = [
+export const typenew:string[] = [
     'Title Sponsor',
     // 'Powered By',
     'Driven By',
