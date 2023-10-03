@@ -2,14 +2,15 @@ import EventCard from "@/components/events/eventCard";
 import { Button, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import styles from "@/styles/Events/eventDetails.module.css";
+import { run } from "node:test";
 
 interface EventDetailsProps {
   eventId: string;
 }
 
-enum EventType {individual="individual",team="team"}
-enum EventCategory {technical="technical",cultural="cultural",megashows="megashows",workshop="workshop"}
-enum EventClubType {cultural="cultural",technical="technical"}
+enum EventType {individual="Individual",team="Team"}
+enum EventCategory {technical="Technical",cultural="Cultural",megashows="Megashows",workshop="Workshop"}
+enum EventClubType {cultural="Cultural",technical="Technical"}
 
 interface Event {
     id?: string;
@@ -54,6 +55,7 @@ function EventDetails({ eventId }: EventDetailsProps) {
 
     fetchEventById();
   }, [eventId]);
+
   return (
     <Grid className={styles.cover}>
       <Grid className={styles.card} item xs={12} sm={6} md={4}>
@@ -75,7 +77,14 @@ function EventDetails({ eventId }: EventDetailsProps) {
       </Grid>
 
       <Grid className={styles.content} item xs={12} sm={6} md={4}>
-        <h1>Event Details</h1>
+        <h1><u>Event Details</u></h1>
+
+        <p>
+          {event?.category} | {event?.type} | {event?.category} | {event?.venue} | {event?.club} | {event?.clubType}
+        </p>
+
+        <a href={event?.rulebook}>Rulebook</a><br/><br/>
+
         <p>{event?.description}</p>
         <br/>
         <Button variant="contained">Register</Button>

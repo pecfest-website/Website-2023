@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styles from "@/styles/Events/eventCard.module.css";
 
-enum EventType {individual="individual",team="team"}
-enum EventCategory {technical="technical",cultural="cultural",megashows="megashows",workshop="workshop"}
-enum EventClubType {cultural="cultural",technical="technical"}
+enum EventType {individual="Individual",team="Team"}
+enum EventCategory {technical="Technical",cultural="Cultural",megashows="Megashows",workshop="Workshop"}
+enum EventClubType {cultural="Cultural",technical="Technical"}
 
 interface EventCardProps {
   id?: string;
@@ -69,7 +69,7 @@ const EventCard: React.FC<EventCardProps> = ({
               <div className="content">{startDate?.toLocaleDateString()} - {endDate?.toLocaleDateString()}</div>
             </div>
 
-            <div className={styles.tags}>     
+            {/* <div className={styles.tags}>     
               {type} <span className={styles.seperator}></span>
               {category} <span className={styles.seperator}></span>
               {venue} <span className={styles.seperator}></span>
@@ -78,7 +78,7 @@ const EventCard: React.FC<EventCardProps> = ({
               <a href={rulebook}>Rulebook</a>
             </div>
 
-            {description}
+            {description} */}
           </div>
         </div>
       </div>

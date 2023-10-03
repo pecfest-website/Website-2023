@@ -13,9 +13,9 @@ interface EventPageProps {
     isEventDoneEnv: string | null;
 }
 
-enum EventType {individual="individual",team="team"}
-enum EventCategory {technical="technical",cultural="cultural",megashows="megashows",workshop="workshop"}
-enum EventClubType {cultural="cultural",technical="technical"}
+enum EventType {individual="Individual",team="Team"}
+enum EventCategory {technical="Technical",cultural="Cultural",megashows="Megashows",workshop="Workshop"}
+enum EventClubType {cultural="Cultural",technical="Technical"}
 
 interface Event {
     id?: string;
@@ -68,8 +68,10 @@ function Events({ isEventDoneEnv }: EventPageProps) {
     if (isEventDoneEnv) {
         return (
             <PageLayout title="Events | Pecfest" noHeader>
-                <PirateShipLottie loop={true} />
-                <h1 className={styles.comingSoon}>Coming Soon</h1>
+                <div className={styles.cover}>
+                    <PirateShipLottie loop={true} />
+                    <h1 className={styles.comingSoon}>Coming Soon</h1>
+                </div>
             </PageLayout>
         );
     }
@@ -116,19 +118,19 @@ function Events({ isEventDoneEnv }: EventPageProps) {
                             })}}
                         >
                             <EventCard
-                                id={event.id}
-                                name={event.name}
-                                type={event.type}
-                                category={event.category}
-                                description={event.description}
-                                startDate={event.startDate}
-                                endDate={event.endDate}
-                                venue={event.venue}
-                                club={event.club}
-                                clubType={event.clubType}
-                                rulebook={event.rulebook}
-                                subcategory={event.subcategory}
-                                image={event.image}
+                                id={event?.id}
+                                name={event?.name}
+                                type={event?.type}
+                                category={event?.category}
+                                description={event?.description}
+                                startDate={event?.startDate}
+                                endDate={event?.endDate}
+                                venue={event?.venue}
+                                club={event?.club}
+                                clubType={event?.clubType}
+                                rulebook={event?.rulebook}
+                                subcategory={event?.subcategory}
+                                image={event?.image}
                             />
                         </Grid>
                     ))}
