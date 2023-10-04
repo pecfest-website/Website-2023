@@ -69,8 +69,10 @@ function Events({ isEventDoneEnv }: EventPageProps) {
         return (
             <PageLayout title="Events | Pecfest" noHeader>
                 <div className={styles.cover}>
-                    <PirateShipLottie loop={true} />
-                    <h1 className={styles.comingSoon}>Coming Soon</h1>
+                    <div className={styles.pirateShipContainer}>
+                        <PirateShipLottie loop={true} />
+                    </div>
+                    <h1 className={styles.eventHeading}>Coming Soon</h1>
                 </div>
             </PageLayout>
         );
@@ -100,7 +102,7 @@ function Events({ isEventDoneEnv }: EventPageProps) {
     return (
         <PageLayout title="Events | Pecfest'23">
             <Container className={styles.cover}>
-                <h1 className="text-3xl font-bold mt-8 mb-4">
+                <h1 className={styles.eventHeading}>
                     {eventType.charAt(0).toUpperCase() + eventType.slice(1)}{" "}
                     Events
                 </h1>
