@@ -59,17 +59,18 @@
     display: flex;
     flex-direction: column;
     margin: 0 2rem 4rem;
-    width: 25%;
+    /* width: 25%; */
 }
 
 .aboutIcon {
-    width: 64%;
+    width: 76%;
+    border-radius: 20px;
 }
 
 .aboutNum {
     font-size: 1.5rem;
     font-weight: 300;
-    margin-top: 1.75rem;
+    margin-top: 0.8rem;
     font-family: caribbean;
 }
 
@@ -79,3 +80,10 @@
     margin-top: 0.5rem;
     font-family: caribbean;
 }
+
+@media only screen and (min-width: 200px) and (max-width: 767px) {
+    .aboutBoxes{
+        flex-direction: column;
+        align-items: center;
+    }
+  }
