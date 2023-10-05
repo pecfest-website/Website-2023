@@ -86,7 +86,7 @@ function Header({ dark }: { dark?: boolean }) {
                         })}
                         <li>
                             {session?.user != null ? (
-                                <button onClick={() => signOut()}>
+                                <button onClick={() => router.push("/profile")}>
                                     {session.user.name}
                                 </button>
                             ) : (
