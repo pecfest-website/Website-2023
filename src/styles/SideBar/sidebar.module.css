@@ -1,0 +1,38 @@
+.nav {
+  height: 100vh;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  color: white;
+  /* position: sticky;
+  top: 0; */
+}
+
+.sidebox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 25px;
+  color: rgb(83, 62, 1);
+  font-weight: 600;
+  width: 80%;
+}
+
+/* .linkBox{
+
+} */
+
+.link:hover{
+  color: white;
+  font-size: 26px;
+}
+
+@media screen and (max-width: 879px) {
+  .nav {
+    display: none;
+  }
+}
+

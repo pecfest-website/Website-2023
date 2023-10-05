@@ -1,0 +1,24 @@
+.org{
+    display: flex;
+    flex-direction:  column;
+    width: 100%;
+    align-items: center;
+    margin-top: 67px;
+    gap: 30px;
+}
+.img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.heading{
+    color: white;
+    font-size: 35px;
+}
+.heading:hover{
+    color: rgb(152, 74, 5);
+    text-decoration: underline;
+}
+
