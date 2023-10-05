@@ -28,8 +28,9 @@ export const headerItems = [
         name: "Gallery",
     },
     {
-        href: "/brochure",
+        href: "/assets/brochure/Marketing brochure.pdf",
         name: "Brochure",
+        ext: true
     },
     {
         href: "/contacts",

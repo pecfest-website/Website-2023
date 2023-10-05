@@ -8,13 +8,13 @@ import { typenew } from "@/data/sponsorTitle";
 function Sponsors() {
     const types = typenew.map((title, index) => {
         return (
-            <div key={index}>
+            <div key={index} className={`${styles.typecard} glassmorphism`}>
                 <h1 className={styles.subheading}>{title}</h1>
                 <div className={styles.sectionDesign}>
                     {sponsors[`${title}`].map((item, index) => {
                         return (
                             <div key={index}>
-                                <div className={styles.subSection}>
+                                <div className={`${styles.subSection}`}>
                                     <Image
                                         src={item["Logo"]}
                                         height={200}
@@ -36,7 +36,7 @@ function Sponsors() {
     return (
         <PageLayout title="Sponsors | Pecfest">
             <div className={styles.main}>
-                <div className={styles.heading}>
+                <div className={`${styles.heading} glassmorphism`}>
                     <h1 className={styles.subheading1}>Sponsors</h1>
                     <div className={styles.subheading2}>
                         Over the past years PECFEST has had the privilege to

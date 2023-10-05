@@ -15,7 +15,7 @@
     width: 100vw;
     height: 100%;
     overflow: hidden;
-    background-image: url("/assets/background/bg.png");
+    background-image: url("/assets/images/sponsors.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -48,6 +48,15 @@
     margin-right: 10px;
     flex-direction: column;
 }
+
+.typecard {
+    flex: 1;
+    width: 70%;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    /* border: 2px solid red; */
+}
+
 .sectionDesign {
     margin-top: 20px;
     display: flex;
@@ -59,8 +68,8 @@
 }
 .subSection {
     flex: 0 0 33.333333%;
-    padding-bottom: 50px;
-    padding-top: 20px;
+    /* padding-bottom: 50px; */
+    /* padding-top: 20px; */
     display: flex;
     align-items: center;
 
@@ -108,7 +117,6 @@
 .sectionHeading {
     text-align: center;
     font-size: 30px;
-    /* font-family: myFirstFont; */
     color: white;
 }
 

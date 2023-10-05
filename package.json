@@ -33,6 +33,7 @@
     "react-grid-gallery": "^1.0.0",
     "react-icons": "^4.10.1",
     "react-lottie": "^1.2.3",
+    "react-pdf": "^7.4.0",
     "three": "^0.156.1",
     "typescript": "5.1.6",
     "use-sound": "^4.0.1",

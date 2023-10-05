@@ -51,17 +51,33 @@ function Header() {
                             const isActive = active === headerItem.href;
                             return (
                                 <li onClick={toggleMenu} key={i}>
-                                    <Link
-                                        href={headerItem.href}
-                                        aria-label={headerItem.name}
-                                        className={`${styles.nav_link} ${
-                                            isActive
-                                                ? styles.active_nav_link
-                                                : ""
-                                        }`}
-                                    >
-                                        {headerItem.name}
-                                    </Link>
+                                    {headerItem.ext ? (
+                                        <a
+                                            href={headerItem.href}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            aria-label={headerItem.name}
+                                            className={`${styles.nav_link} ${
+                                                isActive
+                                                    ? styles.active_nav_link
+                                                    : ""
+                                            }`}
+                                        >
+                                            {headerItem.name}
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            href={headerItem.href}
+                                            aria-label={headerItem.name}
+                                            className={`${styles.nav_link} ${
+                                                isActive
+                                                    ? styles.active_nav_link
+                                                    : ""
+                                            }`}
+                                        >
+                                            {headerItem.name}
+                                        </Link>
+                                    )}
                                 </li>
                             );
                         })}
