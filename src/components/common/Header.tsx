@@ -6,7 +6,7 @@ import Hamburger from "./Hamburger";
 import styles from "@/styles/common/Header.module.scss";
 import { headerItems } from "@/data/headerItems";
 
-function Header() {
+function Header({ dark }: { dark?: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [active, setActive] = useState("/");
 
@@ -43,8 +43,8 @@ function Header() {
                 >
                     <ul
                         className={`${styles.nav_items} ${
-                            menuOpen ? styles.active : ""
-                        }`}
+                            dark ? styles.dark_nav_items : ""
+                        } ${menuOpen ? styles.active : ""}`}
                         role="presentation"
                     >
                         {headerItems.map((headerItem, i) => {

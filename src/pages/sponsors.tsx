@@ -34,7 +34,7 @@ function Sponsors() {
     });
 
     return (
-        <PageLayout title="Sponsors | Pecfest">
+        <PageLayout title="Sponsors | Pecfest" darkHeader>
             <div className={styles.main}>
                 <div className={`${styles.heading} glassmorphism`}>
                     <h1 className={styles.subheading1}>Sponsors</h1>
