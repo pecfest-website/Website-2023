@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import validator from "validator";
 import { toast } from "react-toastify";
 import { collection, doc, query, setDoc, where } from "firebase/firestore";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { db } from "@/serverless/firebase";
 
 function NewUser() {
@@ -42,7 +42,7 @@ function NewUser() {
                 photoUrl: session?.user?.image,
             });
             toast.info("Signed up successfully!");
-            router.push("/profile")
+            router.push("/profile");
         } catch (e: any) {
             toast.error("Something went wrong!");
         }
@@ -151,3 +151,20 @@ function NewUser() {
 }
 
 export default NewUser;
+
+export async function getServerSideProps(context: any) {
+    const { req } = context;
+    const session = await getSession({ req });
+
+    if (session == null) {
+        return {
+            redirect: {
+                destination: "/auth/signin",
+                permanent: true,
+            },
+        };
+    }
+    return {
+        props: {},
+    };
+}

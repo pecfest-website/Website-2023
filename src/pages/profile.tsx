@@ -25,7 +25,7 @@ function Profile({ user }: Props) {
                         <p>{user.mobile}</p>
                         <p>{user.college}</p>
                         <p>{user.sid}</p>
-                        <Button onClick={() => signOut()}>Signout</Button>
+                        <Button variant="contained" fullWidth={false} onClick={() => signOut()}>Signout</Button>
                     </div>
                 </div>
             </main>
@@ -42,7 +42,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (session == null) {
         return {
             redirect: {
-                destination: "/auth/login",
+                destination: "/auth/signin",
                 permanent: true,
             },
         };
