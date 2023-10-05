@@ -1,10 +1,10 @@
 .comingSoon {
     text-align: center;
-    font-family: myFirstFont;
+    font-family: caribbean;
 }
 
 @font-face {
-    font-family: myFirstFont;
+    font-family: caribbean;
     src: url("/assets/fonts/poc/Caribbean.ttf");
 }
 
@@ -26,12 +26,13 @@
 .heading {
     text-align: center;
     position: fixed;
-    /* z-index: 5; */
+    text-shadow: 5px 5px 5px #000;
     top: 90px;
     left: 20px;
     height: 100vh;
     width: 30%;
     color: white;
+    padding: 0 10px;
 }
 
 .heading p {
@@ -80,14 +81,15 @@
     margin-top: 10px;
     text-align: center;
     font-size: 40px;
-    font-family: myFirstFont;
+    font-family: caribbean;
     color: white;
 }
 .subheading1 {
+    text-shadow: 5px 5px 5px #000;
     margin-top: 10px;
     text-align: center;
     font-size: 50px;
-    font-family: myFirstFont;
+    font-family: caribbean;
     color: white;
     margin-bottom: 20px;
 }
@@ -95,10 +97,10 @@
     margin-top: 10px;
     text-align: center;
     font-size: 18px;
-    /* font-family: myFirstFont; */
+    /* font-family: caribbean; */
     color: white;
     margin-bottom: 20px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     /* margin-right: 20px; */
 }
 

@@ -1,16 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Narnoor&display=swap');
 
+@font-face {
+    font-family: caribbean;
+    src: url("/assets/fonts/poc/Caribbean.ttf");
+}
+
+
 .container {
     padding-top: 90px;
-    background-image: url("/assets/images/bg.png");
+    background-image: url("/assets/images/team.jpg");
     min-height: 100vh;
     background-position: center;
     background-size: cover;
 }
 .heading {
-    /* font-family: 'Inclusive Sans', sans-serif; */
+    font-family: caribbean, 'Inclusive Sans', sans-serif;
     font-size: 36px;
     padding: 30px;
+    text-shadow: 5px 5px 5px #fff;
     text-align: center;
 }
 
@@ -33,15 +40,13 @@
 
 .contactUsContainer {
     /* font-family: 'Inclusive Sans', sans-serif; */
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-items: center;
-    background-color: gray;
     width: 70%;
     margin: auto;
     padding: 3% 2%;
-    background-color: rgba(236, 236, 236, 0.5);
 }
 
 .icon {

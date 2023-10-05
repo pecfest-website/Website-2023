@@ -33,6 +33,7 @@
     position: relative;
     width: 100vw;
     z-index: 0;
+    text-shadow: 5px 5px 5px #000;
     font-family: caribbean;
 }
 
@@ -82,7 +83,9 @@
     font-size: 1.5rem;
     font-weight: 500;
     margin-top: 0.5rem;
-    font-family: caribbean;
+    /* font-family: caribbean; */
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 @media only screen and (min-width: 200px) and (max-width: 767px) {
