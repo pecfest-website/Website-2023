@@ -1,4 +1,6 @@
+import Loader from "@/components/Loader";
 import { RouterProgressBar } from "@/components/common/RouterProgressBar";
+import PageLoader from "@/components/layout/PageLoader";
 import "@/styles/globals.css";
 import createEmotionCache from "@/utils/createEmotionCache";
 import theme from "@/utils/theme";
@@ -8,6 +10,8 @@ import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import localFont from "next/font/local";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,6 +25,25 @@ export default function App({
     pageProps: { session, emotionCache = clientSideEmotionCache, ...pageProps },
 }: AppProps) {
     // TODO can add font here
+    const router = useRouter();
+    const [isLoading, setIsLoading] = React.useState(false);
+
+    React.useEffect(() => {
+        const handleRouteChangeStart = (url: any, { shallow }: any) => {
+            setIsLoading(true);
+        };
+        const handleRouteChangeComplete = (url: any, { shallow }: any) => {
+            setIsLoading(false);
+        };
+        router.events.on("routeChangeStart", handleRouteChangeStart);
+        router.events.on("routeChangeComplete", handleRouteChangeComplete);
+
+        return () => {
+            router.events.on("routeChangeStart", handleRouteChangeStart);
+            router.events.on("routeChangeComplete", handleRouteChangeComplete);
+        };
+    });
+
     return (
         <SessionProvider session={session}>
             <CacheProvider value={emotionCache}>
@@ -31,11 +54,14 @@ export default function App({
                             content="initial-scale=1, width=device-width"
                         />
                     </Head>
-                    <main>
-                        <CssBaseline />
-                        <RouterProgressBar />
-                        <Component {...pageProps} />
-                    </main>
+                    {isLoading ? (
+                        <PageLoader />
+                    ) : (
+                        <main>
+                            <CssBaseline />
+                            <Component {...pageProps} />
+                        </main>
+                    )}
                     <ToastContainer
                         position="top-right"
                         autoClose={8000}
