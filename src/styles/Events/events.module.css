@@ -1,5 +1,6 @@
 .cover {
-  background-image: url("/assets/images/bg.png");
+  /* background-image: url("/assets/images/bg.png"); */
+  background-color: lightcyan;
   min-width: 100vw;
   min-height: 100vh;
   background-size: cover;
@@ -74,4 +75,44 @@
   color: #fff; /* Text color inside the container */
   width: fit-content;
   margin: auto;
+}
+
+.tabContainer {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;  
+}
+
+.tagsBox {
+  /* border: 2px solid blue; */
+  margin: 20px 5px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  height: 300px;
+  width: 100%;
+  min-width: 280px;
+  justify-items: start;
+  text-align: start;
+  align-items: center;
+  overflow-y: scroll;
+}
+
+.eventCards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tempEventCardContainer {
+  display: flex;
+  flex-direction: column; 
+  border: 2px solid red;
+  padding: 20px;
+  max-width: 400px;
+  margin: 15px;
+  border-radius: 15px;
 }
