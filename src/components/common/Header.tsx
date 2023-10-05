@@ -6,7 +6,7 @@ import Hamburger from "./Hamburger";
 import styles from "@/styles/common/Header.module.scss";
 import { headerItems } from "@/data/headerItems";
 
-function Header() {
+function Header({ dark }: { dark?: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [active, setActive] = useState("/");
 
@@ -43,25 +43,41 @@ function Header() {
                 >
                     <ul
                         className={`${styles.nav_items} ${
-                            menuOpen ? styles.active : ""
-                        }`}
+                            dark ? styles.dark_nav_items : ""
+                        } ${menuOpen ? styles.active : ""}`}
                         role="presentation"
                     >
                         {headerItems.map((headerItem, i) => {
                             const isActive = active === headerItem.href;
                             return (
                                 <li onClick={toggleMenu} key={i}>
-                                    <Link
-                                        href={headerItem.href}
-                                        aria-label={headerItem.name}
-                                        className={`${styles.nav_link} ${
-                                            isActive
-                                                ? styles.active_nav_link
-                                                : ""
-                                        }`}
-                                    >
-                                        {headerItem.name}
-                                    </Link>
+                                    {headerItem.ext ? (
+                                        <a
+                                            href={headerItem.href}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            aria-label={headerItem.name}
+                                            className={`${styles.nav_link} ${
+                                                isActive
+                                                    ? styles.active_nav_link
+                                                    : ""
+                                            }`}
+                                        >
+                                            {headerItem.name}
+                                        </a>
+                                    ) : (
+                                        <Link
+                                            href={headerItem.href}
+                                            aria-label={headerItem.name}
+                                            className={`${styles.nav_link} ${
+                                                isActive
+                                                    ? styles.active_nav_link
+                                                    : ""
+                                            }`}
+                                        >
+                                            {headerItem.name}
+                                        </Link>
+                                    )}
                                 </li>
                             );
                         })}

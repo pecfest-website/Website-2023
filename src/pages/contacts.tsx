@@ -14,7 +14,7 @@ function Contacts() {
         >
             <div className={styles.container}>
                 <div className={styles.heading}>Contact Us</div>
-                <div className={styles.contactUsContainer}>
+                <div className={`${styles.contactUsContainer} glassmorphism-light`}>
                     {CONTACTUSINFO.map((contact, i) => {
                         return (
                             <ContactUsCard

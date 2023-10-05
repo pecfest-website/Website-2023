@@ -19,8 +19,8 @@ function About() {
     return (
         <PageLayout title="About | Pecfest'23">
             <div className={styles.about}>
-                <div className={styles.aboutHeading}>ABOUT</div>
-                <div className={styles.aboutMain}>
+                <div className={`${styles.aboutHeading} glassmorphism`}>ABOUT</div>
+                <div className={`${styles.aboutMain} glassmorphism`}>
                     Elevating the spirit of innovation and artistic expression,
                     PECFEST 2023 stands as a pinnacle of techno-cultural
                     brilliance. Rooted in a legacy of excellence, we craft an
@@ -42,7 +42,7 @@ function About() {
                 </div>
                 <div className={styles.aboutBoxes}>
                     {data.map((item, index) => (
-                        <div className={styles.aboutBox} key={index}>
+                        <div className={`${styles.aboutBox} glassmorphism`} key={index}>
                             <Image
                                 className={styles.aboutIcon}
                                 src={item.src}

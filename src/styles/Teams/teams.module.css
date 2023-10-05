@@ -7,7 +7,7 @@
 
 
 .background {
-    background-image: url("/assets/images/bg.png");
+    background-image: url("/assets/images/team.jpg");
     min-height: 91vh;
     background-position: center;
     background-repeat: no-repeat;
@@ -43,7 +43,7 @@
 
 @media screen and (max-width: 600px) {
     .background {
-        background-image: url("/assets/images/bg.png");
+        background-image: url("/assets/images/team.jpg");
     }
 
     .pageheader {
