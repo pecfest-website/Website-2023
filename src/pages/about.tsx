@@ -31,7 +31,7 @@ function About() {
                     What truly sets us apart is our unwavering commitment to
                     pushing boundaries. From captivating talks by visionary
                     pioneers to electrifying musical performances by top-tier
-                    artists, every moment i sdesigned to ignite isnipration. The
+                    artists, every moment is designed to ignite isnipration. The
                     canvas of PECFEST unfurls with a rich tapestry of talents,
                     where diverse voices resonate in harmony. Uniting a vibrant
                     community of over 50,000 enthusiasts from all corners of the
