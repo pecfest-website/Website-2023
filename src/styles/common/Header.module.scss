@@ -1,4 +1,5 @@
 @import "../variables";
+@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');
 
 .navbar {
     background: transparent;
@@ -84,6 +85,7 @@
 
                 .nav_link {
                     font-weight: 600;
+                    font-family: 'Chelsea Market', cursive;
                     transition: 0.2s;
                     color: white;
                     &:hover {
@@ -98,6 +100,7 @@
                 button {
                     background: none;
                     border: none;
+                    font-family: 'Chelsea Market', cursive;
                     color: $acm-primary;
                     font-weight: 700;
                     cursor: pointer;
@@ -115,13 +118,13 @@
             li .nav_link {
                 color: black;
                 &:hover {
-                    color: $socials-primary;
+                    color: $font-dark;
                 }
             }
 
             li {
                 .active_nav_link {
-                    color: $socials-primary;
+                    color: $font-dark;
                 }
             }
             

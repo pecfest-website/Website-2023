@@ -5,10 +5,13 @@ import React, { useEffect, useState } from "react";
 import Hamburger from "./Hamburger";
 import styles from "@/styles/common/Header.module.scss";
 import { headerItems } from "@/data/headerItems";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 function Header({ dark }: { dark?: boolean }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [active, setActive] = useState("/");
+
+    const { data: session } = useSession();
 
     function toggleMenu() {
         setMenuOpen(!menuOpen);
@@ -81,11 +84,15 @@ function Header({ dark }: { dark?: boolean }) {
                                 </li>
                             );
                         })}
-                        {/* <li>
-                            <Link href={"/login"} aria-label="Login">
-                                <button>Login</button>
-                            </Link>
-                        </li> */}
+                        <li>
+                            {session?.user != null ? (
+                                <button onClick={() => router.push("/profile")}>
+                                    {session.user.name}
+                                </button>
+                            ) : (
+                                <button onClick={() => signIn()}>Login</button>
+                            )}
+                        </li>
                     </ul>
                 </div>
             </div>
