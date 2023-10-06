@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 function PageLoader() {
@@ -8,7 +8,7 @@ function PageLoader() {
             style={{
                 height: "100vh",
                 width: "100vw",
-                // background: "white",
+                background: "#678987",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -18,9 +18,12 @@ function PageLoader() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 style={{ width: "400px" }}
-                src={"/assets/logos/logo.png"}
+                src={"/assets/loader/loader.gif"}
                 alt="loading..."
             />
+            <Typography>
+                Loading...
+            </Typography>
         </Box>
     );
 }

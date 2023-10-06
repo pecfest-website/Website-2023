@@ -6,18 +6,19 @@ import Sky from "./Sky";
 import { Layers } from "./util/LayerComponent";
 import * as THREE from "three";
 import { useWindowSize } from "usehooks-ts";
-import { Boat, Ship } from "./util/Ship";
+import { Boat, Ship, Sun } from "./util/Ship";
 import useSound from "use-sound";
 import { useRouter } from "next/router";
 
 import logo from "./assets/logo.png";
 import discover from "./assets/discover.png";
-import comp from './assets/labels/comp.png';
-import gallery from './assets/labels/gallery.png';
-import team from './assets/labels/team.png';
-import schedule from './assets/labels/schedule.png';
-import events from './assets/labels/events.png';
-import contacts from './assets/labels/contacts.png';
+import comp from "./assets/labels/comp.png";
+import gallery from "./assets/labels/gallery.png";
+import team from "./assets/labels/team.png";
+import schedule from "./assets/labels/schedule.png";
+import events from "./assets/labels/events.png";
+import contacts from "./assets/labels/contacts.png";
+import { OrbitControls } from "@react-three/drei";
 
 function Rig() {
     const { camera, mouse } = useThree();
@@ -61,8 +62,10 @@ function Landing() {
                 <ambientLight intensity={2} position={[0, 0, 0]} />
 
                 <Suspense fallback={<Loader />}>
+                    <OrbitControls />
                     <Sky />
                     <Ocean />
+                    {/* <Sun pos={[0, 0, -30]} /> */}
                     {width > 720 ? (
                         <Layers
                             pos={[0, 15, -30]}
@@ -75,7 +78,7 @@ function Landing() {
                             args={[50, 50]}
                             img={logo.src}
                         />
-                    )}
+                    )}    
                     <Rig />
                     {width > 720 ? (
                         <>
@@ -95,7 +98,7 @@ function Landing() {
                                     pushRoute("/Schedule");
                                 }}
                                 img={schedule.src}
-                                />
+                            />
                             <Ship
                                 pos={[-5, 0, 85]}
                                 title="Competitions"

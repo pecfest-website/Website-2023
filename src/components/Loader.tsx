@@ -18,7 +18,7 @@ function Loader() {
             }}
         >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img style={{ width: "400px" }} src={logo.src} alt="loading..." />
+            <img style={{ width: "400px" }} src={"/assets/loader/loader.gif"} alt="loading..." />
             <h3 style={{"color":"white","paddingTop":"50px"}}>{Math.floor(progress)} % loading...</h3>  
         </Html>
     );
