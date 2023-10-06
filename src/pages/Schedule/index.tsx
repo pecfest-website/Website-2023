@@ -6,6 +6,11 @@ import PageLayout from "@/components/layout/PageLayout";
 
 function Schedule() {
     const [day, setDay] = useState(0);
+
+    const setLocalDay = (day: any) => {
+        setDay(day);
+        sessionStorage.setItem("day", day);
+    }
     return (
         <PageLayout title="Schedule | PECFEST'23">
             <div
@@ -22,18 +27,18 @@ function Schedule() {
                         (day == 0 ? styles.unClicked : "")
                     }
                 >
-                    <div onClick={() => setDay(1)}>
+                    <div onClick={() => setLocalDay(1)}>
                         <DayCard dayNumber={1} />
                     </div>
-                    <div onClick={() => setDay(2)}>
+                    <div onClick={() => setLocalDay(2)}>
                         <DayCard dayNumber={2} />
                     </div>
-                    <div onClick={() => setDay(3)}>
+                    <div onClick={() => setLocalDay(3)}>
                         <DayCard dayNumber={3} />
                     </div>
                 </div>
 
-                {day ? <ScheduleTable dayNumber={day} /> : <></>}
+                {day ? <ScheduleTable /> : <></>}
             </div>
         </PageLayout>
     );

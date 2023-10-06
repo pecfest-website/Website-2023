@@ -1,9 +1,9 @@
 export const channels = [
   {
-    uuid: "acm",
+    uuid: "saasc",
     title: "r tv",
     logo:
-      "https://raw.githubusercontent.com/karolkozer/planby-demo-resources/master/resources/channel-logos/png/r-channel.png",
+      "https://github.com/pecfest-2023/website/blob/schedule-up/public/clubs/ACM.png",
   },
   {
     uuid: "music",

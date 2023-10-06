@@ -1,7 +1,6 @@
 export const epg = [
     {
         "id": "6f3caa7f-5b11-4edb-998e-80d4baa03373",
-        "isYesterday": true,
         "title": "And Just Like That...",
         "since": "2023-10-02T23:50:00",
         "till": "2024-10-18T00:55:00",
