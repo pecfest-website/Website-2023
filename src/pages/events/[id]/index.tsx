@@ -1,129 +1,174 @@
-import EventCard from "@/components/events/eventCard";
-import { Button, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Badge, Box, Button, Card, CardMedia, Chip, Grid } from "@mui/material";
 import styles from "@/styles/Events/eventDetails.module.css";
-import { run } from "node:test";
 import PageLayout from "@/components/layout/PageLayout";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/serverless/firebase";
+import { Event } from "@/types/Event";
+import Image from "next/image";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import ScheduleIcon from "@mui/icons-material/Schedule";
+import MyLocationIcon from "@mui/icons-material/MyLocation";
+import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
+import GroupsIcon from "@mui/icons-material/Groups";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 interface EventDetailsProps {
-  eventId: string;
+    event: Event;
 }
 
-enum EventType {
-  individual = "Individual",
-  team = "Team",
-}
-enum EventCategory {
-  technical = "Technical",
-  cultural = "Cultural",
-  megashows = "Megashows",
-  workshop = "Workshop",
-}
-enum EventClubType {
-  cultural = "Cultural",
-  technical = "Technical",
-}
+function EventDetails({ event }: EventDetailsProps) {
+    const formatDate = () => {
+        const s = new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+        }).format(new Date(Date.parse(event.startDate)));
 
-interface Event {
-  id?: string;
-  name?: string;
-  type?: EventType;
-  category?: EventCategory;
-  description?: string;
-  startDate?: Date;
-  endDate?: Date;
-  venue?: string;
-  club?: string;
-  clubType?: EventClubType;
-  rulebook?: string;
-  subcategory?: string[];
-  image?: string;
-}
-
-function EventDetails({ eventId }: EventDetailsProps) {
-  const [event, setEvent] = useState<Event>({});
-
-  useEffect(() => {
-    const fetchEventById = async () => {
-      // fetch the event by ID
-      const sampleEvent: Event = {
-        id: "1",
-        name: "Sample Event",
-        type: EventType.individual,
-        category: EventCategory.technical,
-        description: "This is a sample event description.",
-        startDate: new Date("2023-10-10"),
-        endDate: new Date("2023-10-12"),
-        venue: "Sample Venue",
-        club: "Sample Club",
-        clubType: EventClubType.technical,
-        rulebook: "https://example.com/sample-rulebook",
-        subcategory: ["Coding", "Hardware"],
-        image:
-          "https://images.unsplash.com/photo-1682686578289-cf9c8c472c9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      };
-
-      setEvent(sampleEvent);
+        const e = new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+        }).format(new Date(Date.parse(event.endDate)));
+        return `${s} - ${e}`;
     };
 
-    fetchEventById();
-  }, [eventId]);
+    const formatTime = () => {
+        const s = new Intl.DateTimeFormat("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+        }).format(new Date(Date.parse(event.startDate)));
 
-  return (
-    <PageLayout title={event?.name || "Events | PECFEST 2023"}>
-      <Grid className={styles.cover}>
-        <h1 className={styles.eventHeading}> {event?.name} </h1>
-        <Grid className={styles.card} item xs={12} sm={6} md={4}>
-          <EventCard
-            id={event.id}
-            name={event.name}
-            type={event.type}
-            category={event.category}
-            description={event.description}
-            startDate={event.startDate}
-            endDate={event.endDate}
-            venue={event.venue}
-            club={event.club}
-            clubType={event.clubType}
-            rulebook={event.rulebook}
-            subcategory={event.subcategory}
-            image={event.image}
-          />
-        </Grid>
+        const e = new Intl.DateTimeFormat("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+        }).format(new Date(Date.parse(event.endDate)));
+        return `${s} - ${e}`;
+    };
 
-        <Grid className={styles.details} item xs={12} sm={6} md={4}>
-          <h1 className={styles.detailsTitle}>
-            <u>Event Details</u>
-          </h1>
-          <p className={`${styles.tags} ${styles.details}`}>
-            {event?.category} | {event?.type} | {event?.category} |{" "}
-            {event?.venue} | {event?.club} | {event?.clubType}
-          </p>
+    const info = [
+        {
+            Icon: CalendarMonthIcon,
+            text: formatDate(),
+        },
+        {
+            Icon: ScheduleIcon,
+            text: formatTime(),
+        },
+        {
+            Icon: MyLocationIcon,
+            text: event.venue,
+        },
+        {
+            Icon: PhoneForwardedIcon,
+            text: `${event.pocName} - ${event.pocNumber}`,
+        },
+        {
+            Icon: GroupsIcon,
+            text: `${event.minTeamSize} - ${event.maxTeamSize} members`,
+        },
+        {
+            Icon: MenuBookIcon,
+            link: event.ruleBook,
+            text: "Rulebook",
+        },
+    ];
 
-          <a className={styles.rulebookLink} href={event?.rulebook}>
-            Rulebook
-          </a>
-          <br />
-          <br />
+    return (
+        <PageLayout title={`${event.name} | PECFEST'23`} darkHeader>
+            <section className={styles.background}>
+                <main className={`${styles.main}`}>
+                    <div className={`${styles.details} glassmorphism-light`}>
+                        <h1>{event.name}</h1>
+                        <div className={styles.tag_badges}>
+                            {event.tags.map((tag, i) => {
+                                return (
+                                    <Chip
+                                        key={i}
+                                        label={tag}
+                                        size="small"
+                                        color="error"
+                                    />
+                                );
+                            })}
+                        </div>
+                        <div className={styles.details__info}>
+                            {info.map(({ text, Icon, link }, i) => {
+                                if (i == 4 && event.type === "Individual") {
+                                    return null;
+                                }
+                                if (link) {
+                                    return (
+                                        <div
+                                            key={i}
+                                            className={
+                                                styles.details__info__line
+                                            }
+                                        >
+                                            <Icon />
+                                            <a
+                                                href={link}
+                                                target="_blank"
+                                                referrerPolicy="no-referrer"
+                                            >
+                                                {text}
+                                            </a>
+                                        </div>
+                                    );
+                                }
+                                return (
+                                    <div
+                                        key={i}
+                                        className={styles.details__info__line}
+                                    >
+                                        <Icon />
+                                        <span>{text}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
 
-          <p className={styles.description}>{event?.description}</p>
-          <br />
-          <Button className={styles.registerButton} variant="contained">
-            Register
-          </Button>
-        </Grid>
-      </Grid>
-    </PageLayout>
-  );
+                        <Button variant="contained">Regsiter</Button>
+                        <hr className={styles.line} />
+
+                        <div className={styles.description}>
+                            {event.description}
+                        </div>
+                    </div>
+                    <div className={styles.poster}>
+                        <Image
+                            src={event.image}
+                            height={400}
+                            width={400}
+                            alt={event.name}
+                        />
+                    </div>
+                </main>
+            </section>
+        </PageLayout>
+    );
 }
 
 export const getServerSideProps = async (context: any) => {
-  const eventId = context.params.id;
-  return {
-    props: {
-      eventId,
-    },
-  };
+    const eventId = context.params.id;
+    const docRef = doc(db, "events", eventId);
+
+    const eventSnapshot = await getDoc(docRef);
+
+    const event = {
+        id: eventSnapshot.id,
+        ...eventSnapshot.data(),
+    };
+
+    if (eventSnapshot.data() == null) {
+        return {
+            notFound: true,
+        };
+    }
+    return {
+        props: {
+            event,
+        },
+    };
 };
 
 export default EventDetails;

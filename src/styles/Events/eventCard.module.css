@@ -1,98 +1,120 @@
-  .eventCardContainer {
+.eventCardContainer {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
-    width: 90%;
+    align-items: center;
+    width: 100%;
     max-width: 500px;
     margin: auto;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
-    padding: 10px 50px;
-    background: rgba(255, 255, 255, 0.2); /* Adjust the opacity (4th parameter) for frosted effect */
+    padding: 5px 50px;
+    background: rgba(
+        255,
+        255,
+        255,
+        0.2
+    ); /* Adjust the opacity (4th parameter) for frosted effect */
     border-radius: 10px;
-    backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
+    backdrop-filter: blur(8px); /* Adjust the blur amount as needed */
     text-align: center;
     color: #fff; /* Text color inside the container */
-  }
+}
 
-  .eventCardGlossContainer {
+.eventCardGlossContainer {
     position: absolute;
     top: 0;
     left: 0%;
     width: 0%;
     height: 100%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0)
+    );
     pointer-events: none;
     transition: transform 2s ease, box-shadow 0.5s ease-in-out;
-  }
+}
 
-  .eventCardContainer:hover {
-    transform: skewY(-2deg) scale(1.01);
+.eventCardContainer:hover {
+    cursor: pointer;
     box-shadow: -10px 10px 20px rgba(0, 0, 0, 0.2);
-  }
+}
 
-  .eventCardContainer:hover .eventCardGlossContainer {
+.eventCardContainer:hover .eventCardGlossContainer {
     left: 0%;
     width: 100%;
     background-color: none;
-  }
-  
-  .posterContainer {
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-    height: max(50vh, 250px);
-  }
-  
-  .tags {
+}
+
+.posterContainer {
+    width: 200px;
+    height: 200px;
     display: flex;
-    border: 2px solid #fff;
-    border-left: 0;
-    border-radius: 10px 0 10px 0;
-    flex-wrap: wrap;
-  }
-   
-  .tagList {
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.posterContainer img {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.tags {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .eventData {
+    border: 2px solid #fff;
+    border-radius: 10px 0 10px 0;
+    flex-wrap: wrap;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.tagList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: 800;
+}
+
+.eventData {
     display: flex;
     flex-direction: column;
     width: var(--movieCardWidth);
-  }
-  
-  .eventDetailContainer > * {
+}
+
+.eventDetailContainer > * {
     padding: min(8px, 3vmin);
-    font-family: "Lalezar", cursive;
     font-size: min(9vmin, 18px);
-  }
-  
-  .eventName {
+}
+
+.eventName {
     font-size: min(10vmin, 25px);
     text-transform: uppercase;
-    font-family: "Coda", cursive;
     font-weight: bold;
-  }
-  
-  .eventOverview {
+}
+
+.eventOverview {
     display: flex;
     justify-content: flex-start;
-  }
-  
-  .seperator {
+}
+
+.seperator {
     height: min(2vmin, 5px);
     width: min(2vmin, 5px);
-    background-color: #bbb;
+    background-color: #000;
     border-radius: 50%;
     display: inline-block;
     align-self: center;
     margin: auto min(2vmin, 8px);
-  }
-  
-  .eventDate {
+}
+
+.eventDate {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-  }
+}

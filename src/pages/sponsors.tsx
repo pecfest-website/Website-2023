@@ -21,9 +21,6 @@ function Sponsors() {
                                         width={200}
                                         alt={"image"}
                                     />
-                                    <h1 className={styles.sectionHeading}>
-                                        {item["Name"]}
-                                    </h1>
                                 </div>
                             </div>
                         );
@@ -47,8 +44,8 @@ function Sponsors() {
                         unparalleled.
                     </div>
                     <p>Contact Us</p>
-                    <p>Name1: +91-4567890567</p>
-                    <p>Name2: +91-4567890567</p>
+                    <p>Tanishq Marwaha: 9056692133</p>
+                    <p>Vinayak Sahni: </p>
                 </div>
 
                 <div className={styles.section}>{types}</div>

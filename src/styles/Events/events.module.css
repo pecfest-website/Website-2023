@@ -5,7 +5,8 @@
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top: 70px;
+  padding: 70px 0;
+  overflow-y: scroll;
 }
 
 @font-face {
@@ -30,8 +31,15 @@
   justify-content: center;
 }
 
+.tab__heading {
+  font-family: caribbean;
+  text-transform: uppercase;
+  font-size: 24px;
+  letter-spacing: 3px;
+}
+
 .container {
-  display: flex;  
+  display: flex;
 }
 
 .tagContainer {
@@ -44,6 +52,7 @@
   position: fixed;
   width: 300px;
   border-radius: 10px;
+  padding: 20px 0; 
 }
 
 .tagHeading {
@@ -51,8 +60,8 @@
   justify-content: center;
   align-items: center;
   font-size: 22px;
-  font-weight: 600;
-  text-decoration: underline;
+  font-weight: 800;
+  /* text-decoration: underline; */
   color: #800000;
 }
 
@@ -70,21 +79,13 @@
 .eventCards {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-}
-
-.tempEventCardContainer {
-  display: flex;
-  flex-direction: column; 
-  border: 2px solid red;
-  padding: 20px;
-  max-width: 400px;
-  margin: 15px;
-  border-radius: 15px;
+  gap: 20px;
+  justify-content:center;
+  padding: 2rem;
 }
 
 @media (max-width: 768px) {
   .tagContainer {
-    display: none;
+      display: none;
   }
 }
