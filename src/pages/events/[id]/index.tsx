@@ -1,26 +1,148 @@
-import { Box, Button, Card, CardMedia, Grid } from "@mui/material";
+import { Badge, Box, Button, Card, CardMedia, Chip, Grid } from "@mui/material";
 import styles from "@/styles/Events/eventDetails.module.css";
 import PageLayout from "@/components/layout/PageLayout";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/serverless/firebase";
 import { Event } from "@/types/Event";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import ScheduleIcon from "@mui/icons-material/Schedule";
+import MyLocationIcon from "@mui/icons-material/MyLocation";
+import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
+import GroupsIcon from "@mui/icons-material/Groups";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 interface EventDetailsProps {
     event: Event;
 }
 
 function EventDetails({ event }: EventDetailsProps) {
+    const formatDate = () => {
+        const s = new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+        }).format(new Date(Date.parse(event.startDate)));
+
+        const e = new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "2-digit",
+        }).format(new Date(Date.parse(event.endDate)));
+        return `${s} - ${e}`;
+    };
+
+    const formatTime = () => {
+        const s = new Intl.DateTimeFormat("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+        }).format(new Date(Date.parse(event.startDate)));
+
+        const e = new Intl.DateTimeFormat("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+        }).format(new Date(Date.parse(event.endDate)));
+        return `${s} - ${e}`;
+    };
+
+    const info = [
+        {
+            Icon: CalendarMonthIcon,
+            text: formatDate(),
+        },
+        {
+            Icon: ScheduleIcon,
+            text: formatTime(),
+        },
+        {
+            Icon: MyLocationIcon,
+            text: event.venue,
+        },
+        {
+            Icon: PhoneForwardedIcon,
+            text: `${event.pocName} - ${event.pocNumber}`,
+        },
+        {
+            Icon: GroupsIcon,
+            text: `${event.minTeamSize} - ${event.maxTeamSize} members`,
+        },
+        {
+            Icon: MenuBookIcon,
+            link: event.ruleBook,
+            text: "Rulebook",
+        },
+    ];
+
     return (
-        <PageLayout title={`${event.name} | PECFEST'23`}>
-            <section
-                style={{ minHeight: "91vh" }}
-                className={styles.background}
-            >
-                <div suppressHydrationWarning>
-                    {/* <Event eventDetails={props.eventDetails} teamId={tid} /> */}
-                </div>
+        <PageLayout title={`${event.name} | PECFEST'23`} darkHeader>
+            <section className={styles.background}>
+                <main className={`${styles.main}`}>
+                    <div className={`${styles.details} glassmorphism-light`}>
+                        <h1>{event.name}</h1>
+                        <div className={styles.tag_badges}>
+                            {event.tags.map((tag, i) => {
+                                return (
+                                    <Chip
+                                        key={i}
+                                        label={tag}
+                                        size="small"
+                                        color="error"
+                                    />
+                                );
+                            })}
+                        </div>
+                        <div className={styles.details__info}>
+                            {info.map(({ text, Icon, link }, i) => {
+                                if (i == 4 && event.type === "Individual") {
+                                    return null;
+                                }
+                                if (link) {
+                                    return (
+                                        <div
+                                            key={i}
+                                            className={
+                                                styles.details__info__line
+                                            }
+                                        >
+                                            <Icon />
+                                            <a
+                                                href={link}
+                                                target="_blank"
+                                                referrerPolicy="no-referrer"
+                                            >
+                                                {text}
+                                            </a>
+                                        </div>
+                                    );
+                                }
+                                return (
+                                    <div
+                                        key={i}
+                                        className={styles.details__info__line}
+                                    >
+                                        <Icon />
+                                        <span>{text}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        <Button variant="contained">Regsiter</Button>
+                        <hr className={styles.line} />
+
+                        <div className={styles.description}>
+                            {event.description}
+                        </div>
+                    </div>
+                    <div className={styles.poster}>
+                        <Image
+                            src={event.image}
+                            height={400}
+                            width={400}
+                            alt={event.name}
+                        />
+                    </div>
+                </main>
             </section>
         </PageLayout>
     );
@@ -32,30 +154,11 @@ export const getServerSideProps = async (context: any) => {
 
     const eventSnapshot = await getDoc(docRef);
 
-    // const event = {
-    //     id: eventSnapshot.id,
-    //     ...eventSnapshot.data(),
-    // };
-
     const event = {
-        id: "tge4HsrW7V8ld7eoLjfq",
-        pocName: "jane doe",
-        maxTeamSize: 1,
-        tags: ["Dance", "Music"],
-        venue: "Main Arena",
-        type: "Individual",
-        startDate: "2023-10-05T00:00:00+05:30",
-        minTeamSize: 1,
-        adminEmail: "admin@pecfest.org",
-        category: "Cultural",
-        name: "Dummy event 1",
-        image: "https://firebasestorage.googleapis.com/v0/b/pecfest-23.appspot.com/o/events%2FDummy%20event%201.png?alt=media&token=451014c3-9391-473e-ac03-693971e01dce",
-        description: "bcd xyz",
-        pocNumber: "34567899",
-        ruleBook:
-            "https://docs.google.com/document/d/10flyp_CVGi4BeIJRnF0TXTsWAGG8HN27hSwp8KI6uN0/edit#heading=h.bgret88b62o7",
-        endDate: "2023-10-26T00:00:00+05:30",
+        id: eventSnapshot.id,
+        ...eventSnapshot.data(),
     };
+
     if (eventSnapshot.data() == null) {
         return {
             notFound: true,
