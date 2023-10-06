@@ -1,40 +1,13 @@
 import React, { useState } from "react";
 import styles from "@/styles/Events/eventCard.module.css";
-
-enum EventType {individual="Individual",team="Team"}
-enum EventCategory {technical="Technical",cultural="Cultural",megashows="Megashows",workshop="Workshop"}
-enum EventClubType {cultural="Cultural",technical="Technical"}
+import { Event } from "@/types/Event";
 
 interface EventCardProps {
-  id?: string;
-  name?: string;
-  type?: EventType;
-  category?: EventCategory;
-  description?: string;
-  startDate?: Date;
-  endDate?: Date;
-  venue?: string;
-  club?: string;
-  clubType?: EventClubType;
-  rulebook?: string;
-  subcategory?: string[];
-  image?: string;
+  event: Event
 }
 
 const EventCard: React.FC<EventCardProps> = ({
-  id,
-  name,
-  type,
-  category,
-  description,
-  startDate,
-  endDate,
-  venue,
-  club,
-  clubType,
-  rulebook,
-  subcategory,
-  image
+  event
 }) => {
 
   return (
@@ -45,7 +18,7 @@ const EventCard: React.FC<EventCardProps> = ({
         <div
           className={styles.posterContainer}
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${event.image})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
@@ -53,12 +26,12 @@ const EventCard: React.FC<EventCardProps> = ({
 
         <div className={styles.eventData}>
           <div className={styles.eventDetailContainer}>
-            <div className={styles.eventName}>{name}</div>
+            <div className={styles.eventName}>{event.name}</div>
             <div className={styles.tags}>
-              {subcategory?.map((category, index) => (
+              {event.tags?.map((category, index) => (
                 <>
                   <div className={styles.tagList}>{category}</div>
-                  {index < subcategory.length - 1 && (
+                  {index < event.tags.length - 1 && (
                     <span className={styles.seperator}></span>
                   )}
                 </>
@@ -66,7 +39,7 @@ const EventCard: React.FC<EventCardProps> = ({
             </div>
 
             <div className={styles.eventDate}>
-              <div className="content">{startDate?.toLocaleDateString()} - {endDate?.toLocaleDateString()}</div>
+              <div className="content">{event.startDate} - {event.endDate}</div>
             </div>
 
             {/* <div className={styles.tags}>     

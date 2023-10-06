@@ -1,129 +1,71 @@
-import EventCard from "@/components/events/eventCard";
-import { Button, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Box, Button, Card, CardMedia, Grid } from "@mui/material";
 import styles from "@/styles/Events/eventDetails.module.css";
-import { run } from "node:test";
 import PageLayout from "@/components/layout/PageLayout";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/serverless/firebase";
+import { Event } from "@/types/Event";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface EventDetailsProps {
-  eventId: string;
+    event: Event;
 }
 
-enum EventType {
-  individual = "Individual",
-  team = "Team",
-}
-enum EventCategory {
-  technical = "Technical",
-  cultural = "Cultural",
-  megashows = "Megashows",
-  workshop = "Workshop",
-}
-enum EventClubType {
-  cultural = "Cultural",
-  technical = "Technical",
-}
-
-interface Event {
-  id?: string;
-  name?: string;
-  type?: EventType;
-  category?: EventCategory;
-  description?: string;
-  startDate?: Date;
-  endDate?: Date;
-  venue?: string;
-  club?: string;
-  clubType?: EventClubType;
-  rulebook?: string;
-  subcategory?: string[];
-  image?: string;
-}
-
-function EventDetails({ eventId }: EventDetailsProps) {
-  const [event, setEvent] = useState<Event>({});
-
-  useEffect(() => {
-    const fetchEventById = async () => {
-      // fetch the event by ID
-      const sampleEvent: Event = {
-        id: "1",
-        name: "Sample Event",
-        type: EventType.individual,
-        category: EventCategory.technical,
-        description: "This is a sample event description.",
-        startDate: new Date("2023-10-10"),
-        endDate: new Date("2023-10-12"),
-        venue: "Sample Venue",
-        club: "Sample Club",
-        clubType: EventClubType.technical,
-        rulebook: "https://example.com/sample-rulebook",
-        subcategory: ["Coding", "Hardware"],
-        image:
-          "https://images.unsplash.com/photo-1682686578289-cf9c8c472c9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      };
-
-      setEvent(sampleEvent);
-    };
-
-    fetchEventById();
-  }, [eventId]);
-
-  return (
-    <PageLayout title={event?.name || "Events | PECFEST 2023"}>
-      <Grid className={styles.cover}>
-        <h1 className={styles.eventHeading}> {event?.name} </h1>
-        <Grid className={styles.card} item xs={12} sm={6} md={4}>
-          <EventCard
-            id={event.id}
-            name={event.name}
-            type={event.type}
-            category={event.category}
-            description={event.description}
-            startDate={event.startDate}
-            endDate={event.endDate}
-            venue={event.venue}
-            club={event.club}
-            clubType={event.clubType}
-            rulebook={event.rulebook}
-            subcategory={event.subcategory}
-            image={event.image}
-          />
-        </Grid>
-
-        <Grid className={styles.details} item xs={12} sm={6} md={4}>
-          <h1 className={styles.detailsTitle}>
-            <u>Event Details</u>
-          </h1>
-          <p className={`${styles.tags} ${styles.details}`}>
-            {event?.category} | {event?.type} | {event?.category} |{" "}
-            {event?.venue} | {event?.club} | {event?.clubType}
-          </p>
-
-          <a className={styles.rulebookLink} href={event?.rulebook}>
-            Rulebook
-          </a>
-          <br />
-          <br />
-
-          <p className={styles.description}>{event?.description}</p>
-          <br />
-          <Button className={styles.registerButton} variant="contained">
-            Register
-          </Button>
-        </Grid>
-      </Grid>
-    </PageLayout>
-  );
+function EventDetails({ event }: EventDetailsProps) {
+    return (
+        <PageLayout title={`${event.name} | PECFEST'23`}>
+            <section
+                style={{ minHeight: "91vh" }}
+                className={styles.background}
+            >
+                <div suppressHydrationWarning>
+                    {/* <Event eventDetails={props.eventDetails} teamId={tid} /> */}
+                </div>
+            </section>
+        </PageLayout>
+    );
 }
 
 export const getServerSideProps = async (context: any) => {
-  const eventId = context.params.id;
-  return {
-    props: {
-      eventId,
-    },
-  };
+    const eventId = context.params.id;
+    const docRef = doc(db, "events", eventId);
+
+    const eventSnapshot = await getDoc(docRef);
+
+    // const event = {
+    //     id: eventSnapshot.id,
+    //     ...eventSnapshot.data(),
+    // };
+
+    const event = {
+        id: "tge4HsrW7V8ld7eoLjfq",
+        pocName: "jane doe",
+        maxTeamSize: 1,
+        tags: ["Dance", "Music"],
+        venue: "Main Arena",
+        type: "Individual",
+        startDate: "2023-10-05T00:00:00+05:30",
+        minTeamSize: 1,
+        adminEmail: "admin@pecfest.org",
+        category: "Cultural",
+        name: "Dummy event 1",
+        image: "https://firebasestorage.googleapis.com/v0/b/pecfest-23.appspot.com/o/events%2FDummy%20event%201.png?alt=media&token=451014c3-9391-473e-ac03-693971e01dce",
+        description: "bcd xyz",
+        pocNumber: "34567899",
+        ruleBook:
+            "https://docs.google.com/document/d/10flyp_CVGi4BeIJRnF0TXTsWAGG8HN27hSwp8KI6uN0/edit#heading=h.bgret88b62o7",
+        endDate: "2023-10-26T00:00:00+05:30",
+    };
+    if (eventSnapshot.data() == null) {
+        return {
+            notFound: true,
+        };
+    }
+    return {
+        props: {
+            event,
+        },
+    };
 };
 
 export default EventDetails;
