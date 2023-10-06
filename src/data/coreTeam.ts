@@ -91,7 +91,7 @@ export const coreTeam = {
             Type: "Head",
             Committee: "Website Development",
             Contact: 7009719991,
-            IInstagram: "NA",
+            Instagram: "NA",
             Linkedin: "NA",
             Photo: "/team/WebsiteManagement_ArV.jpeg",
             Email: "arjunkathail.bt19cse@pec.edu.in",
