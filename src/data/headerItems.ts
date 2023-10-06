@@ -15,10 +15,10 @@ export const headerItems = [
         href: "/sponsors",
         name: "Sponsors",
     },
-    {
-        href: "/schedule",
-        name: "Schedule",
-    },
+    // {
+    //     href: "/schedule",
+    //     name: "Schedule",
+    // },
     {
         href: "/team",
         name: "Team",
