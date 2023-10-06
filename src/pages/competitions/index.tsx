@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from "react";
-import { Button, Container, Grid } from "@mui/material";
+import { Container, Grid, Stack } from "@mui/material";
 import styles from "@/styles/Events/events.module.css";
 import PirateShipLottie from "@/components/events/shipLottieAnimation";
 import { GetServerSideProps } from "next";
@@ -9,8 +9,9 @@ import { useRouter } from "next/router";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Box } from "@react-three/drei";
-import { tabsStyles, tabItemStyles } from "./appleTabs.styles";
 import Chip from '@mui/material/Chip';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
+import { tabItemStyles, tabsStyles } from "./appleTabs.styles";
 
 interface EventPageProps {
   isEventDoneEnv: string | null;
@@ -51,11 +52,13 @@ interface Event {
 const TempEventCard = () => {
   return (<div className={styles.tempEventCardContainer}>
     <div style={{ height: '100px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-      Hi I am image
+      pages/competitions/index.tsx (Line 51)
     </div>
     <div>
-      <h1>Title</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, voluptatem in illum dolorem, debitis maiores delectus rem porro, ea voluptatibus facere aliquid incidunt nobis impedit sapiente itaque. Optio, placeat libero.</p>
+      <h1>Dummy Event Card</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, voluptatem in illum dolorem, debitis maiores delectus rem porro, ea voluptatibus facere aliquid incidunt nobis impedit sapiente itaque. Optio, placeat libero.
+      </p>
+      <p>Remove styles/Events/events.module.css last class .tempEventCardContainer</p>
       <p>Date - Date</p>
     </div>
   </div>)
@@ -65,7 +68,68 @@ function Events({ isEventDoneEnv }: EventPageProps) {
   const [eventType, setEventType] = useState<string>('Cultural');
   const [events, setEvents] = useState<Event[]>([]);
   const [tabIndex, setTabIndex] = useState<number>(0);
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [tags, setTags] = useState([
+    {
+      name: "Dance",
+      isSelected: false,
+      id: 0,
+    },
+    {
+      name: "Music",
+      isSelected: false,
+      id: 1,
+    },
+    {
+      name: "Coding",
+      isSelected: false,
+      id: 2,
+    },
+    {
+      name: "Hardware",
+      isSelected: false,
+      id: 3,
+    },
+    {
+      name: "Dramatics",
+      isSelected: false,
+      id: 4,
+    },
+    {
+      name: "Gaming",
+      isSelected: false,
+      id: 5,
+    },
+    {
+      name: "Cinematography",
+      isSelected: false,
+      id: 6,
+    },
+    {
+      name: "Literary",
+      isSelected: false,
+      id: 7,
+    },
+    {
+      name: "Quiz",
+      isSelected: false,
+      id: 8,
+    },
+    {
+      name: "Art",
+      isSelected: false,
+      id: 9,
+    },
+    {
+      name: "Photography",
+      isSelected: false,
+      id: 10,
+    },
+  ])
+
+  // if (selectedTags.has(tagName)) { show event card }
+  // Also check eventType (for cultural and technical)
+  const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set<string>());
+
   const router = useRouter();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -76,11 +140,6 @@ function Events({ isEventDoneEnv }: EventPageProps) {
       setEventType('Technical');
     }
   };
-
-  const handleTagSelect = (e: any) => {
-    alert("clicked on chip")
-    console.info(e);
-  }
 
   const fetchEvents = async () => {
     console.log("fetch events from competitions");
@@ -139,9 +198,13 @@ function Events({ isEventDoneEnv }: EventPageProps) {
     <PageLayout title="Competitions | Pecfest'23">
       <Container className={styles.cover}>
         <div className={styles.tabContainer}>
-          <Tabs value={tabIndex} onChange={handleChange} aria-label="basic tabs example">
-            <Tab label="Cultural Events" />
-            <Tab label="Technical Events" />
+          <Tabs 
+              value={tabIndex} 
+              onChange={handleChange} 
+              classes={tabsStyles}
+            >
+            <Tab classes={tabItemStyles} label="Cultural Events" />
+            <Tab classes={tabItemStyles} label="Technical Events" />
           </Tabs>
         </div>
 
@@ -150,16 +213,42 @@ function Events({ isEventDoneEnv }: EventPageProps) {
         </h1>
 
         <div className={styles.container}>
-          <div className={styles.tagsBox}>
-            {tags.map((tag, id) => (
-              <Button
-                variant="text"
-                sx={{mr: 1}}
-                key={id}
-              > {tag} </Button>
-            ))}
-          </div>
+          <div className={styles.tagContainer}>
+            <div className={`${styles.tagBox} glassmorphism-light`}>
+              <p className={styles.tagHeading}>Select Tags to Filter</p>
+              <div className={styles.tags}>
+                {tags.map((tag, id) => (
+                  <Chip
+                    key={id}
+                    variant={tag.isSelected ? 'filled' : 'outlined'}
+                    label={tag.name}
+                    color='secondary'
+                    icon={<LoyaltyIcon />}
+                    clickable
+                    sx={{ mr: 1, fontWeight: 600 }}
 
+                    onClick={() => {
+                      const add = !tag.isSelected;
+                      let newTags = [...tags];
+                      newTags[tag.id] = {
+                        ...newTags[tag.id],
+                        isSelected: add
+                      };
+                      setTags(newTags);
+                      let newSelectedTags = new Set<string>(selectedTags);
+                      if (add) {
+                        newSelectedTags.add(tag.name);
+                      } else {
+                        newSelectedTags.delete(tag.name);
+                      }
+                      
+                      setSelectedTags(newSelectedTags);
+                    }}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
           <div className={styles.eventCards}>
             {[...Array(10)].map((x, i) =>
               <TempEventCard key={i} />
@@ -217,17 +306,3 @@ export const getServerSideProps: GetServerSideProps<
 };
 
 export default Events;
-
-const tags = [
-  "Dance",
-  "Music",
-  "Coding",
-  "Hardware",
-  "Photography",
-  "Quiz",
-  "Cinematography",
-  "Art",
-  "Literary",
-  "Dramatics",
-  "Gaming",
-]

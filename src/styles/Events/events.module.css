@@ -1,6 +1,6 @@
 .cover {
-  /* background-image: url("/assets/images/bg.png"); */
-  background-color: lightcyan;
+  background-image: url("/assets/images/bg.png");
+  /* background-color: lightcyan; */
   min-width: 100vw;
   min-height: 100vh;
   background-size: cover;
@@ -88,23 +88,43 @@
   display: flex;  
 }
 
-.tagsBox {
-  /* border: 2px solid blue; */
-  margin: 20px 5px;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+.tagContainer {
+  margin-right: 300px;
+}
+
+.tagBox {
+  justify-content: center;
+  height: fit-content;
+  position: fixed;
+  width: 300px;
+  border-radius: 10px;
+}
+
+.tagHeading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: underline;
+  color: #fcba28;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
   height: 300px;
   width: 100%;
   min-width: 280px;
-  justify-items: start;
-  text-align: start;
   align-items: center;
+  justify-content: center;
   overflow-y: scroll;
 }
 
 .eventCards {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .tempEventCardContainer {
@@ -115,4 +135,10 @@
   max-width: 400px;
   margin: 15px;
   border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .tagContainer {
+    display: none;
+  }
 }
