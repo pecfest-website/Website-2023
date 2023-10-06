@@ -1,5 +1,9 @@
 @import "../variables";
-@import url('https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap');
+
+@font-face {
+    font-family: "Chelsea Market";
+    src: url("/assets/fonts/cm/ChelseaMarket-Regular.ttf");
+}
 
 .navbar {
     background: transparent;
