@@ -67,7 +67,7 @@ const Organiser = ({ organiser }: Props) => {
                                 <LinkedInIcon className={styles.fab} />
                             </a>
                         )}
-                        {organiser.Github !== "NA" && (
+                        {organiser.Github && organiser.Github !== "NA" && (
                             <a
                                 href={organiser.Github}
                                 target="_blank"
