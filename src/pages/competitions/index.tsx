@@ -68,63 +68,7 @@ function Events({ isEventDoneEnv }: EventPageProps) {
   const [eventType, setEventType] = useState<string>('Cultural');
   const [events, setEvents] = useState<Event[]>([]);
   const [tabIndex, setTabIndex] = useState<number>(0);
-  const [tags, setTags] = useState([
-    {
-      name: "Dance",
-      isSelected: false,
-      id: 0,
-    },
-    {
-      name: "Music",
-      isSelected: false,
-      id: 1,
-    },
-    {
-      name: "Coding",
-      isSelected: false,
-      id: 2,
-    },
-    {
-      name: "Hardware",
-      isSelected: false,
-      id: 3,
-    },
-    {
-      name: "Dramatics",
-      isSelected: false,
-      id: 4,
-    },
-    {
-      name: "Gaming",
-      isSelected: false,
-      id: 5,
-    },
-    {
-      name: "Cinematography",
-      isSelected: false,
-      id: 6,
-    },
-    {
-      name: "Literary",
-      isSelected: false,
-      id: 7,
-    },
-    {
-      name: "Quiz",
-      isSelected: false,
-      id: 8,
-    },
-    {
-      name: "Art",
-      isSelected: false,
-      id: 9,
-    },
-    {
-      name: "Photography",
-      isSelected: false,
-      id: 10,
-    },
-  ])
+  const [tags, setTags] = useState(getTagsList());
 
   // if (selectedTags.has(tagName)) { show event card }
   // Also check eventType (for cultural and technical)
@@ -255,40 +199,6 @@ function Events({ isEventDoneEnv }: EventPageProps) {
             )}
           </div>
         </div>
-
-        {/* <Grid container spacing={3}>
-            {events.map((event) => (
-              <Grid
-                className={styles.card}
-                item
-                key={event.id}
-                xs={12}
-                sm={6}
-                md={4}
-                onClick={() => {
-                  router.push({
-                    pathname: `competitions/${event.id}`,
-                  });
-                }}
-              >
-                <EventCard
-                  id={event?.id}
-                  name={event?.name}
-                  type={event?.type}
-                  category={event?.category}
-                  description={event?.description}
-                  startDate={event?.startDate}
-                  endDate={event?.endDate}
-                  venue={event?.venue}
-                  club={event?.club}
-                  clubType={event?.clubType}
-                  rulebook={event?.rulebook}
-                  subcategory={event?.subcategory}
-                  image={event?.image}
-                />
-              </Grid>
-            ))}
-          </Grid> */}
       </Container>
     </PageLayout>
   );
@@ -306,3 +216,63 @@ export const getServerSideProps: GetServerSideProps<
 };
 
 export default Events;
+
+const getTagsList = () => {
+  return [
+    {
+      name: "Dance",
+      isSelected: false,
+      id: 0,
+    },
+    {
+      name: "Music",
+      isSelected: false,
+      id: 1,
+    },
+    {
+      name: "Coding",
+      isSelected: false,
+      id: 2,
+    },
+    {
+      name: "Hardware",
+      isSelected: false,
+      id: 3,
+    },
+    {
+      name: "Dramatics",
+      isSelected: false,
+      id: 4,
+    },
+    {
+      name: "Gaming",
+      isSelected: false,
+      id: 5,
+    },
+    {
+      name: "Cinematography",
+      isSelected: false,
+      id: 6,
+    },
+    {
+      name: "Literary",
+      isSelected: false,
+      id: 7,
+    },
+    {
+      name: "Quiz",
+      isSelected: false,
+      id: 8,
+    },
+    {
+      name: "Art",
+      isSelected: false,
+      id: 9,
+    },
+    {
+      name: "Photography",
+      isSelected: false,
+      id: 10,
+    },
+  ]
+}
