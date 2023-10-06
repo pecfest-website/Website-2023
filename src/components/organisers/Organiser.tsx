@@ -1,11 +1,12 @@
 import styles from "@/styles/Organisers/organiser.module.css";
 import { organiser } from "@/types/Organiser";
-import React from 'react';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import CallIcon from '@mui/icons-material/Call';
-import Tooltip from '@mui/material/Tooltip';
+import React from "react";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import CallIcon from "@mui/icons-material/Call";
+import Tooltip from "@mui/material/Tooltip";
+import Image from "next/image";
 
 interface Props {
     organiser: organiser;
@@ -15,14 +16,14 @@ const Organiser = ({ organiser }: Props) => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.card}>
-                <picture>
-                    <source srcSet={organiser.Photo} />
-                    <img
-                        src={organiser.Photo}
-                        className={styles.card__image}
-                        alt={organiser.Name}
-                    />
-                </picture>
+                <Image
+                    height={100}
+                    width={100}
+                    loading="lazy"
+                    src={organiser.Photo}
+                    className={styles.card__image}
+                    alt={organiser.Name}
+                />
                 <div className={styles.card__overlay}>
                     <div className={styles.card__header}>
                         <svg
@@ -31,14 +32,14 @@ const Organiser = ({ organiser }: Props) => {
                         >
                             <path />
                         </svg>
-                        <picture>
-                            <source srcSet={organiser.Photo} />
-                            <img
-                                className={styles.card__thumb}
-                                src={organiser.Photo}
-                                alt="Display Image circle"
-                            />
-                        </picture>
+                        <Image
+                            className={styles.card__thumb}
+                            src={organiser.Photo}
+                            alt="Display Image circle"
+                            height={100}
+                            width={100}
+                            loading="lazy"
+                        />
                         <div className={styles.card__header__text}>
                             <h3 className={styles.card__title}>
                                 {organiser.Name}
