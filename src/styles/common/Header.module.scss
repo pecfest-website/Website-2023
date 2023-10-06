@@ -1,0 +1,192 @@
+@import "../variables";
+
+@font-face {
+    font-family: "Chelsea Market";
+    src: url("/assets/fonts/cm/ChelseaMarket-Regular.ttf");
+}
+
+.navbar {
+    background: transparent;
+    padding: 10px 100px 10px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    font-weight: 600;
+    // box-shadow: 0 0 4px #E2E2E2;
+    // color: $font-primary-color;
+
+    .logo_wrapper {
+        padding: 10px 20px;
+        z-index: 12;
+        a {
+            display: flex;
+            align-items: center;
+        }
+        img {
+            height: 60px;
+            object-fit: cover;
+            margin-right: 7px;
+        }
+    }
+
+    .list_items_wrapper {
+        .ham {
+            display: none; // will be flex in when nav breakpoint and less
+            cursor: pointer;
+            transition: transform 400ms;
+            z-index: 12;
+
+            .line {
+                fill: none;
+                transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+                stroke: #fff;
+                stroke-width: 5.5;
+                stroke-linecap: round;
+            }
+
+            .top {
+                stroke-dasharray: 40 121;
+            }
+
+            .bottom {
+                stroke-dasharray: 40 121;
+            }
+
+            &.active {
+                transform: rotate(45deg);
+                z-index: 12;
+                .top {
+                    stroke-dashoffset: -68px;
+                }
+                .bottom {
+                    stroke-dashoffset: -68px;
+                }
+            }
+
+            &:hover {
+                .line {
+                    stroke: $acm-primary;
+                }
+            }
+        }
+
+        .nav_items {
+            align-items: center;
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+
+            li {
+                padding: 0 20px;
+                font-size: 14px;
+
+                .nav_link {
+                    font-weight: 600;
+                    font-family: 'Chelsea Market', cursive;
+                    transition: 0.2s;
+                    color: white;
+                    &:hover {
+                        color: $acm-primary;
+                    }
+                }
+
+                .active_nav_link {
+                    color: $acm-primary;
+                }
+
+                button {
+                    background: none;
+                    border: none;
+                    font-family: 'Chelsea Market', cursive;
+                    color: $acm-primary;
+                    font-weight: 700;
+                    cursor: pointer;
+                    outline: none;
+                    transition: 0.5s;
+                    &:hover {
+                        color: black;
+                        transition: all 0.5s;
+                    }
+                }
+            }
+        }
+
+        .dark_nav_items {
+            li .nav_link {
+                color: black;
+                &:hover {
+                    color: $font-dark;
+                }
+            }
+
+            li {
+                .active_nav_link {
+                    color: $font-dark;
+                }
+            }
+            
+        }
+        @media screen and (max-width: $navbar-breakpoint) {
+            .ham {
+                display: flex;
+            }
+            .menu_modal {
+                background: rgba(0, 0, 0, 0.8);
+                height: 100vh;
+                left: 50vw;
+                overflow-y: scroll;
+                position: absolute;
+                top: 50vh;
+                transform: translate(-50%, -150%);
+                transition: transform 0.35s cubic-bezier(0.05, 1.04, 0.72, 0.98);
+                width: 100vw;
+                z-index: 11;
+
+                .nav_items {
+                    display: none;
+                    font-size: 1.8em;
+                    font-weight: 600;
+                    left: 50vw;
+                    margin: 10px 0;
+                    position: absolute;
+                    top: 50vh;
+                    transform: translate(-50%, -50%);
+
+                    li {
+                        margin: 5px 0;
+                    }
+
+                    button {
+                        font-size: 2rem;
+                        margin: 10px 0;
+                    }
+
+                    &.active {
+                        align-items: center;
+                        flex-direction: column;
+                        display: flex;
+                    }
+                }
+
+                &.active {
+                    transform: translate(-50%, calc(-50% + 70px));
+                    transition: transform 0.35s
+                        cubic-bezier(0.05, 1.04, 0.72, 0.98);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $navbar-breakpoint) {
+    .navbar {
+        padding: 10px 20px;
+    }
+}

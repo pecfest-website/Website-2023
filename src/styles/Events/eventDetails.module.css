@@ -1,31 +1,95 @@
-.cover {
-    background-image: url("/assets/images/bg.png");
-    min-width: 100vw;
-    min-height: 100vh;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 100px;
-    color: white;
-} 
-
-
-.card {
-    flex: 1;
-    background-color: '#2196F3';
-    color: '#fff';
-    border-radius: 1;
-    box-shadow: '0px 4px 6px rgba(0, 0, 0, 0.1)';
+@font-face {
+    font-family: caribbean;
+    src: url("/assets/fonts/poc/Caribbean.ttf");
 }
 
-.content {
-    flex: 1;
+.background {
+    background-image: url("/assets/images/sponsors.jpg");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding-top: 70px;
+}
+
+.main {
     display: flex;
-    flex-direction: column !important;
-    align-items: stretch;
+    height: 100%;
     width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.details {
+    width: 50%;
+    height: 100%;
     padding: 20px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.details h1 {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: caribbean, "sans-serif";
+    padding: 5px;
+}
+
+.tag_badges {
+    display: flex;
+    gap: 5px;
+}
+
+.details__info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.details__info__line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+}
+
+.line {
+    margin-top: 20px;
+    border-bottom: 3px solid black;
+}
+
+.description {
+    overflow-y: scroll;
+    flex: 1;
+
+}
+
+.poster {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-items: start;
+    align-items: center;
+}
+
+.poster img {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: contain !important;
+}
+
+@media screen and (max-width: 1000px) {
+  .main {
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+  }
+
+  .details {
+    width: 90%;
+  }
+  .poster {
+    width: 90%;
+  }
 }

@@ -15,12 +15,42 @@
     scrollbar-width: none; /* Firefox */
 }
 
+button,
+a,
+ul,
+li {
+    all: unset;
+}
+
+a,
+button {
+    cursor: pointer;
+}
+
 .progress {
     background: transparent;
     position: fixed;
-    top: 0;
+    top: 70px;
 }
 
 .progress-bar {
     background-color: blue;
+}
+
+.glassmorphism {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+    /* border: 1px solid rgba(255, 255, 255, 0.18); */
+    z-index: 4;
+}
+
+.glassmorphism-light {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+    /* border: 1px solid rgba(255, 255, 255, 0.18); */
+    z-index: 4;
 }

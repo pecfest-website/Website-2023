@@ -1,167 +1,237 @@
-import React, { ReactNode, useState } from "react";
-import { Button, Container, Grid } from "@mui/material";
-import styles from "@/styles/Events/events.module.css";
-import PirateShipLottie from "@/components/events/shipLottieAnimation";
-import { GetServerSideProps } from "next";
+import React, { useState } from "react";
+import { Container, Typography } from "@mui/material";
+import styles from "@/styles/Competition/competition.module.css";
+import { GetServerSidePropsContext } from "next";
 import PageLayout from "@/components/layout/PageLayout";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Chip from "@mui/material/Chip";
+import { Event } from "@/types/Event";
+import { collection, getDocs, or, query, where } from "firebase/firestore";
+import { db } from "@/serverless/firebase";
+import LoyaltyIcon from "@mui/icons-material/Loyalty";
 import EventCard from "@/components/events/eventCard";
-import TwoHeadingSelector from "@/components/TwoHeadingSelector/TwoHeadingSelector";
-import { useRouter } from "next/router";
 
 interface EventPageProps {
-  isEventDoneEnv: string | null;
+    competitions: Event[];
 }
 
-enum EventType {
-  individual = "Individual",
-  team = "Team",
-}
-enum EventCategory {
-  technical = "Technical",
-  cultural = "Cultural",
-  megashows = "Megashows",
-  workshop = "Workshop",
-}
-enum EventClubType {
-  cultural = "Cultural",
-  technical = "Technical",
+function Competitions({ competitions }: EventPageProps) {
+    const [eventType, setEventType] = useState<string>("Cultural");
+    const [tabIndex, setTabIndex] = useState<number>(0);
+    const [tags, setTags] = useState(getTagsList());
+
+    // if (selectedTags.has(tagName)) { show event card }
+    // Also check eventType (for cultural and technical)
+    const [selectedTags, setSelectedTags] = useState<Set<string>>(
+        new Set<string>()
+    );
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setTabIndex(newValue);
+        if (newValue === 0) {
+            setEventType("Cultural");
+        } else {
+            setEventType("Technical");
+        }
+    };
+
+    return (
+        <PageLayout title="Competitions | Pecfest'23">
+            <Container className={styles.cover} maxWidth={false}>
+                <div className={styles.tabContainer}>
+                    <Tabs value={tabIndex} onChange={handleChange}>
+                        <Tab
+                            label={
+                                <p className={styles.tab__heading}>Cultural</p>
+                            }
+                            sx={
+                                tabIndex === 1
+                                    ? {}
+                                    : {
+                                          fontWeight: 700,
+                                      }
+                            }
+                        />
+                        <Tab
+                            label={
+                                <p className={styles.tab__heading}>Technical</p>
+                            }
+                            sx={
+                                tabIndex === 0
+                                    ? {}
+                                    : {
+                                          fontWeight: 700,
+                                      }
+                            }
+                        />
+                    </Tabs>
+                </div>
+
+                <div className={styles.container}>
+                    <div className={styles.tagContainer}>
+                        <div className={`${styles.tagBox} glassmorphism-light`}>
+                            <p className={styles.tagHeading}>
+                                Select Tags to Filter
+                            </p>
+                            <div className={styles.tags}>
+                                {tags.map((tag, id) => (
+                                    <Chip
+                                        key={id}
+                                        variant={
+                                            tag.isSelected
+                                                ? "filled"
+                                                : "outlined"
+                                        }
+                                        label={tag.name}
+                                        color={
+                                            tag.isSelected ? "info" : "primary"
+                                        }
+                                        icon={<LoyaltyIcon />}
+                                        clickable
+                                        sx={{ mr: 1, fontWeight: 600 }}
+                                        onClick={() => {
+                                            const add = !tag.isSelected;
+                                            let newTags = [...tags];
+                                            newTags[tag.id] = {
+                                                ...newTags[tag.id],
+                                                isSelected: add,
+                                            };
+                                            setTags(newTags);
+                                            let newSelectedTags =
+                                                new Set<string>(selectedTags);
+                                            if (add) {
+                                                newSelectedTags.add(tag.name);
+                                            } else {
+                                                newSelectedTags.delete(
+                                                    tag.name
+                                                );
+                                            }
+
+                                            setSelectedTags(newSelectedTags);
+                                        }}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.eventCards}>
+                        {competitions
+                            .filter(
+                                (competition) =>
+                                    competition.category === eventType
+                            )
+                            .filter((competition) =>
+                                filterByTags(selectedTags, competition)
+                            )
+                            .map((event, i) => (
+                                <EventCard key={i} event={event} />
+                            ))}
+                    </div>
+                </div>
+            </Container>
+        </PageLayout>
+    );
 }
 
-interface Event {
-  id?: string;
-  name?: string;
-  type?: EventType;
-  category?: EventCategory;
-  description?: string;
-  startDate?: Date;
-  endDate?: Date;
-  venue?: string;
-  club?: string;
-  clubType?: EventClubType;
-  rulebook?: string;
-  subcategory?: string[];
-  image?: string;
-}
+export default Competitions;
 
-function Events({ isEventDoneEnv }: EventPageProps) {
-  const [eventType, setEventType] = useState<string | null>(null);
-  const [events, setEvents] = useState<Event[]>([]);
-  const router = useRouter();
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const colRef = query(
+        collection(db, "events"),
+        or(
+            where("category", "==", "Technical"),
+            where("category", "==", "Cultural")
+        )
+    );
 
-  const fetchEvents = async () => {
-    console.log("fetch events from competitions");
-    try {
-      // Fetch events
-      setEvents([
-        {
-          id: "12",
-          name: "Ideathon",
-          startDate: new Date(),
-          endDate: new Date(),
-          venue: "PEC",
-          subcategory: ["Coding", "Hardware"],
-          type: EventType.team,
-          club: "ACM",
-          clubType: EventClubType.technical,
-          category: EventCategory.cultural,
-          rulebook:
-            "https://docs.google.com/document/d/10flyp_CVGi4BeIJRnF0TXTsWAGG8HN27hSwp8KI6uN0/edit",
-          description:
-            "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum",
-          image:
-            "https://images.unsplash.com/photo-1682686578289-cf9c8c472c9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    const comps = await getDocs(colRef);
+
+    const competitions = comps.docs.map((doc) => {
+        return {
+            id: doc.id,
+            ...doc.data(),
+        };
+    });
+
+    return {
+        props: {
+            competitions,
         },
-      ]);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  if (isEventDoneEnv) {
-    return (
-      <PageLayout title="Competitions | Pecfest" noHeader>
-        <div className={styles.cover}>
-          <PirateShipLottie loop={true} />
-          <h1 className={styles.comingSoon}>Coming Soon</h1>
-        </div>
-      </PageLayout>
-    );
-  }
-
-  if (eventType == null) {
-    return (
-      <TwoHeadingSelector
-        leftImageUrl="/FestPics/workshop.jpg"
-        rightImageUrl="/FestPics/megashows.jpg"
-        setEventType={setEventType}
-      />
-    );
-  }
-
-  if (events == null || events.length == 0) {
-    return (
-      <PirateShipLottie
-        loop={false}
-        onComplete={() => {
-          fetchEvents();
-        }}
-      />
-    );
-  }
-
-  return (
-    <PageLayout title="Competitions | Pecfest'23">
-      <Container className={styles.cover}>
-        <h1 className="text-3xl font-bold mt-8 mb-4">
-          {eventType.charAt(0).toUpperCase() + eventType.slice(1)} Events
-        </h1>
-        <Grid container spacing={3}>
-          {events.map((event) => (
-            <Grid
-              className={styles.card}
-              item
-              key={event.id}
-              xs={12}
-              sm={6}
-              md={4}
-              onClick={() => {
-                router.push({
-                  pathname: `competitions/${event.id}`,
-                });
-              }}
-            >
-              <EventCard
-                id={event?.id}
-                name={event?.name}
-                type={event?.type}
-                category={event?.category}
-                description={event?.description}
-                startDate={event?.startDate}
-                endDate={event?.endDate}
-                venue={event?.venue}
-                club={event?.club}
-                clubType={event?.clubType}
-                rulebook={event?.rulebook}
-                subcategory={event?.subcategory}
-                image={event?.image}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </PageLayout>
-  );
+    };
 }
 
-export const getServerSideProps: GetServerSideProps<
-  EventPageProps
-> = async () => {
-  const isEventDoneEnv = process.env.EVENTS_DONE || null;
-  return {
-    props: {
-      isEventDoneEnv,
-    },
-  };
+const filterByTags = (selectedTags: Set<string>, event: Event) => {
+    if (selectedTags.size === 0) {
+        return true;
+    }
+
+    let show = false;
+    for (let key of selectedTags) {
+        for (let tag of event.tags) {
+            if (tag === key) show = true;
+        }
+    }
+
+    return show;
 };
 
-export default Events;
+const getTagsList = () => {
+    return [
+        {
+            name: "Dance",
+            isSelected: false,
+            id: 0,
+        },
+        {
+            name: "Music",
+            isSelected: false,
+            id: 1,
+        },
+        {
+            name: "Coding",
+            isSelected: false,
+            id: 2,
+        },
+        {
+            name: "Hardware",
+            isSelected: false,
+            id: 3,
+        },
+        {
+            name: "Dramatics",
+            isSelected: false,
+            id: 4,
+        },
+        {
+            name: "Gaming",
+            isSelected: false,
+            id: 5,
+        },
+        {
+            name: "Cinematography",
+            isSelected: false,
+            id: 6,
+        },
+        {
+            name: "Literary",
+            isSelected: false,
+            id: 7,
+        },
+        {
+            name: "Quiz",
+            isSelected: false,
+            id: 8,
+        },
+        {
+            name: "Art",
+            isSelected: false,
+            id: 9,
+        },
+        {
+            name: "Photography",
+            isSelected: false,
+            id: 10,
+        },
+    ];
+};

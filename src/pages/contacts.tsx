@@ -14,7 +14,7 @@ function Contacts() {
         >
             <div className={styles.container}>
                 <div className={styles.heading}>Contact Us</div>
-                <div className={styles.contactUsContainer}>
+                <div className={`${styles.contactUsContainer} glassmorphism-light`}>
                     {CONTACTUSINFO.map((contact, i) => {
                         return (
                             <ContactUsCard
@@ -23,17 +23,6 @@ function Contacts() {
                                 icon={contact.icon}
                                 paras={contact.paras}
                             />
-                        );
-                    })}
-                </div>
-
-                <div className={styles.heading}>Our Team</div>
-                <div className={styles.teamCards}>
-                    {Array.apply(null, Array(6)).map((_, i) => {
-                        return (
-                            <div key={i} className={styles.teamCard}>
-                                <TeamCard />
-                            </div>
                         );
                     })}
                 </div>

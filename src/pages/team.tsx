@@ -1,38 +1,54 @@
-import React from 'react'
+import React from "react";
 import PageLayout from "@/components/layout/PageLayout";
 import styles from "@/styles/Teams/teams.module.css";
+import Organiser from "@/components/organisers/Organiser";
+import { coreTeam } from "@/data/coreTeam";
 
 function Team() {
-  return (
-    <PageLayout title="Schedule | Pecfest">
-      <div className={styles.coreTeamContainer}>
-        <div className={styles.coreTeamSidebar}>
-          <div className={styles.sidebarParent}>
-            <ul className={styles.sidebar}>
-              <li>
-                <a href="#t1">Convenors</a>
-              </li>
-              <li>
-                <a href="#t1">Convenors</a>
-              </li>
-              <li>
-                <a href="#t1">Convenors</a>
-              </li>
-              <li>
-                <a href="#t1">Convenors</a>
-              </li>
-              <li>
-                <a href="#t1">Convenors</a>
-              </li>
-              <li>
-                <a href="#t1">Convenors</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </PageLayout>
-  );
+    return (
+        <>
+            <PageLayout title="Schedule | Pecfest">
+                <main className={styles.background}>
+                    <div className={styles.main_container}>
+                        <div>
+                            <div className={styles.pageheader}>Conveners</div>
+                            <div>
+                                <div className={styles.third}>
+                                    {coreTeam.convener &&
+                                        coreTeam.convener.map((item, i) => (
+                                            <Organiser
+                                                key={i}
+                                                organiser={item}
+                                            />
+                                        ))}
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className={styles.pageheader}>Secretaries</div>
+                            <div>
+                                <div className={styles.third}>
+                                    {coreTeam.secretary.map((item, i) => (
+                                        <Organiser key={i} organiser={item} />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className={styles.pageheader}>Heads</div>
+                            <div>
+                                <div className={styles.third}>
+                                    {coreTeam.head.map((item, i) => (
+                                        <Organiser key={i} organiser={item} />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </PageLayout>
+        </>
+    );
 }
 
-export default Team
+export default Team;

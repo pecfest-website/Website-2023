@@ -7,9 +7,9 @@ import styles from "@/styles/Contacts/contacts.module.css";
 
 const getSocialIconSpan = () => {
     const spans = SOCIALICONS.map((socialIcon, id) => (
-        <span key={id} className={styles.socialIcon}>
+        <a href={socialIcon.link} key={id} className={styles.socialIcon}>
             {socialIcon.icon}
-        </span>
+        </a>
     ))
 
     return (
@@ -23,7 +23,7 @@ export const CONTACTUSINFO = [
     {
         heading: "Call us directly at",
         icon: <PhoneSharpIcon fontSize="large" />,
-        paras: ["First Last: +91 xxxxx xxxx90", "First Last: +91 xxxxx xxxx90"],
+        paras: ["Harshpreet Singh Johar: 96461 70170", "Ishwarendra Jha: 99151 06579"],
     },
 
     {
@@ -32,7 +32,7 @@ export const CONTACTUSINFO = [
         paras: ["convener.pecfest@pec.edu.in"],
     },
     {
-        heading: "Visit Us at",
+        heading: "Visit us at",
         icon: <LocationOnIcon fontSize="large" />,
         paras: ["Punjab Engineering College", "Sector-12, Chandigarh"],
     },

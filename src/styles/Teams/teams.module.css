@@ -1,46 +1,53 @@
 @import url("https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Narnoor&display=swap");
 
-.coreTeamContainer {
-    background: linear-gradient(#2b124c,#190019);
+@font-face {
+    font-family: caribbean;
+    src: url("/assets/fonts/poc/Caribbean.ttf");
+}
+
+
+.background {
+    background-image: url("/assets/images/team.jpg");
+    min-height: 91vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-attachment: fixed;
+}
+
+.main_container {
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+.pageheader {
+    color: white !important;
+    font-family: caribbean, cursive;
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-shadow: 5px 5px 5px #000;
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    /* margin: 20px auto; */
+    /* padding: 10px 10px; */
+}
+
+.third {
     display: flex;
-    flex-direction: row;
-    height: 100vh;
-    overflow: auto;
-    scroll-behavior: smooth;
-    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.coreTeamSidebar {
-    box-sizing: border-box;
-    margin-left: 2vw;
-    margin-right: 4vw;
-}
+@media screen and (max-width: 600px) {
+    .background {
+        background-image: url("/assets/images/team.jpg");
+    }
 
-.sidebarParent {
-    margin: 0;
-    padding: 0;
-    position: fixed;
-    top: 25vh;
-}
-
-.sidebar {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-}
-
-.sidebar li a {
-    -webkit-background-clip: text;
-    background-clip: text;
-    position: relative;
-    transition: background-size .45s .04s;
-}
-
-.sidebar a {
-    text-decoration: none;
+    .pageheader {
+        font-size: 2rem;
+        padding-bottom: 1.5rem;
+    }
 }

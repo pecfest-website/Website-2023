@@ -8,11 +8,12 @@ type Props = {
     description?: string;
     children?: ReactNode;
     noHeader?: boolean;
+    darkHeader?: boolean;
 };
 
-function PageLayout({ title, children, description, noHeader }: Props) {
+function PageLayout({ title, children, description, noHeader, darkHeader }: Props) {
     return (
-        <div>
+        <div className={styles.page}>
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />
@@ -55,7 +56,7 @@ function PageLayout({ title, children, description, noHeader }: Props) {
                 />
                 <meta name="theme-color" content="#ffffff" />
             </Head>
-            {noHeader ? null : <Header />}
+            {noHeader ? null : <Header dark={darkHeader} />}
             <div className={styles.children}>{children}</div>
         </div>
     );
