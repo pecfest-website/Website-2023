@@ -1,14 +1,53 @@
 export const channels = [
   {
     uuid: "saasc",
-    title: "r tv",
+    title: "SAASC",
     logo:
-      "https://github.com/pecfest-2023/website/blob/schedule-up/public/clubs/ACM.png",
+      "/clubs/SAASC.png",
   },
   {
-    uuid: "music",
-    title: "b tv",
-    logo:
-      "https://raw.githubusercontent.com/karolkozer/planby-demo-resources/master/resources/channel-logos/png/b-channel.png",
-  }
+    uuid: "ACM",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
+  {
+    uuid: "APC",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
+  {
+    uuid: "ASCE",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
+  {
+    uuid: "ASPS",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
+  {
+    uuid: "ATS",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
+  {
+    uuid: "CIM",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
+  {
+    uuid: "DRAMATICS",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
+  {
+    uuid: "ATS",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
+  {
+    uuid: "ATS",
+    title: "ACM",
+    logo: "/clubs/ACM.png",
+  },
 ];
