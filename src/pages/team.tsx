@@ -7,7 +7,7 @@ import { coreTeam } from "@/data/coreTeam";
 function Team() {
     return (
         <>
-            <PageLayout title="Schedule | Pecfest">
+            <PageLayout title="Core Team | Pecfest">
                 <main className={styles.background}>
                     <div className={styles.main_container}>
                         <div>
