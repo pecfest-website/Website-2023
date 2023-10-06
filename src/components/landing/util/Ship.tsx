@@ -43,7 +43,7 @@ export function Ship({
     front,
     right,
 }: any) {
-    const gltf = useLoader(GLTFLoader as any, "/assets/models/pirate_ship.glb");
+    const gltf = useLoader(GLTFLoader as any, "/assets/models/ship01.glb");
     const [hover, setHover] = useState(false);
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export function Ship({
 
             <Clone
                 object={gltf.scene}
-                scale={0.001}
+                scale={0.1}
                 position={pos}
                 onClick={onClick}
                 onPointerOver={() => setHover(true)}
@@ -74,4 +74,11 @@ export function Ship({
             />
         </>
     );
+}
+
+export function Sun({
+    pos,
+}: any) {
+    const gltf = useLoader(GLTFLoader as any, "/assets/models/sun logo.glb");
+    return <Clone object={gltf.scene} scale={20} position={pos} />;
 }
