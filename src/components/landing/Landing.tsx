@@ -95,7 +95,7 @@ function Landing() {
                                 pos={[-10, 0, 80]}
                                 title="Schedule"
                                 onClick={() => {
-                                    pushRoute("/Schedule");
+                                    pushRoute("/schedule");
                                 }}
                                 img={schedule.src}
                             />
