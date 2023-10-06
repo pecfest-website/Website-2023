@@ -5,7 +5,7 @@ import { Epg, Layout } from "planby";
 import { Timeline, ChannelItem, ProgramItem } from ".";
 import { useApp } from "@/hooks/useApp";
 
-function ScheduleTable({ dayNumber }) {
+function ScheduleTable() {
     const { isLoading, getEpgProps, getLayoutProps } = useApp();
 
     return (
