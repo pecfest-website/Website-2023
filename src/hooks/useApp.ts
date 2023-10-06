@@ -26,8 +26,8 @@ export function useApp() {
         itemHeight: 80,
         isSidebar: true,
         isTimeline: true,
-        isInitialScrollToNow: true,
-        isCurrentTime: true,
+        // isInitialScrollToNow: true,
+        // isCurrentTime: true,
         isLine: true,
         startDate: `2023-10-2${0 + Number(day)}T00:00:00`, //to be set according to the fest day
         endDate: `2023-10-2${0 + Number(day)}T24:00:00`,  //to be set according to the fest day

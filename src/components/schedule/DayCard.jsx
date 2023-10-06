@@ -21,10 +21,6 @@ const DayCard = ({ dayNumber }) => {
                         className="clash-card__image clash-card__image--wizard"
                         style={{ position: "relative" }}
                     >
-                        <img
-                            src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/wizard.png"
-                            alt="wizard"
-                        />
                         <p className={styles.dayText}>Day {dayNumber}</p>
                     </div>
                 </div>
