@@ -11,8 +11,8 @@ import Image from "next/image";
 function About() {
     const data = [
         { src: Footfall, num: "50000+", title: "FOOTFALL" },
-        { src: Colleges, num: "100000+", title: "IMPRESSIONS" },
-        { src: Events, num: "50+", title: "EVENTS" },
+        { src: Colleges, num: "200000+", title: "IMPRESSIONS" },
+        { src: Events, num: "100+", title: "EVENTS" },
         { src: Prizes, num: "6000+", title: "APP INSTALLS" },
         { src: Participants, num: "8000+", title: "PARTICIPANTS" },
     ];

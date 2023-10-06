@@ -64,6 +64,10 @@
     min-width: 250px;
 }
 
+.developers {
+    margin: 10px auto;
+}
+
 @media only screen and (max-width: 990px) {
     .teamCards {
         grid-template-columns: repeat(2, 1fr);
