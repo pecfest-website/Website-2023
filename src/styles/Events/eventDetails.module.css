@@ -80,6 +80,13 @@
   object-fit: contain !important;
 }
 
+.errorText {
+    color: red;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 @media screen and (max-width: 1000px) {
   .main {
     flex-direction: column-reverse;
