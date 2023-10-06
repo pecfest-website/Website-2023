@@ -194,6 +194,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 }
 
 const filterByTags = (selectedTags: Set<string>, event: Event) => {
+  if (selectedTags.size === 0) {
+    return true;
+  }
+  
   let show = false;
   for (let key of selectedTags) {
     for (let tag of event.tags) {
