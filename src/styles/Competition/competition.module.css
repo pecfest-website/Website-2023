@@ -1,0 +1,91 @@
+.cover {
+    background-image: url("/assets/images/team.jpg");
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 70px 0;
+    overflow-y: scroll;
+}
+
+@font-face {
+    font-family: caribbean;
+    src: url("/assets/fonts/poc/Caribbean.ttf");
+}
+
+.eventHeading {
+    color: black;
+    display: flex;
+    font-size: 2rem;
+    text-shadow: 5px 5px 5px #fff;
+    justify-content: center;
+    font-family: caribbean;
+    padding: 20px 0;
+}
+
+.tabContainer {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tab__heading {
+    font-family: caribbean;
+    text-transform: uppercase;
+    font-size: 24px;
+    letter-spacing: 3px;
+}
+
+.container {
+    display: flex;
+}
+
+.tagContainer {
+    margin-right: 300px;
+}
+
+.tagBox {
+    justify-content: center;
+    height: fit-content;
+    position: fixed;
+    width: 300px;
+    border-radius: 10px;
+    padding: 20px 0; 
+}
+
+.tagHeading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 800;
+    /* text-decoration: underline; */
+    color: #800000;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    height: 300px;
+    width: 100%;
+    min-width: 280px;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.eventCards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content:center;
+    padding: 2rem;
+}
+
+@media (max-width: 768px) {
+    .tagContainer {
+        display: none;
+    }
+}
