@@ -1,7 +1,8 @@
 .cover {
-  background-image: url("/assets/images/bg.png");
-  min-width: 100vw;
-  min-height: 100vh;
+  background-image: url("/assets/images/team.jpg");
+  background-position: center;
+  width: 100%;
+  height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   padding-top: 70px;
@@ -13,65 +14,77 @@
 }
 
 .eventHeading {
-  align-items: center;
-  color: #acebf6;
+  color: black;
   display: flex;
-  font-size: 4rem;
+  font-size: 2rem;
+  text-shadow: 5px 5px 5px #fff;
   justify-content: center;
-  min-height: -webkit-fit-content;
-  min-height: -moz-fit-content;
-  min-height: fit-content;
-  padding-top: 50px;
-  position: relative;
-  width: 100vw;
-  z-index: 0;
   font-family: caribbean;
+  padding: 20px 0;
 }
 
-.card {
-  background-color: '#2196F3';
-  color: '#fff';
-  border-radius: 1;
-  box-shadow: '0px 4px 6px rgba(0, 0, 0, 0.1)';
+.tabContainer {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.largeButton {
+.container {
+  display: flex;  
+}
+
+.tagContainer {
+  margin-right: 300px;
+}
+
+.tagBox {
+  justify-content: center;
+  height: fit-content;
+  position: fixed;
+  width: 300px;
+  border-radius: 10px;
+}
+
+.tagHeading {
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  text-decoration: underline;
+  color: #800000;
 }
 
-.eventTypeButtonDiv {
-  min-height: 100vh;
-  min-width: 100vw;
+.tags {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  height: 300px;
+  width: 100%;
+  min-width: 280px;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+}
+
+.eventCards {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
 }
 
-.eventTypeButton {
-  margin: 10px;
-  padding: 10px;
-  width: 90vw;
+.tempEventCardContainer {
+  display: flex;
+  flex-direction: column; 
+  border: 2px solid red;
+  padding: 20px;
   max-width: 400px;
-  font-size: 2rem;
-  font-weight: 800;
+  margin: 15px;
+  border-radius: 15px;
 }
 
-.comingSoon {
-  text-align: center;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-
-.pirateShipContainer {
-  padding: 10px 50px;
-  background: rgba(255, 255, 255, 0.2); /* Adjust the opacity (4th parameter) for frosted effect */
-  border-radius: 10px;
-  backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
-  text-align: center;
-  color: #fff; /* Text color inside the container */
-  width: fit-content;
-  margin: auto;
+@media (max-width: 768px) {
+  .tagContainer {
+    display: none;
+  }
 }
