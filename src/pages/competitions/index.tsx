@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from "react";
-import { Button, Container, Grid, Stack } from "@mui/material";
+import { Container } from "@mui/material";
 import styles from "@/styles/Events/events.module.css";
 import PirateShipLottie from "@/components/events/shipLottieAnimation";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
@@ -8,7 +8,6 @@ import EventCard from "@/components/events/eventCard";
 import { useRouter } from "next/router";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import { Box } from "@react-three/drei";
 import Chip from "@mui/material/Chip";
 import { Event } from "@/types/Event";
 import { collection, doc, getDocs, or, query, where } from "firebase/firestore";
@@ -63,9 +62,10 @@ function Events({ competitions }: EventPageProps) {
           <Tabs
             value={tabIndex}
             onChange={handleChange}
+            variant="scrollable"
           >
-            <Tab label="Cultural Events" sx={tabIndex === 1 ? {} : {fontSize: '32px', fontFamily: 'sans-serif', fontWeight: 700}} />
-            <Tab label="Technical Events" sx={tabIndex === 0 ? {} : {fontSize: '32px', fontFamily: 'sans-serif', fontWeight: 700, maxWidth: '500px'}} />
+            <Tab label="Cultural Events" sx={tabIndex === 1 ? {} : {fontSize: '26px', fontFamily: 'sans-serif', fontWeight: 700, maxWidth: '70%'}} />
+            <Tab label="Technical Events" sx={tabIndex === 0 ? {} : {fontSize: '26px', fontFamily: 'sans-serif', fontWeight: 700, maxWidth: '70%'}} />
           </Tabs>
         </div>
 

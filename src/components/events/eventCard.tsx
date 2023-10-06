@@ -11,8 +11,8 @@ interface EventCardProps {
   type?: EventType;
   category?: EventCategory;
   description?: string;
-  startDate?: Date;
-  endDate?: Date;
+  startDate?: string;
+  endDate?: string;
   venue?: string;
   club?: string;
   clubType?: EventClubType;
@@ -66,7 +66,7 @@ const EventCard: React.FC<EventCardProps> = ({
             </div>
 
             <div className={styles.eventDate}>
-              <div className="content">{startDate?.toLocaleDateString()} - {endDate?.toLocaleDateString()}</div>
+              <div className="content">{startDate} - {endDate}</div>
             </div>
 
             {/* <div className={styles.tags}>     
