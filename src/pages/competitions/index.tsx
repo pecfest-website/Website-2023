@@ -37,7 +37,7 @@ function Competitions({ competitions }: EventPageProps) {
     };
 
     return (
-        <PageLayout title="Competitions | Pecfest'23">
+        <PageLayout title="Competitions | PECFEST'23">
             <Container className={styles.cover} maxWidth={false}>
                 <div className={styles.tabContainer}>
                     <Tabs value={tabIndex} onChange={handleChange}>
