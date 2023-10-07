@@ -113,9 +113,9 @@ function EventDetails({ event, registered }: EventDetailsProps) {
         }
     };
 
-    const handleSubmit = (e: any) => {
-        console.log(formValues);
+    const handleSubmit = async (e: any) => {
         e.preventDefault();
+        setLoading(true);
         for (let formValue of formValues) {
             if (
                 formValue.name.length === 0 ||
@@ -145,18 +145,37 @@ function EventDetails({ event, registered }: EventDetailsProps) {
         }
 
         setError(false);
-        console.log(formValues)
         const registrantData = {
             teamName: teamName,
             teamSize: teamSize,
             usersData: [...formValues],
         };
 
-        console.log(registrantData);
-        formValues.fill(defaultRegistrantObj);
+        // ["Team Name", "Name", "Email Id", "College", "Contact"],
+
+        // add registration in events
+        await addDoc(collection(db, `events/${event.id}/registrations`), {
+            ...registrantData,
+        });
+
+        // add entry in user's events
+        registrantData.usersData.map(async (userData) => {
+            await addDoc(
+                collection(db, `registrations/${userData.userId}/events`),
+                {
+                    name: event.name,
+                    eventId: event.id,
+                    eventImage: event.image,
+                }
+            );
+        });
+
+        setFormValues([defaultRegistrantObj]);
         setTeamSize(1);
         setTeamName("");
         setOpen(false);
+        setRegistered(true);
+        setLoading(false);
     };
 
     const formatDate = () => {
@@ -251,19 +270,31 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                                     onChange={(e: any) => {
                                         let newTeamSize = e.target.value;
                                         const re = /[0-9]+/g;
-                                        if (!(newTeamSize === "") && !re.test(newTeamSize)) return;
-                                
+                                        if (
+                                            !(newTeamSize === "") &&
+                                            !re.test(newTeamSize)
+                                        )
+                                            return;
+
                                         setTeamSize(newTeamSize);
                                         let registrantDetails = [...formValues];
-                                
-                                        while (registrantDetails.length > newTeamSize) {
+
+                                        while (
+                                            registrantDetails.length >
+                                            newTeamSize
+                                        ) {
                                             registrantDetails.pop();
                                         }
-                                
-                                        while (registrantDetails.length < newTeamSize) {
-                                            registrantDetails.push(defaultRegistrantObj);
+
+                                        while (
+                                            registrantDetails.length <
+                                            newTeamSize
+                                        ) {
+                                            registrantDetails.push(
+                                                defaultRegistrantObj
+                                            );
                                         }
-                                
+
                                         setFormValues(registrantDetails);
                                     }}
                                     error={
@@ -503,7 +534,6 @@ export const getServerSideProps = async (
     if (eventRegData > 0) {
         registered = true;
     }
-    console.log(eventRegData);
 
     const event = {
         id: eventSnapshot.id,

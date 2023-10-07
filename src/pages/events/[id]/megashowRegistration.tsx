@@ -1,13 +1,14 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { db, storage } from "@/serverless/firebase";
 import { Event } from "@/types/Event";
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import React, { useState } from "react";
 import styles from "@/styles/Events/eventRegistration.module.css";
 import { Alert, Button, Snackbar, TextField } from "@mui/material";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { DropzoneArea } from "mui-file-dropzone";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import { getSession } from "next-auth/react";
 
 interface EventDetailsProps {
     event: Event;
@@ -265,10 +266,24 @@ function MegashowRegisteration({ event }: EventDetailsProps) {
 export default MegashowRegisteration;
 
 export const getServerSideProps = async (context: any) => {
+    const { req } = context;
+    const session = await getSession({ req });
+
     const eventId = context.params.id;
     const docRef = doc(db, "events", eventId);
 
     const eventSnapshot = await getDoc(docRef);
+
+    const eventColRef = query(
+        collection(db, `registrations/${session?.user.email}/events`),
+        where("eventId", "==", eventId)
+    );
+    const eventRegData = (await getDocs(eventColRef)).docs.length;
+    let registered = false;
+
+    if (eventRegData > 0) {
+        registered = true;
+    }
 
     const event = {
         id: eventSnapshot.id,
