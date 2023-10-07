@@ -1,7 +1,14 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { db, storage } from "@/serverless/firebase";
 import { Event } from "@/types/Event";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import {
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    query,
+    where,
+} from "firebase/firestore";
 import React, { useState } from "react";
 import styles from "@/styles/Events/eventRegistration.module.css";
 import { Alert, Button, Snackbar, TextField } from "@mui/material";
@@ -12,6 +19,7 @@ import { getSession } from "next-auth/react";
 
 interface EventDetailsProps {
     event: Event;
+    registered: boolean;
 }
 
 interface Registrant {
@@ -26,7 +34,7 @@ interface FormValues {
     dropzoneKey: 1;
 }
 
-function MegashowRegisteration({ event }: EventDetailsProps) {
+function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const defaultRegistrantObj: FormValues = {
         registrants: [{ name: "", userId: "", phoneNumber: null }],
         paymentProof: null,
@@ -39,27 +47,11 @@ function MegashowRegisteration({ event }: EventDetailsProps) {
         useState<FormValues>(defaultRegistrantObj);
 
     const [loading, setLoading] = useState(false);
+    const [alreadyRegistered, setRegistered] = useState(registered);
+
     const [eventCreationStatus, setEventCreationStatus] = useState<
         string | null
     >(null);
-    const handleTeamSizeChange = (e: any) => {
-        let newTeamSize = e.target.value;
-        const re = /[0-9]+/g;
-        if (!(newTeamSize === "") && !re.test(newTeamSize)) return;
-
-        setTeamSize(newTeamSize);
-        let registrantDetails = [...formValues.registrants];
-
-        while (registrantDetails.length > newTeamSize) {
-            registrantDetails.pop();
-        }
-
-        while (registrantDetails.length < newTeamSize) {
-            registrantDetails.push(defaultRegistrantObj.registrants[0]);
-        }
-
-        setFormValues({ ...formValues, registrants: registrantDetails });
-    };
 
     const handleImageChange = (event: File[]) => {
         const img = document.createElement("img");
@@ -88,15 +80,15 @@ function MegashowRegisteration({ event }: EventDetailsProps) {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        setLoading(true)
+        setLoading(true);
         let eventPosterUrl = "";
         if (formValues.paymentProof) {
             eventPosterUrl = await uploadImage();
         }
 
         console.log(formValues);
-        console.log(eventPosterUrl)
-        setLoading(false)
+        console.log(eventPosterUrl);
+        setLoading(false);
     };
 
     const handleSnackbarClose = () => {
@@ -134,12 +126,41 @@ function MegashowRegisteration({ event }: EventDetailsProps) {
                             variant="outlined"
                             required={true}
                             value={teamSize}
-                            onChange={handleTeamSizeChange}
+                            onChange={(e: any) => {
+                                let newTeamSize = e.target.value;
+                                const re = /[0-9]+/g;
+                                if (
+                                    !(newTeamSize === "") &&
+                                    !re.test(newTeamSize)
+                                )
+                                    return;
+
+                                setTeamSize(newTeamSize);
+                                let registrantDetails = [
+                                    ...formValues.registrants,
+                                ];
+
+                                while (registrantDetails.length > newTeamSize) {
+                                    registrantDetails.pop();
+                                }
+
+                                while (registrantDetails.length < newTeamSize) {
+                                    registrantDetails.push(
+                                        defaultRegistrantObj.registrants[0]
+                                    );
+                                }
+
+                                setFormValues({
+                                    dropzoneKey: formValues.dropzoneKey,
+                                    registrants: registrantDetails,
+                                    paymentProof: formValues.paymentProof,
+                                });
+                            }}
                             error={
                                 !(
                                     !teamSize ||
-                                    teamSize > event.maxTeamSize ||
-                                    teamSize < event.minTeamSize
+                                    (teamSize >= event.minTeamSize &&
+                                        teamSize <= event.maxTeamSize)
                                 )
                             }
                             helperText={`Team size should be between ${event.minTeamSize} and ${event.maxTeamSize}`}
@@ -240,8 +261,16 @@ function MegashowRegisteration({ event }: EventDetailsProps) {
                             />
                         </div>
 
-                        <Button type="submit" variant="contained">
-                            Submit
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            disabled={loading || alreadyRegistered}
+                        >
+                            {loading
+                                ? "Loading..."
+                                : alreadyRegistered
+                                ? "Registered"
+                                : "Register"}
                         </Button>
                     </form>
                 </div>
@@ -275,7 +304,7 @@ export const getServerSideProps = async (context: any) => {
     const eventSnapshot = await getDoc(docRef);
 
     const eventColRef = query(
-        collection(db, `registrations/${session?.user.email}/events`),
+        collection(db, `registrations/${session?.user?.email ?? "e"}/events`),
         where("eventId", "==", eventId)
     );
     const eventRegData = (await getDocs(eventColRef)).docs.length;
@@ -298,6 +327,7 @@ export const getServerSideProps = async (context: any) => {
     return {
         props: {
             event,
+            registered,
         },
     };
 };

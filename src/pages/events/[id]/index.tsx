@@ -86,7 +86,9 @@ function EventDetails({ event, registered }: EventDetailsProps) {
             setLoading(true);
             // get user deets
             const userData = (
-                await getDoc(doc(db, "registrations", session.user.email))
+                await getDoc(
+                    doc(db, "registrations", session?.user.email ?? "")
+                )
             ).data();
             // add in event register
             await addDoc(collection(db, `events/${event.id}/registrations`), {
@@ -525,7 +527,7 @@ export const getServerSideProps = async (
     const eventSnapshot = await getDoc(docRef);
 
     const eventColRef = query(
-        collection(db, `registrations/${session?.user.email}/events`),
+        collection(db, `registrations/${session?.user?.email ?? "e"}/events`),
         where("eventId", "==", eventId)
     );
     const eventRegData = (await getDocs(eventColRef)).docs.length;
