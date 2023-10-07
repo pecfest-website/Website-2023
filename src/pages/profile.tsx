@@ -13,6 +13,8 @@ interface Props {
 }
 
 function Profile({ user }: Props) {
+    const { data: session } = useSession();
+
     return (
         <PageLayout title="Profile | PECFEST'23" darkHeader>
             <main className={styles.main}>
@@ -25,7 +27,13 @@ function Profile({ user }: Props) {
                         <p>{user.mobile}</p>
                         <p>{user.college}</p>
                         <p>{user.sid}</p>
-                        <Button variant="contained" fullWidth={false} onClick={() => signOut()}>Signout</Button>
+                        <Button
+                            variant="contained"
+                            fullWidth={false}
+                            onClick={() => signOut()}
+                        >
+                            Signout
+                        </Button>
                     </div>
                 </div>
             </main>

@@ -31,7 +31,7 @@ interface Props {
 function GalleryView({ imgs, slides }: Props) {
     const [index, setIndex] = useState(-1);
     const handleClick = (index: number, _: any) => setIndex(index);
-    console.log(imgs);
+    
     return (
         <PageLayout title="Gallery | Pecfest'23" darkHeader>
             <main className={styles.main}>
