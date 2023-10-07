@@ -13,7 +13,15 @@ import {
 import { useEffect, useState } from "react";
 import styles from "@/styles/Events/eventDetails.module.css";
 import PageLayout from "@/components/layout/PageLayout";
-import { addDoc, collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    doc,
+    getDoc,
+    getDocs,
+    query,
+    where,
+} from "firebase/firestore";
 import { db } from "@/serverless/firebase";
 import { Event } from "@/types/Event";
 import Image from "next/image";
@@ -30,7 +38,7 @@ import { GetServerSidePropsContext } from "next";
 interface Registrant {
     name: string;
     userId: string;
-    phoneNumber: number | null;
+    phoneNumber: number;
 }
 
 interface EventDetailsProps {
@@ -42,7 +50,7 @@ function EventDetails({ event, registered }: EventDetailsProps) {
     const defaultRegistrantObj: Registrant = {
         name: "",
         userId: "",
-        phoneNumber: null,
+        phoneNumber: 0,
     };
 
     const [open, setOpen] = useState(false);
@@ -60,25 +68,6 @@ function EventDetails({ event, registered }: EventDetailsProps) {
     const { data: session } = useSession();
 
     const router = useRouter();
-
-    const handleTeamSizeChange = (e: any) => {
-        let newTeamSize = e.target.value;
-        const re = /[0-9]+/g;
-        if (!(newTeamSize === "") && !re.test(newTeamSize)) return;
-
-        setTeamSize(newTeamSize);
-        let registrantDetails = [...formValues];
-
-        while (registrantDetails.length > newTeamSize) {
-            registrantDetails.pop();
-        }
-
-        while (registrantDetails.length < newTeamSize) {
-            registrantDetails.push(defaultRegistrantObj);
-        }
-
-        setFormValues(registrantDetails);
-    };
 
     const handleClose = () => {
         setOpen(false);
@@ -125,6 +114,7 @@ function EventDetails({ event, registered }: EventDetailsProps) {
     };
 
     const handleSubmit = (e: any) => {
+        console.log(formValues);
         e.preventDefault();
         for (let formValue of formValues) {
             if (
@@ -155,10 +145,11 @@ function EventDetails({ event, registered }: EventDetailsProps) {
         }
 
         setError(false);
+        console.log(formValues)
         const registrantData = {
             teamName: teamName,
             teamSize: teamSize,
-            usersData: formValues,
+            usersData: [...formValues],
         };
 
         console.log(registrantData);
@@ -257,7 +248,24 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                                     variant="standard"
                                     required={true}
                                     value={teamSize}
-                                    onChange={handleTeamSizeChange}
+                                    onChange={(e: any) => {
+                                        let newTeamSize = e.target.value;
+                                        const re = /[0-9]+/g;
+                                        if (!(newTeamSize === "") && !re.test(newTeamSize)) return;
+                                
+                                        setTeamSize(newTeamSize);
+                                        let registrantDetails = [...formValues];
+                                
+                                        while (registrantDetails.length > newTeamSize) {
+                                            registrantDetails.pop();
+                                        }
+                                
+                                        while (registrantDetails.length < newTeamSize) {
+                                            registrantDetails.push(defaultRegistrantObj);
+                                        }
+                                
+                                        setFormValues(registrantDetails);
+                                    }}
                                     error={
                                         !(
                                             !teamSize ||
@@ -294,24 +302,41 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                                     required
                                     value={formValues[id].name}
                                     onChange={(e: any) => {
-                                        let newFormValues = [...formValues];
-                                        newFormValues[id].name = e.target.value;
+                                        const updatedValue = {
+                                            name: e.target.value,
+                                            userId: formValues[id].userId,
+                                            phoneNumber:
+                                                formValues[id].phoneNumber,
+                                        };
+                                        const newFormValues = [
+                                            ...formValues.slice(0, id),
+                                            updatedValue,
+                                            ...formValues.slice(id + 1),
+                                        ];
                                         setFormValues(newFormValues);
                                     }}
                                 />
                                 <TextField
                                     variant="outlined"
-                                    key={`person-${id}-userId`}
-                                    name={`person-${id}-userId`}
-                                    label={`Person-${id + 1} UserId`}
+                                    key={`person-${id}-emailId`}
+                                    name={`person-${id}-emailId`}
+                                    label={`Person-${id + 1} Email Id`}
                                     sx={{ my: 1 }}
                                     fullWidth
                                     required
                                     value={formValues[id].userId}
                                     onChange={(e: any) => {
-                                        let newFormValues = [...formValues];
-                                        newFormValues[id].userId =
-                                            e.target.value;
+                                        const updatedValue = {
+                                            name: formValues[id].name,
+                                            userId: e.target.value,
+                                            phoneNumber:
+                                                formValues[id].phoneNumber,
+                                        };
+                                        const newFormValues = [
+                                            ...formValues.slice(0, id),
+                                            updatedValue,
+                                            ...formValues.slice(id + 1),
+                                        ];
                                         setFormValues(newFormValues);
                                     }}
                                 />
@@ -326,9 +351,16 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                                     required
                                     value={formValues[id].phoneNumber}
                                     onChange={(e: any) => {
-                                        let newFormValues = [...formValues];
-                                        newFormValues[id].phoneNumber =
-                                            e.target.value;
+                                        const updatedValue = {
+                                            name: formValues[id].name,
+                                            userId: formValues[id].userId,
+                                            phoneNumber: e.target.value,
+                                        };
+                                        const newFormValues = [
+                                            ...formValues.slice(0, id),
+                                            updatedValue,
+                                            ...formValues.slice(id + 1),
+                                        ];
                                         setFormValues(newFormValues);
                                     }}
                                 />
@@ -461,14 +493,14 @@ export const getServerSideProps = async (
 
     const eventSnapshot = await getDoc(docRef);
 
-    const eventColRef = query(collection(
-        db,
-        `registrations/${session?.user.email}/events`
-    ), where('eventId', '==', eventId));
+    const eventColRef = query(
+        collection(db, `registrations/${session?.user.email}/events`),
+        where("eventId", "==", eventId)
+    );
     const eventRegData = (await getDocs(eventColRef)).docs.length;
     let registered = false;
 
-    if (eventRegData>0) {
+    if (eventRegData > 0) {
         registered = true;
     }
     console.log(eventRegData);
