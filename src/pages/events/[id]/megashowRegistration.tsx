@@ -2,6 +2,7 @@ import PageLayout from "@/components/layout/PageLayout";
 import { db, storage } from "@/serverless/firebase";
 import { Event } from "@/types/Event";
 import {
+    addDoc,
     collection,
     doc,
     getDoc,
@@ -25,7 +26,7 @@ interface EventDetailsProps {
 interface Registrant {
     name: string;
     userId: string;
-    phoneNumber: string | null;
+    phoneNumber: number;
 }
 
 interface FormValues {
@@ -36,7 +37,7 @@ interface FormValues {
 
 function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const defaultRegistrantObj: FormValues = {
-        registrants: [{ name: "", userId: "", phoneNumber: null }],
+        registrants: [{ name: "", userId: "", phoneNumber: 0 }],
         paymentProof: null,
         dropzoneKey: 1,
     };
@@ -47,6 +48,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         useState<FormValues>(defaultRegistrantObj);
 
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
     const [alreadyRegistered, setRegistered] = useState(registered);
 
     const [eventCreationStatus, setEventCreationStatus] = useState<
@@ -81,13 +83,74 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-        let eventPosterUrl = "";
-        if (formValues.paymentProof) {
-            eventPosterUrl = await uploadImage();
+
+        for (let formValue of formValues.registrants) {
+            if (
+                formValue.name.length === 0 ||
+                !formValue.phoneNumber ||
+                formValue.phoneNumber === 0 ||
+                formValue.userId?.length === 0
+            ) {
+                setError(true);
+                setTimeout(() => {
+                    setError(false);
+                }, 3000);
+                return;
+            }
         }
 
-        console.log(formValues);
-        console.log(eventPosterUrl);
+        if (
+            event.type == "Team" &&
+            (teamName?.length === 0 ||
+                (teamSize ?? 0) > event.maxTeamSize ||
+                (teamSize ?? 0) < event.minTeamSize)
+        ) {
+            setError(true);
+            setTimeout(() => {
+                setError(false);
+            }, 3000);
+            return;
+        }
+
+        setError(false);
+
+        let eventPaymentUrl = "";
+        if (formValues.paymentProof) {
+            eventPaymentUrl = await uploadImage();
+        }
+
+        const registrantData = {
+            teamName: teamName,
+            teamSize: teamSize,
+            usersData: [...formValues.registrants],
+            paymentProof: eventPaymentUrl,
+        };
+
+        console.log(registrantData);
+
+        // ["Team Name", "Name", "Email Id", "College", "Contact"],
+
+        // add registration in events
+        await addDoc(collection(db, `events/${event.id}/registrations`), {
+            ...registrantData,
+        });
+
+        // add entry in user's events
+        registrantData.usersData.map(async (userData) => {
+            await addDoc(
+                collection(db, `registrations/${userData.userId}/events`),
+                {
+                    name: event.name,
+                    eventId: event.id,
+                    eventImage: event.image,
+                }
+            );
+        });
+
+        setFormValues(defaultRegistrantObj);
+        setTeamSize(1);
+        setTeamName("");
+        setRegistered(true);
         setLoading(false);
     };
 
@@ -190,13 +253,29 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                     required
                                     value={formValues.registrants[id].name}
                                     onChange={(e: any) => {
-                                        let newFormValues = [
-                                            ...formValues.registrants,
+                                        const updatedValue = {
+                                            name: e.target.value,
+                                            userId: formValues.registrants[id]
+                                                .userId,
+                                            phoneNumber:
+                                                formValues.registrants[id]
+                                                    .phoneNumber,
+                                        };
+                                        const newFormValues = [
+                                            ...formValues.registrants.slice(
+                                                0,
+                                                id
+                                            ),
+                                            updatedValue,
+                                            ...formValues.registrants.slice(
+                                                id + 1
+                                            ),
                                         ];
-                                        newFormValues[id].name = e.target.value;
                                         setFormValues({
-                                            ...formValues,
                                             registrants: newFormValues,
+                                            dropzoneKey: formValues.dropzoneKey,
+                                            paymentProof:
+                                                formValues.paymentProof,
                                         });
                                     }}
                                 />
@@ -210,14 +289,29 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                     required
                                     value={formValues.registrants[id].userId}
                                     onChange={(e: any) => {
-                                        let newFormValues = [
-                                            ...formValues.registrants,
+                                        const updatedValue = {
+                                            name: formValues.registrants[id]
+                                                .name,
+                                            userId: e.target.value,
+                                            phoneNumber:
+                                                formValues.registrants[id]
+                                                    .phoneNumber,
+                                        };
+                                        const newFormValues = [
+                                            ...formValues.registrants.slice(
+                                                0,
+                                                id
+                                            ),
+                                            updatedValue,
+                                            ...formValues.registrants.slice(
+                                                id + 1
+                                            ),
                                         ];
-                                        newFormValues[id].userId =
-                                            e.target.value;
                                         setFormValues({
-                                            ...formValues,
                                             registrants: newFormValues,
+                                            dropzoneKey: formValues.dropzoneKey,
+                                            paymentProof:
+                                                formValues.paymentProof,
                                         });
                                     }}
                                 />
@@ -233,14 +327,28 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                         formValues.registrants[id].phoneNumber
                                     }
                                     onChange={(e: any) => {
-                                        let newFormValues = [
-                                            ...formValues.registrants,
+                                        const updatedValue = {
+                                            name: formValues.registrants[id]
+                                                .name,
+                                            userId: formValues.registrants[id]
+                                                .userId,
+                                            phoneNumber: e.target.value,
+                                        };
+                                        const newFormValues = [
+                                            ...formValues.registrants.slice(
+                                                0,
+                                                id
+                                            ),
+                                            updatedValue,
+                                            ...formValues.registrants.slice(
+                                                id + 1
+                                            ),
                                         ];
-                                        newFormValues[id].phoneNumber =
-                                            e.target.value;
                                         setFormValues({
-                                            ...formValues,
                                             registrants: newFormValues,
+                                            dropzoneKey: formValues.dropzoneKey,
+                                            paymentProof:
+                                                formValues.paymentProof,
                                         });
                                     }}
                                 />
@@ -261,6 +369,19 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                             />
                         </div>
 
+                        {error && (
+                            <span className={styles.errorText}>
+                                ❌ One or more fields incorrectly filled!
+                            </span>
+                        )}
+
+                        {loading ?? (
+                            <p>
+                                Please wait, it takes some time to upload image
+                                and details. :__:
+                            </p>
+                        )}
+                        
                         <Button
                             type="submit"
                             variant="contained"
