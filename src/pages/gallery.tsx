@@ -17,7 +17,7 @@ function GalleryView() {
     const handleClick = (index: number, _: any) => setIndex(index);
 
     return (
-        <PageLayout title="Gallery | Pecfest'23">
+        <PageLayout title="Gallery | PECFEST'23">
             <h2 className={styles.heading}>Past Events and Competition</h2>
             <Gallery
                 images={IMAGES}

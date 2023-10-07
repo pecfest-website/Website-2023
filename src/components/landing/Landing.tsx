@@ -62,7 +62,7 @@ function Landing() {
                 <ambientLight intensity={2} position={[0, 0, 0]} />
 
                 <Suspense fallback={<Loader />}>
-                    <OrbitControls />
+                    {/* <OrbitControls /> */}
                     <Sky />
                     <Ocean />
                     {/* <Sun pos={[0, 0, -30]} /> */}
@@ -78,7 +78,7 @@ function Landing() {
                             args={[50, 50]}
                             img={logo.src}
                         />
-                    )}    
+                    )}
                     <Rig />
                     {width > 720 ? (
                         <>
@@ -95,7 +95,7 @@ function Landing() {
                                 pos={[-10, 0, 80]}
                                 title="Schedule"
                                 onClick={() => {
-                                    pushRoute("/Schedule");
+                                    pushRoute("/schedule");
                                 }}
                                 img={schedule.src}
                             />

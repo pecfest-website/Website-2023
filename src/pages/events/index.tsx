@@ -27,7 +27,7 @@ function Events({ events }: EventPageProps) {
     };
 
     return (
-        <PageLayout title="Events | Pecfest'23">
+        <PageLayout title="Events | PECFEST'23">
             <Container className={styles.cover} maxWidth={false}>
                 <div className={styles.tabContainer}>
                     <Tabs value={tabIndex} onChange={handleChange}>
