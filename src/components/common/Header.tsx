@@ -32,7 +32,7 @@ function Header({ dark }: { dark?: boolean }) {
                             height={100}
                             width={100}
                             src={"/assets/logos/logo.png"}
-                            alt="Pecfest-logo"
+                            alt="PECFEST-logo"
                         />
                     </>
                 </Link>

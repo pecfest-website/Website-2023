@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "@/styles/Contacts/contacts.module.css";
-import TeamCard from "@/components/Contact/TeamCard/TeamCard";
 import ContactUsCard from "@/components/Contact/ContactUsCard/ContactUsCard";
-import { SOCIALICONS } from "@/data/socials";
 import { CONTACTUSINFO } from "@/data/contacts";
 import PageLayout from "@/components/layout/PageLayout";
+import { Button } from "@mui/material";
+import Link from "next/link";
 
 function Contacts() {
     return (
@@ -14,7 +14,9 @@ function Contacts() {
         >
             <div className={styles.container}>
                 <div className={styles.heading}>Contact Us</div>
-                <div className={`${styles.contactUsContainer} glassmorphism-light`}>
+                <div
+                    className={`${styles.contactUsContainer} glassmorphism-light`}
+                >
                     {CONTACTUSINFO.map((contact, i) => {
                         return (
                             <ContactUsCard
@@ -25,6 +27,14 @@ function Contacts() {
                             />
                         );
                     })}
+                    <Link href={"/developers"}>
+                        <Button
+                            className={styles.developers}
+                            variant="contained"
+                        >
+                            Developers
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </PageLayout>

@@ -1,0 +1,37 @@
+@font-face {
+    font-family: caribbean;
+    src: url("/assets/fonts/poc/Caribbean.ttf");
+}
+
+.background {
+    background-image: url("/assets/images/bg3.jpg");
+    min-height: 91vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.main_container {
+    overflow-x: hidden;
+    padding-top: 80px;
+}
+
+.pageheader {
+    color: white !important;
+    font-family: caribbean, cursive;
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-shadow: 5px 5px 5px #000;
+    text-align: center;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
+
+.third {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
