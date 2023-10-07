@@ -19,6 +19,7 @@ function Schedule() {
                     backgroundSize: "cover",
                     backgroundRepeat: "no-repeat",
                 }}
+                className={styles.scheduleWrapper}
             >
                 <div
                     className={

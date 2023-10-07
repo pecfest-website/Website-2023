@@ -17,7 +17,7 @@
 
 .dayText {
     position: absolute;
-    top: 50%;
+    top: 100%;
     width: 100%;
     color: white;
     text-align: center;
@@ -25,8 +25,21 @@
     font-size: 72px;
 }
 
+.cardStyle {
+    width: "30vw";
+    height: "300px";
+}
+
 @media screen and (max-width: 700px) {
     .cardWrapper {
-        display: none;
+        gap: 1rem;
+    }
+
+    .scheduleWrapper {
+        /* padding-top: 20%; */
+    }
+
+    .dayText {
+        font-size: large;
     }
 }
