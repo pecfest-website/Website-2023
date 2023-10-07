@@ -7,25 +7,34 @@ import { getSession, signOut, useSession } from "next-auth/react";
 import React from "react";
 import styles from "@/styles/Profile/profile.module.css";
 import { User } from "@/types/User";
+import Image from "next/image";
 
 interface Props {
     user: User;
 }
 
 function Profile({ user }: Props) {
+    const { data: session } = useSession();
+
     return (
         <PageLayout title="Profile | PECFEST'23" darkHeader>
             <main className={styles.main}>
                 <div className={`${styles.main__box} glassmorphism`}>
                     <div className={styles.left_section}>
-                        <img src={user.photoUrl} alt="" />
+                        <Image height={100} width={100} src={user.photoUrl} alt="" />
                     </div>
                     <div className={styles.right_section}>
                         <p>{user.name}</p>
                         <p>{user.mobile}</p>
                         <p>{user.college}</p>
                         <p>{user.sid}</p>
-                        <Button variant="contained" fullWidth={false} onClick={() => signOut()}>Signout</Button>
+                        <Button
+                            variant="contained"
+                            fullWidth={false}
+                            onClick={() => signOut()}
+                        >
+                            Signout
+                        </Button>
                     </div>
                 </div>
             </main>

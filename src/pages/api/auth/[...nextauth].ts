@@ -1,10 +1,11 @@
-import { auth } from "@/serverless/firebase";
+import { auth, db } from "@/serverless/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { cert } from "firebase-admin/app";
+import { doc, getDoc } from "firebase/firestore";
 
 export const authOptions: NextAuthOptions = {
     pages: {
@@ -40,6 +41,18 @@ export const authOptions: NextAuthOptions = {
     ],
     // callbacks: {
     //     async session({ session }) {
+    //         console.log(session);
+    //         const email = session.user?.email ?? "";
+
+    //         const registrationObject = await getDoc(
+    //             doc(db, "registrations", email)
+    //         );
+    //         const userData = registrationObject.data();
+    //         session.user.college = userData?.college;
+    //         session.user.mobile = userData?.mobile;
+    //         session.user.photoUrl = userData?.photoUrl;
+    //         session.user.sid = userData?.sid;
+    //         console.log(session);
     //         return session;
     //     },
     // },

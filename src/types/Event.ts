@@ -3,7 +3,7 @@ export interface Event {
     id: string;
     name: string;
     type: "Individual" | "Team";
-    category: "Tehnical" | "Cultural" | "Mega Shows" | "Workshops";
+    category: "Technical" | "Cultural" | "Mega Shows" | "Workshops";
     description: string;
     startDate: string;
     endDate: string;

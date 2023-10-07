@@ -1,0 +1,27 @@
+.main {
+    height: 100vh;
+    width: 100vw;
+    background: url('/assets/images/bg2.jpg');
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    padding: 90px 0;
+    justify-content: center;
+}
+
+.registerationForm {
+    width: 70%;
+    padding: 10px 20px;
+    height: 100%;
+}
+
+.registerationForm form {
+    overflow-y: scroll;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+.registerationForm button {
+    margin-top: 20px;
+}
