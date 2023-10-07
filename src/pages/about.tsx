@@ -17,7 +17,7 @@ function About() {
         { src: Participants, num: "8000+", title: "PARTICIPANTS" },
     ];
     return (
-        <PageLayout title="About | Pecfest'23">
+        <PageLayout title="About | PECFEST'23">
             <div className={styles.about}>
                 <div className={`${styles.aboutHeading} glassmorphism`}>ABOUT</div>
                 <div className={`${styles.aboutMain} glassmorphism`}>
