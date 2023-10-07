@@ -6,7 +6,7 @@ import "yet-another-react-lightbox/styles.css";
 import IMAGES from "@/data/gallery";
 import styles from "@/styles/Gallery/gallery.module.css";
 import { GetServerSidePropsContext } from "next";
-import { collection, doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "@/serverless/firebase";
 
 interface ImageObject {
@@ -24,29 +24,31 @@ interface SlidesObject {
 }
 
 interface Props {
-    img: ImageObject[];
+    imgs: ImageObject[];
     slides: SlidesObject[];
 }
 
-function GalleryView({ img, slides }: Props) {
+function GalleryView({ imgs, slides }: Props) {
     const [index, setIndex] = useState(-1);
     const handleClick = (index: number, _: any) => setIndex(index);
-
+    console.log(imgs);
     return (
-        <PageLayout title="Gallery | Pecfest'23">
-            <h2 className={styles.heading}>Past Events and Competition</h2>
-            <Gallery
-                images={img}
-                enableImageSelection={false}
-                onClick={handleClick}
-                rowHeight={300}
-            />
-            <Lightbox
-                slides={slides}
-                open={index >= 0}
-                index={index}
-                close={() => setIndex(-1)}
-            />
+        <PageLayout title="Gallery | Pecfest'23" darkHeader>
+            <main className={styles.main}>
+                <h2 className={`${styles.heading} glassmorphism-light`}>Past Events and Competition</h2>
+                <Gallery
+                    images={imgs}
+                    enableImageSelection={false}
+                    onClick={handleClick}
+                    rowHeight={300}
+                />
+                <Lightbox
+                    slides={slides}
+                    open={index >= 0}
+                    index={index}
+                    close={() => setIndex(-1)}
+                />
+            </main>
         </PageLayout>
     );
 }
@@ -54,16 +56,15 @@ function GalleryView({ img, slides }: Props) {
 export default GalleryView;
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const docRef = doc(db, "gallery/images");
-    const imagesSnapshot = await getDoc(docRef);
+    const colRef = collection(db, "gallery");
+    const imagesSnapshot = await getDocs(colRef);
 
-    if (imagesSnapshot.exists()) {
-        const imageUrls = imagesSnapshot.data()["images"] as string[];
-
-        const imgs = imageUrls.map((imageurl: string) => {
+    if (imagesSnapshot.docs) {
+        const imgs = imagesSnapshot.docs.map((doc) => {
+            const data = doc.data();
             return {
-                src: imageurl,
-                original: imageurl,
+                src: data["image"],
+                original: data["image"],
                 width: 420,
                 height: 283,
                 caption: "37H (gratispgraphy.com)",
@@ -75,8 +76,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             width: 800,
             height: 800,
         }));
-        console.log(imgs);
-        console.log(slides);
+
         return {
             props: {
                 imgs,
@@ -87,7 +87,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         return {
             props: {
                 imgs: [],
-                slides: []
+                slides: [],
             },
         };
     }
