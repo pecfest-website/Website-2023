@@ -1,11 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inclusive+Sans&family=Narnoor&display=swap');
+@font-face {
+    font-family: caribbean;
+    src: url("/assets/fonts/poc/Caribbean.ttf");
+}
 
 .heading {
-    font-family: 'Inclusive Sans', sans-serif;
+    font-family: caribbean;
     font-size: 36px;
     padding: 30px;
     text-align: center;
     padding-top: 90px;
-    color: white;
-    background-image: url("/assets/images/bg.png");
+    color: black;
+}
+
+.main {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("/assets/images/bg3.jpg");
+    background-position: center;
+    background-size: cover;
 }
