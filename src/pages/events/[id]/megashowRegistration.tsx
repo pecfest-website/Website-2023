@@ -12,11 +12,21 @@ import {
 } from "firebase/firestore";
 import React, { useState } from "react";
 import styles from "@/styles/Events/eventRegistration.module.css";
-import { Alert, Button, Snackbar, TextField } from "@mui/material";
+import {
+    Alert,
+    Button,
+    Dialog,
+    DialogContent,
+    DialogContentText,
+    Snackbar,
+    TextField,
+    Typography,
+} from "@mui/material";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { DropzoneArea } from "mui-file-dropzone";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { getSession } from "next-auth/react";
+import { bankDetails } from "@/data/paymentDetails";
 
 interface EventDetailsProps {
     event: Event;
@@ -42,7 +52,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         dropzoneKey: 1,
     };
 
-    const [teamSize, setTeamSize] = useState<number>(1);
+    const [teamSize, setTeamSize] = useState<number>(event.minTeamSize);
     const [teamName, setTeamName] = useState<string>("");
     const [formValues, setFormValues] =
         useState<FormValues>(defaultRegistrantObj);
@@ -50,6 +60,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [alreadyRegistered, setRegistered] = useState(registered);
+    const [open, setOpen] = useState(false);
 
     const [eventCreationStatus, setEventCreationStatus] = useState<
         string | null
@@ -95,6 +106,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 setTimeout(() => {
                     setError(false);
                 }, 3000);
+                setLoading(false);
                 return;
             }
         }
@@ -109,6 +121,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             setTimeout(() => {
                 setError(false);
             }, 3000);
+            setLoading(false);
             return;
         }
 
@@ -165,6 +178,33 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                     className={`${styles.registerationForm} glassmorphism-light`}
                 >
                     <h1>{event.name}</h1>
+                    <Button variant="contained" onClick={() => setOpen(true)}>
+                        Payment Details
+                    </Button>
+                    <Dialog open={open} onClose={() => setOpen(false)}>
+                        <DialogContent>
+                            <DialogContentText>
+                                Bank details for payment.
+                            </DialogContentText>
+                            <DialogContentText>
+                                Do bank transfer before registration and upload
+                                the proof here.
+                            </DialogContentText>
+                            <Typography>
+                                Account Number : {bankDetails.accountNumber}
+                            </Typography>
+                            <Typography>GSTIN : {bankDetails.gst}</Typography>
+                            <Typography>
+                                IFSC Code : {bankDetails.ifscCode}
+                            </Typography>
+                            <Typography>
+                                Code of Bank : {bankDetails.codeOfBank}
+                            </Typography>
+                            <Typography>
+                                Branch Code : {bankDetails.branchCode}
+                            </Typography>
+                        </DialogContent>
+                    </Dialog>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             autoFocus
@@ -381,7 +421,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                 and details. :__:
                             </p>
                         )}
-                        
+
                         <Button
                             type="submit"
                             variant="contained"
