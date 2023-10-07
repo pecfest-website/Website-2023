@@ -5,7 +5,7 @@ export const coreTeam = {
             Type: "Convener",
             Committee: "Convener",
             Name: "Japneet Pathania",
-            Photo: "/team/Convener_Japneet Pathania.jpg",
+            Photo: "/team/Convener_Japneet Pathania.jpeg",
             Instagram: "NA",
             Linkedin: "NA",
             Contact: 8146539939,
