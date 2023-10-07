@@ -62,7 +62,7 @@ function Landing() {
                 <ambientLight intensity={2} position={[0, 0, 0]} />
 
                 <Suspense fallback={<Loader />}>
-                    <OrbitControls />
+                    {/* <OrbitControls /> */}
                     <Sky />
                     <Ocean />
                     {/* <Sun pos={[0, 0, -30]} /> */}
@@ -78,7 +78,7 @@ function Landing() {
                             args={[50, 50]}
                             img={logo.src}
                         />
-                    )}    
+                    )}
                     <Rig />
                     {width > 720 ? (
                         <>
