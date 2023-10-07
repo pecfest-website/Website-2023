@@ -13,6 +13,8 @@ import MyLocationIcon from "@mui/icons-material/MyLocation";
 import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
 import GroupsIcon from "@mui/icons-material/Groups";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 interface Registrant {
   name: string;
@@ -38,6 +40,10 @@ function EventDetails({ event }: EventDetailsProps) {
   const [formValues, setFormValues] = useState<Registrant[]>([defaultRegistrantObj]);
   const [error, setError] = useState(false);
 
+  const {data: session} = useSession();
+
+  const router = useRouter();
+
   const handleTeamSizeChange = (e: any) => {
     let newTeamSize = e.target.value;
     const re = /[0-9]+/g;
@@ -61,7 +67,25 @@ function EventDetails({ event }: EventDetailsProps) {
     setOpen(false);
   }
 
-  const handleSubmit = () => {
+  const handleRegister = () => {
+    if(!session?.user) {
+      router.push('/auth/signin')
+      return
+    }
+    if(event.category==='Mega Shows') {
+      router.push(`/events/${event.id}/megashowRegistration`)
+      return;
+    }
+    if(event.type==='Individual') {
+      // TODO : Regsiter directly
+    }
+    else {
+      setOpen(true)
+    }
+  }
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
     for (let formValue of formValues) {
       if (formValue.name.length === 0
         || !formValue.phoneNumber
@@ -306,7 +330,7 @@ function EventDetails({ event }: EventDetailsProps) {
               })}
             </div>
 
-            <Button variant="contained" onClick={() => { setOpen(true) }}>Register</Button>
+            <Button variant="contained" onClick={() => { handleRegister() }}>Register</Button>
             <hr className={styles.line} />
 
             <div className={styles.description}>
