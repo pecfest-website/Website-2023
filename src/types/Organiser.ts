@@ -6,6 +6,6 @@ export interface organiser {
     Photo: string,
     Instagram: string,
     Linkedin: string,
-    Contact: number,
+    Contact: number | string,
     Github?: string
 }

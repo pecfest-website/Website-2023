@@ -7,6 +7,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import CallIcon from "@mui/icons-material/Call";
 import Tooltip from "@mui/material/Tooltip";
 import Image from "next/image";
+import { Email } from "@mui/icons-material";
 
 interface Props {
     organiser: organiser;
@@ -85,6 +86,17 @@ const Organiser = ({ organiser }: Props) => {
                             >
                                 <Tooltip title={organiser.Contact.toString()}>
                                     <CallIcon className={styles.fab} />
+                                </Tooltip>
+                            </a>
+                        )}
+                        {organiser.Email !== "NA" && (
+                            <a
+                                href={`mailto:${organiser.Email}`}
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                <Tooltip title={organiser.Email}>
+                                    <Email className={styles.fab} />
                                 </Tooltip>
                             </a>
                         )}
