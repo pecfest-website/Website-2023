@@ -29,8 +29,8 @@ export function useApp() {
         // isInitialScrollToNow: true,
         // isCurrentTime: true,
         isLine: true,
-        startDate: `2023-10-2${0 + Number(day)}T00:00:00`, //to be set according to the fest day
-        endDate: `2023-10-2${0 + Number(day)}T24:00:00`,  //to be set according to the fest day
+        startDate: `2023-11-0${2 + Number(day)}T00:00:00`, //to be set according to the fest day
+        endDate: `2023-11-0${2 + Number(day)}T24:00:00`,  //to be set according to the fest day
         isBaseTimeFormat: true,
         theme,
     });
@@ -51,7 +51,7 @@ export function useApp() {
 
         const colRef = query(
             collection(db, "events"),
-            where("day", "==", dayTemp)
+            // where("day", "==", dayTemp)
         );
 
         const comps = await getDocs(colRef);

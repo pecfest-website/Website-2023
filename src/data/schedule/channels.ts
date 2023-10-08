@@ -11,9 +11,24 @@ export const channels = [
     logo: "/clubs/acm.png",
   },
   {
+    uuid: "music",
+    title: "music",
+    logo: "/clubs/music.png",
+  },
+  {
     uuid: "apc",
     title: "apc",
     logo: "/clubs/apc.png",
+  },
+  {
+    uuid: "pdc",
+    title: "pdc",
+    logo: "/clubs/pdc.png",
+  },
+  {
+    uuid: "peb",
+    title: "peb",
+    logo: "/clubs/peb.png",
   },
   {
     uuid: "asce",
@@ -24,6 +39,11 @@ export const channels = [
     uuid: "asps",
     title: "asps",
     logo: "/clubs/asps.png",
+  },
+  {
+    uuid: "scc",
+    title: "scc",
+    logo: "/clubs/scc.png",
   },
   {
     uuid: "ats",
@@ -66,24 +86,9 @@ export const channels = [
     logo: "/clubs/iim.png",
   },
   {
-    uuid: "music",
-    title: "music",
-    logo: "/clubs/music.png",
-  },
-  {
     uuid: "ncc",
     title: "ncc",
     logo: "/clubs/ncc.png",
-  },
-  {
-    uuid: "pdc",
-    title: "pdc",
-    logo: "/clubs/pdc.png",
-  },
-  {
-    uuid: "peb",
-    title: "peb",
-    logo: "/clubs/peb.png",
   },
   {
     uuid: "rotaract",
@@ -94,11 +99,6 @@ export const channels = [
     uuid: "sae",
     title: "sae",
     logo: "/clubs/sae.png",
-  },
-  {
-    uuid: "scc",
-    title: "scc",
-    logo: "/clubs/scc.png",
   },
   {
     uuid: "sme",
