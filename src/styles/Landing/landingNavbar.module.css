@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Chelsea Market";
+  src: url("/assets/fonts/cm/ChelseaMarket-Regular.ttf");
+}
+
 
 .sidenav {
     height: 95%;
@@ -14,6 +19,14 @@
     border-top-left-radius: 30px;
     animation: slideIn 2s;
     -webkit-transition: all 1s ease-in-out;
+    font-family: "Chelsea Market";
+
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.18);
+    /* border: 1px solid rgba(255, 255, 255, 0.18); */
+    z-index: 4;
   }
   @keyframes fadeIn {
     0% { opacity: 0; }
@@ -22,7 +35,7 @@
   
   .sidenav button {
     padding: 8px;
-    color: #000;
+    color: #fff;
     background: none;
     outline: none;
     cursor: pointer;
@@ -31,20 +44,20 @@
   }
 
   .sidenav button:hover {
-    color: white;
+    color: black;
   }
 
   .sidenav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #000;
+    color: #fff;
     display: block;
     transition: 0.3s;
   }
   
   .sidenav a:hover {
-    color: #f1f1f1;
+    color: black;
   }
   
   .sidenav .closebtn {

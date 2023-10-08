@@ -8,7 +8,7 @@
 
 .container {
     padding-top: 90px;
-    background-image: url("/assets/images/team.jpg");
+    background-image: url("/assets/images/compressed/team.jpg");
     min-height: 100vh;
     background-position: center;
     background-size: cover;

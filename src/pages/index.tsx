@@ -22,7 +22,7 @@ export default function Home() {
                 <meta name="theme-color" content="#ffffff"/>
             </Head>
             <main>
-                {width > 720 ? null : <LandingNavbar />}
+                <LandingNavbar />
                 <Landing />
             </main>
         </>

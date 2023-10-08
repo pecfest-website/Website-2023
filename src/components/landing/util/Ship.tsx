@@ -4,8 +4,10 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import { Clone } from "@react-three/drei";
 import { useEffect, useState } from "react";
 import HoverBox from "./HoverBox";
+import { useWindowSize } from "usehooks-ts";
 
 export function Boat({ pos, onClick, img }: any) {
+    const { width } = useWindowSize();
     const fbx = useLoader(FBXLoader as any, "/assets/models/shipp.fbx");
     const [hover, setHover] = useState(false);
 
@@ -15,13 +17,15 @@ export function Boat({ pos, onClick, img }: any) {
 
     return (
         <>
-            <HoverBox
-                title={"About"}
-                description={"Discover PECFEST"}
-                pos={[pos[0], pos[1] + 1, pos[2] + 4.5]}
-                args={[6, 3]}
-                img={img}
-            />
+            {width < 720 ? null : (
+                <HoverBox
+                    title={"About"}
+                    description={"Discover PECFEST"}
+                    pos={[pos[0], pos[1] + 1, pos[2] + 4.5]}
+                    args={[6, 3]}
+                    img={img}
+                />
+            )}
             <Clone
                 object={fbx}
                 scale={0.001}
@@ -76,9 +80,7 @@ export function Ship({
     );
 }
 
-export function Sun({
-    pos,
-}: any) {
+export function Sun({ pos }: any) {
     const gltf = useLoader(GLTFLoader as any, "/assets/models/sun logo.glb");
     return <Clone object={gltf.scene} scale={20} position={pos} />;
 }
