@@ -149,7 +149,7 @@ function Landing() {
                     ) : (
                         <>
                             <Boat
-                                pos={[0, 0, 90]}
+                                pos={[0, 0, 85]}
                                 onClick={() => {
                                     pushRoute("/about");
                                 }}
