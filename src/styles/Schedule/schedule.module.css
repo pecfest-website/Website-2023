@@ -1,45 +1,11 @@
-.cardWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 12px;
-    gap: 2rem;
-    padding-top: 70px;
-}
-
-.cardItem {
-    width: 20px !important;
-}
-
-.unClicked {
+.main {
+    padding: 80px 0;
+    background: url('/assets/images/bg2.jpg');
     height: 100vh;
-}
-
-.dayText {
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    color: white;
-    text-align: center;
-    margin: 0;
-    font-size: 72px;
-}
-
-.cardStyle {
-    width: "30vw";
-    height: "300px";
-}
-
-@media screen and (max-width: 700px) {
-    .cardWrapper {
-        gap: 1rem;
-    }
-
-    .scheduleWrapper {
-        /* padding-top: 20%; */
-    }
-
-    .dayText {
-        font-size: large;
-    }
+    width: 100vw;
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
