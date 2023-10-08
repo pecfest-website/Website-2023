@@ -15,7 +15,7 @@
 .main {
     height: 100vh;
     width: 100vw;
-    background-image: url("/assets/images/bg3.jpg");
+    background-image: url("/assets/images/compressed/bg3.jpg");
     background-position: center;
     background-size: cover;
 }

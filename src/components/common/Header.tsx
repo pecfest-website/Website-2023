@@ -24,7 +24,7 @@ function Header({ dark }: { dark?: boolean }) {
     }, [router.pathname]);
 
     return (
-        <nav className={`${styles.navbar} glassmorphism`}>
+        <nav className={`${styles.navbar}`}>
             <div className={styles.logo_wrapper}>
                 <Link href={"/"} aria-label="PECFEST">
                     <>

@@ -4,7 +4,7 @@
 }
 
 .background {
-    background-image: url("/assets/images/bg3.jpg");
+    background-image: url("/assets/images/compressed/bg3.jpg");
     min-height: 91vh;
     background-position: center;
     background-repeat: no-repeat;

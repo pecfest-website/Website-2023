@@ -6,7 +6,7 @@
 }
 
 .about {
-    background-image: url("/assets/images/about.jpg");
+    background-image: url("/assets/images/compressed/about.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

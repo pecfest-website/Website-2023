@@ -180,6 +180,22 @@
                     transition: transform 0.35s
                         cubic-bezier(0.05, 1.04, 0.72, 0.98);
                 }
+
+                .dark_nav_items {
+                    li .nav_link {
+                        color: white;
+                        &:hover {
+                            color: $font-dark;
+                        }
+                    }
+        
+                    li {
+                        .active_nav_link {
+                            color: $acm-primary;
+                        }
+                    }
+                    
+                }
             }
         }
     }
