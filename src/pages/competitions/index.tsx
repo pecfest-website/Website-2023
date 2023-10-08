@@ -233,5 +233,10 @@ const getTagsList = () => {
             isSelected: false,
             id: 10,
         },
+        {
+            name: "Fun",
+            isSelected: false,
+            id: 11,
+        },
     ];
 };

@@ -436,7 +436,7 @@ export const developers = {
             Instagram: "https://www.instagram.com/dakshgupta2002/",
             Github: "https://github.com/dakshgupta2002",
             Linkedin: "https://www.linkedin.com/in/dakshgupta1511",
-            Photo: "/developers/Daksh Gupta.jpg",
+            Photo: "/developers/Daksh Gupta.jpeg",
         },
         {
             Name: "Harsh Dutt",

@@ -1,6 +1,5 @@
 import { Html, useProgress } from "@react-three/drei";
 import React from "react";
-import logo from "./landing/assets/logo.png";
 
 function Loader() {
     const {progress} = useProgress();
@@ -10,7 +9,7 @@ function Loader() {
             style={{
                 height: "100vh",
                 width: "100vw",
-                // background: "white",
+                background: "#678987",
                 display: "flex",
                 flexDirection: 'column',
                 alignItems: "center",

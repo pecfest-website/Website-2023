@@ -22,6 +22,7 @@ export interface Event {
         | "Quiz"
         | "Dramatics"
         | "Gaming"
+        | "Fun"
     >;
     minTeamSize: number;
     maxTeamSize: number;
