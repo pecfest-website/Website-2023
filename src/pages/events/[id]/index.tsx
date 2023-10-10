@@ -237,7 +237,7 @@ function EventDetails({ event, registered }: EventDetailsProps) {
     ];
 
     return (
-        <PageLayout title={`${event.name} | PECFEST'23`} darkHeader>
+        <PageLayout title={`${event.name} | PECFEST'23`} >
             <Dialog open={open} onClose={handleClose}>
                 <DialogContent>
                     <DialogContentText>

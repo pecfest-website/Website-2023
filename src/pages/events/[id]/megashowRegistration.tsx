@@ -139,8 +139,6 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             paymentProof: eventPaymentUrl,
         };
 
-        console.log(registrantData);
-
         // ["Team Name", "Name", "Email Id", "College", "Contact"],
 
         // add registration in events
@@ -425,9 +423,10 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                         <Button
                             type="submit"
                             variant="contained"
-                            disabled={loading || alreadyRegistered}
+                            className={styles.registerButton}
+                            disabled={!loading || alreadyRegistered}
                         >
-                            {loading
+                            {!loading
                                 ? "Loading..."
                                 : alreadyRegistered
                                 ? "Registered"

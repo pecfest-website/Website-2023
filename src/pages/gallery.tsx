@@ -33,7 +33,7 @@ function GalleryView({ imgs, slides }: Props) {
     const handleClick = (index: number, _: any) => setIndex(index);
     
     return (
-        <PageLayout title="Gallery | Pecfest'23" darkHeader>
+        <PageLayout title="Gallery | Pecfest'23" >
             <main className={styles.main}>
                 <h2 className={`${styles.heading} glassmorphism-light`}>Past Events and Competition</h2>
                 <Gallery
