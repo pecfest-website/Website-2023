@@ -7,7 +7,7 @@
     margin: auto;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease-in-out;
-    padding: 5px 50px;
+    padding: 5px 20px;
     background: rgba(
         255,
         255,
@@ -47,8 +47,8 @@
 }
 
 .posterContainer {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,8 +57,8 @@
 }
 
 .posterContainer img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     border-radius: 10px 10px 0px 0px;
 }
 

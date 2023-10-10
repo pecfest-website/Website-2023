@@ -4,7 +4,7 @@ import React from "react";
 
 function NotFound() {
     return (
-        <PageLayout title="Page Not Found" darkHeader>
+        <PageLayout title="Page Not Found" >
             <Box
                 component={"main"}
                 style={{
