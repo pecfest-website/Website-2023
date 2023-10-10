@@ -45,7 +45,8 @@
     width: 70vw;
     padding: 2rem;
     border-radius: 20px;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
     /* font-family: caribbean; */
 }
 
@@ -61,14 +62,16 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 0 2rem 4rem;
+    margin: 2rem;
     padding: 10px;
     border-radius: 10px;
+    width: 300px;
 }
 
 .aboutIcon {
-    width: 76%;
-    object-fit: cover;
+    object-fit: contain;
+    width: 200px;
+    height: 200px;
     border-radius: 10px;
 }
 
@@ -84,13 +87,13 @@
     font-weight: 500;
     margin-top: 0.5rem;
     /* font-family: caribbean; */
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
 }
 
 @media only screen and (min-width: 200px) and (max-width: 767px) {
-    .aboutBoxes{
+    .aboutBoxes {
         flex-direction: column;
         align-items: center;
     }
-  }
+}

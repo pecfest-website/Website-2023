@@ -1,20 +1,24 @@
 import PageLayout from "@/components/layout/PageLayout";
 import React from "react";
 import styles from "@/styles/About/about.module.css";
-import Footfall from "@/styles/About/footfall.png";
-import Colleges from "@/styles/About/colleges.png";
-import Events from "@/styles/About/events.png";
-import Prizes from "@/styles/About/prizes.png";
-import Participants from "@/styles/About/participants.png";
+import Events from "@/styles/About/Layer 4.png";
+import Prizes from "@/styles/About/Layer 5.png";
+import Participants from "@/styles/About/Layer 7.png";
+import Instagram from "@/styles/About/Layer 8.png";
+import Facebook from "@/styles/About/Layer 6.png";
+import Youtube from "@/styles/About/Layer 2.png";
+import Anchor from "@/styles/About/Layer 3.png";
 import Image from "next/image";
 
 function About() {
     const data = [
-        { src: Footfall, num: "50000+", title: "FOOTFALL" },
-        { src: Colleges, num: "200000+", title: "IMPRESSIONS" },
-        { src: Events, num: "100+", title: "EVENTS" },
-        { src: Prizes, num: "6000+", title: "APP INSTALLS" },
-        { src: Participants, num: "8000+", title: "PARTICIPANTS" },
+        { src: Events, num: "50k+", title: "Footfall" },
+        { src: Instagram, num: "52k+", title: "Instagram Impressions" },
+        { src: Facebook, num: "43k+", title: "Facebook Followers" },
+        { src: Youtube, num: "13k+", title: "Youtube Impressions" },
+        { src: Anchor, num: "1.8k+", title: "Youtube Subscribers" },
+        { src: Prizes, num: "6k+", title: "APP INSTALLS" },
+        { src: Participants, num: "8k+", title: "PARTICIPANTS" },
     ];
     return (
         <PageLayout title="About | PECFEST'23">
