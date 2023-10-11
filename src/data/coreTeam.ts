@@ -457,6 +457,15 @@ export const developers = {
             Linkedin: "https://www.linkedin.com/in/harshdutt17",
             Photo: "/developers/Harsh Dutt.jpg",
         },
+        {
+            Name: "Akash Rout",
+            Committee: "Frontend Developer",
+            Contact: 8376996752,
+            Instagram: "https://www.instagram.com/iamakashrout/",
+            Github: "https://github.com/iamakashrout",
+            Linkedin: "NA",
+            Photo: "/developers/Akash Rout.jpg",
+        },
     ],
     ui: [
         {
@@ -469,7 +478,7 @@ export const developers = {
             Photo: "/developers/Akagra.jpg",
         },
         {
-            Name: "Vikas",
+            Name: "Vikas Attri",
             Committee: "UI/UX Designer",
             Contact: 7986244977,
             Instagram: "NA",
@@ -478,7 +487,16 @@ export const developers = {
             Photo: "/developers/Vikas.jpg",
         },
         {
-            Name: "Hemant",
+            Name: "Rishabh Saggar",
+            Committee: "UI/UX Designer",
+            Contact: 7986244977,
+            Instagram: "NA",
+            Github: "NA",
+            Linkedin: "NA",
+            Photo: "/developers/Vikas.jpg",
+        },
+        {
+            Name: "Disha Jain",
             Committee: "UI/UX Designer",
             Contact: 7986244977,
             Instagram: "NA",
