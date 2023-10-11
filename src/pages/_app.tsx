@@ -2,6 +2,7 @@ import Loader from "@/components/Loader";
 import { RouterProgressBar } from "@/components/common/RouterProgressBar";
 import PageLoader from "@/components/layout/PageLoader";
 import "@/styles/globals.css";
+import "@/styles/Schedule/schedule-calendar.scss";
 import createEmotionCache from "@/utils/createEmotionCache";
 import theme from "@/utils/theme";
 import { CacheProvider, ThemeProvider } from "@emotion/react";

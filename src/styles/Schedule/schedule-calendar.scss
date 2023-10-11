@@ -1,0 +1,105 @@
+@import "../variables";
+
+.rbc-header {
+    background-color: $acm-primary;
+    border: 0 !important;
+    color: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500 !important;
+    padding: 0.5em !important;
+}
+
+.rbc-toolbar {
+    .rbc-btn-group {
+        // display: none;
+        background: #c5dcfe;
+        border-radius: 5px;
+
+        > button {
+            border: 0 !important;
+            color: white !important;
+            font-weight: 400;
+            text-transform: lowercase;
+
+            &:hover {
+                color: black !important;
+                cursor: pointer;
+            }
+
+            &.rbc-active {
+                background-color: $acm-primary !important;
+                border-radius: 5px !important;
+                box-shadow: 3.85962px 3.85962px 3.85962px
+                    rgba(50, 73, 181, 0.25) !important;
+            }
+        }
+    }
+    .rbc-toolbar-label {
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: right !important;
+    }
+}
+
+.rbc-date-cell {
+    text-align: left !important;
+    padding-left: 5px !important;
+    padding-top: 5px !important;
+}
+
+.rbc-agenda-date-cell {
+    background-color: white !important;
+}
+
+.rbc-agenda-time-cell,
+.rbc-agenda-event-cell {
+    color: white;
+}
+
+.rbc-agenda-table thead {
+    display: none;
+}
+
+.rbc-month-header {
+    border-radius: 20px;
+}
+
+.rbc-override-event {
+    background-color: $acm-primary !important;
+    border-radius: 10px !important;
+    padding: 5px 10px !important;
+}
+
+.rbc-override-dev {
+    background-color: $dev-primary !important;
+    // background: linear-gradient(88.74deg, $dev-primary 41.7%, $color-code-color 100%) !important;
+}
+
+.rbc-override-cp {
+    background-color: $cp-primary !important;
+    // background: linear-gradient(88.74deg, $cp-primary 41.7%, $color-code-color 100%) !important;
+}
+
+.rbc-override-wit {
+    background-color: $wit-primary !important;
+    // background: linear-gradient(88.74deg, $wit-primary 41.7%, $color-code-color 100%) !important;
+}
+
+.rbc-override-ai {
+    background-color: $ai-primary !important;
+    // background: linear-gradient(88.74deg, $ai-primary 41.7%, $color-code-color 100%) !important;
+}
+
+.rbc-override-socials {
+    background-color: $socials-primary !important;
+    // background: linear-gradient(88.74deg, $socials-primary 41.7%, $color-code-color 100%) !important;
+}
+
+.rbc-override-cyber {
+    background-color: $cyber-primary !important;
+    // background: linear-gradient(88.74deg, $cyber-primary 41.7%, $color-code-color 100%) !important;
+}
