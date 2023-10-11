@@ -28,7 +28,7 @@ export function Boat({ pos, onClick, img }: any) {
             )}
             <Clone
                 object={fbx}
-                scale={0.001}
+                scale={hover ? 0.0015 : 0.001}
                 position={pos}
                 onClick={onClick}
                 onPointerOver={() => setHover(true)}
@@ -38,15 +38,7 @@ export function Boat({ pos, onClick, img }: any) {
     );
 }
 
-export function Ship({
-    pos,
-    onClick,
-    title,
-    description,
-    img,
-    front,
-    right,
-}: any) {
+export function Ship({ pos, onClick, img, right }: any) {
     const gltf = useLoader(GLTFLoader as any, "/assets/models/ship01.glb");
     const [hover, setHover] = useState(false);
 
@@ -70,7 +62,7 @@ export function Ship({
 
             <Clone
                 object={gltf.scene}
-                scale={0.1}
+                scale={hover ? 0.15 : 0.1}
                 position={pos}
                 onClick={onClick}
                 onPointerOver={() => setHover(true)}

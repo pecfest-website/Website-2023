@@ -17,7 +17,7 @@ function Profile({ user }: Props) {
     const { data: session } = useSession();
 
     return (
-        <PageLayout title="Profile | PECFEST'23" darkHeader>
+        <PageLayout title="Profile | PECFEST'23" >
             <main className={styles.main}>
                 <div className={`${styles.main__box} glassmorphism`}>
                     <div className={styles.left_section}>

@@ -52,7 +52,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         dropzoneKey: 1,
     };
 
-    const [teamSize, setTeamSize] = useState<number>(event.minTeamSize);
+    const [teamSize, setTeamSize] = useState<number>(1);
     const [teamName, setTeamName] = useState<string>("");
     const [formValues, setFormValues] =
         useState<FormValues>(defaultRegistrantObj);
@@ -90,6 +90,12 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         const downloadUrl = await getDownloadURL(storageRef);
         return downloadUrl;
     };
+
+    const addUserData = async ({
+        usersData,
+    }: {
+        usersData: Registrant[];
+    }) => {};
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -139,8 +145,6 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             paymentProof: eventPaymentUrl,
         };
 
-        console.log(registrantData);
-
         // ["Team Name", "Name", "Email Id", "College", "Contact"],
 
         // add registration in events
@@ -149,22 +153,24 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         });
 
         // add entry in user's events
-        registrantData.usersData.map(async (userData) => {
-            await addDoc(
-                collection(db, `registrations/${userData.userId}/events`),
-                {
-                    name: event.name,
-                    eventId: event.id,
-                    eventImage: event.image,
-                }
-            );
+        Promise.all(
+            registrantData.usersData.map((userData) => {
+                addDoc(
+                    collection(db, `registrations/${userData.userId}/events`),
+                    {
+                        name: event.name,
+                        eventId: event.id,
+                        eventImage: event.image,
+                    }
+                );
+            })
+        ).then(() => {
+            setFormValues(defaultRegistrantObj);
+            setTeamSize(1);
+            setTeamName("");
+            setRegistered(true);
+            setLoading(false);
         });
-
-        setFormValues(defaultRegistrantObj);
-        setTeamSize(1);
-        setTeamName("");
-        setRegistered(true);
-        setLoading(false);
     };
 
     const handleSnackbarClose = () => {
@@ -425,6 +431,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                         <Button
                             type="submit"
                             variant="contained"
+                            className={styles.registerButton}
                             disabled={loading || alreadyRegistered}
                         >
                             {loading

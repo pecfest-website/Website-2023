@@ -25,3 +25,7 @@
 .registerationForm button {
     margin-top: 20px;
 }
+
+.registerButton:disabled, .registerButton[disabled] {
+    background-color: #fff;
+}

@@ -7,7 +7,7 @@ import Organiser from "@/components/organisers/Organiser";
 
 function Developers() {
     return (
-        <PageLayout title="Developers | PECFEST'23" darkHeader>
+        <PageLayout title="Developers | PECFEST'23" >
             <Box component={"main"} className={styles.background}>
                 <div className={styles.main_container}>
                     <div>

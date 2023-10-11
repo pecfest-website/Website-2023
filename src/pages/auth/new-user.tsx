@@ -36,7 +36,7 @@ function NewUser() {
             await setDoc(docRef, {
                 email,
                 name,
-                sid,
+                sid: sid.length == 0 ? "NA" : sid,
                 mobile,
                 college,
                 photoUrl: session?.user?.image,
@@ -49,7 +49,7 @@ function NewUser() {
     };
 
     return (
-        <PageLayout title="User Details | PECFEST'23" darkHeader>
+        <PageLayout title="User Details | PECFEST'23">
             <Box component={"div"} className={styles.main}>
                 <Container
                     component="main"
@@ -106,14 +106,12 @@ function NewUser() {
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
-                                        required
                                         fullWidth
                                         id="sid"
                                         label="Student ID"
                                         name="sid"
                                         value={sid}
                                         onChange={(e) => setSid(e.target.value)}
-                                        error={validator.isEmpty(sid)}
                                         autoComplete="off"
                                     />
                                 </Grid>

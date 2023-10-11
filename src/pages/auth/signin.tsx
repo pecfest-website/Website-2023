@@ -46,7 +46,7 @@ export default function Login() {
     };
 
     return (
-        <PageLayout title="Login | PECFEST'23" darkHeader>
+        <PageLayout title="Login | PECFEST'23" >
             <div className={styles.main}>
                 <Head>
                     <title>Login | PECFEST&apos;23</title>

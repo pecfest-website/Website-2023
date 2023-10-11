@@ -9,11 +9,9 @@ function OceanSky() {
             <Sky
                 mieCoefficient={0.05}
                 sunPosition={[0, -2, -100]}
-                azimuth={180}
-                turbidity={10}
-                // mieDirectionalG={0.791}
-                mieDirectionalG={0.6}
-                rayleigh={0.04}
+                turbidity={2}
+                mieDirectionalG={0.2}
+                rayleigh={1}
             />
 
             <Layers pos={[0, 40, -40]} args={[200, 50]} img={clouds.src} />
