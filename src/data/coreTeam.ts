@@ -101,7 +101,7 @@ export const coreTeam = {
             Type: "Head",
             Committee: "Creative",
             Name: "Mohit Dhiman",
-            Photo: "/team/Creative_ MohitDhiman.jpg",
+            Photo: "/team/Creative_MohitDhiman.jpg",
             Instagram: "https://www.instagram.com/mohitxdhiman",
             Linkedin: "NA",
             Contact: 8219372557,
