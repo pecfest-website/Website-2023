@@ -40,7 +40,7 @@ function Competitions({ competitions }: EventPageProps) {
         <PageLayout title="Competitions | PECFEST'23">
             <Container className={styles.cover} maxWidth={false}>
                 <div className={styles.tabContainer}>
-                    <Tabs value={tabIndex} onChange={handleChange}>
+                    <Tabs value={tabIndex} onChange={handleChange} variant="scrollable">
                         <Tab
                             label={
                                 <p className={styles.tab__heading}>Cultural</p>
