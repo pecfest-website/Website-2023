@@ -10,14 +10,18 @@ function Loader() {
                 width: "100vw",
                 background: "wheat",
                 display: "flex",
-                flexDirection: 'column',
+                flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
             }}
         >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-                style={{ width: "100vw", objectFit: "contain" }}
+                style={{
+                    width: "100vw",
+                    height: "100vh",
+                    objectFit: "contain",
+                }}
                 src={"/assets/loader/Loader-BG_3.gif"}
                 alt="loading..."
             />

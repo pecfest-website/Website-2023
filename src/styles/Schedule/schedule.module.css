@@ -1,3 +1,9 @@
+
+@font-face {
+    font-family: caribbean;
+    src: url("/assets/fonts/poc/Caribbean.ttf");
+}
+
 .main {
     padding: 80px 0;
     background: url('/assets/images/bg2.jpg');
@@ -6,6 +12,7 @@
     background-size: cover;
     background-position: center top;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 90px;
@@ -14,5 +21,13 @@
 .schedule {
     /* background: red; */
     height: 100%;
+    width: 70%;
     overflow-y: scroll;
+}
+
+.heading {
+    font-size: 20px;
+    font-family: caribbean;
+    color: white;
+    text-align: center;
 }

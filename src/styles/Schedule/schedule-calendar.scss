@@ -14,7 +14,7 @@
 
 .rbc-toolbar {
     .rbc-btn-group {
-        // display: none;
+        display: none;
         background: #c5dcfe;
         border-radius: 5px;
 
@@ -39,6 +39,7 @@
     }
     .rbc-toolbar-label {
         color: white;
+        display: none;
         font-size: 2rem;
         font-weight: bold;
         text-align: right !important;
@@ -68,38 +69,35 @@
     border-radius: 20px;
 }
 
+.rbc-time-slot {
+    background-color: rgba(255, 255, 255, 0.25);
+    .rbc-label {
+        font-weight: 800;
+    }
+}
+
 .rbc-override-event {
     background-color: $acm-primary !important;
     border-radius: 10px !important;
     padding: 5px 10px !important;
 }
 
-.rbc-override-dev {
+.rbc-override-MegaShows {
     background-color: $dev-primary !important;
     // background: linear-gradient(88.74deg, $dev-primary 41.7%, $color-code-color 100%) !important;
 }
 
-.rbc-override-cp {
+.rbc-override-Cultural {
     background-color: $cp-primary !important;
     // background: linear-gradient(88.74deg, $cp-primary 41.7%, $color-code-color 100%) !important;
 }
 
-.rbc-override-wit {
+.rbc-override-Technical {
     background-color: $wit-primary !important;
     // background: linear-gradient(88.74deg, $wit-primary 41.7%, $color-code-color 100%) !important;
 }
 
-.rbc-override-ai {
+.rbc-override-Workshop {
     background-color: $ai-primary !important;
     // background: linear-gradient(88.74deg, $ai-primary 41.7%, $color-code-color 100%) !important;
-}
-
-.rbc-override-socials {
-    background-color: $socials-primary !important;
-    // background: linear-gradient(88.74deg, $socials-primary 41.7%, $color-code-color 100%) !important;
-}
-
-.rbc-override-cyber {
-    background-color: $cyber-primary !important;
-    // background: linear-gradient(88.74deg, $cyber-primary 41.7%, $color-code-color 100%) !important;
 }
