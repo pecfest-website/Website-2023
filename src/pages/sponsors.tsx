@@ -45,7 +45,7 @@ function Sponsors() {
                     </div>
                     <p>Contact Us</p>
                     <p>Tanishq Marwaha: 9056692133</p>
-                    <p>Vinayak Sahni: </p>
+                    <p>Vinayak Sahni: 7696088415</p>
                 </div>
 
                 <div className={styles.section}>{types}</div>
