@@ -97,6 +97,39 @@ export const coreTeam = {
             Email: "harshpreetsinghjohar.btcse20@pec.edu.in",
         },
         {
+            Email: "mohitdhiman2355@gmail.com",
+            Type: "Head",
+            Committee: "Creative",
+            Name: "Mohit Dhiman",
+            Photo: "/team/Creative_ MohitDhiman.jpg",
+            Instagram: "https://www.instagram.com/mohitxdhiman",
+            Linkedin: "NA",
+            Contact: 8219372557,
+
+        },
+        {
+            Email: "deepanshu.pecfest@gmail.com",
+            Type: "Head",
+            Committee: "Publicity",
+            Name: "Deepanshu Gond",
+            Photo: "/team/Publicity_ Deepanshu.jpg",
+            Instagram: "https://www.instagram.com/its_deepanshu15",
+            Linkedin: "NA",
+            Contact: 9855987897,
+
+        },
+        {
+            Email: "akagraravi@gmail.com",
+            Type: "Head",
+            Committee: "Creative",
+            Name: "Akagra Ravi",
+            Photo: "/team/Creative_Akagra.jpg",
+            Instagram: "https://www.instagram.com/akagraravi",
+            Linkedin: "NA",
+            Contact: 9041336599,
+
+        },
+        {
             Email: "iamsnehil81@gmail.com",
             Type: "Head",
             Committee: "Mega Shows",
@@ -406,6 +439,7 @@ export const coreTeam = {
             Linkedin: "NA",
             Contact: 7056558441,
         },
+
     ],
 };
 
