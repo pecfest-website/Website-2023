@@ -34,6 +34,6 @@ export const headerItems = [
     },
     {
         href: "/contacts",
-        name: "Contact Us",
+        name: "Contact",
     },
 ];

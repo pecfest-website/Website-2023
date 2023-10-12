@@ -13,6 +13,8 @@
 }
 
 .rbc-toolbar {
+    display: none !important;
+
     .rbc-btn-group {
         display: none;
         background: #c5dcfe;
@@ -97,7 +99,31 @@
     // background: linear-gradient(88.74deg, $wit-primary 41.7%, $color-code-color 100%) !important;
 }
 
-.rbc-override-Workshop {
+.rbc-override-Workshops {
     background-color: $ai-primary !important;
     // background: linear-gradient(88.74deg, $ai-primary 41.7%, $color-code-color 100%) !important;
+}
+
+.rbc-day-slot .rbc-time-slot {
+    border-top: none !important;
+}
+
+.rbc-event-label {
+    display: none !important;
+}
+
+.rbc-time-header {
+    display: none !important;
+}
+
+.rbc-time-view {
+    border: none !important;
+}
+
+.rbc-timeslot-group {
+    border: none !important;
+}
+
+.rbc-time-content {
+    border: none !important;
 }

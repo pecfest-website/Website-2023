@@ -14,11 +14,11 @@ import "react-big-calendar/lib/css/react-big-calendar.css"; // calendar css
 import { useRouter } from "next/router";
 import CustomWeekView from "@/components/Schedule/CustomView";
 import CustomWeek from "@/components/Schedule/old/CustomScheduleView";
-import Tab from '@mui/material/Tab';
+import Tab from "@mui/material/Tab";
 import { Box, Tabs } from "@mui/material";
-import TabPanel from '@mui/lab/TabPanel';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
+import TabPanel from "@mui/lab/TabPanel";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
 
 const localizer = momentLocalizer(moment);
 
@@ -72,35 +72,103 @@ function Schedule({ schedule }: Props) {
         <PageLayout title="Schedule | PECFEST'23">
             <main className={styles.main}>
                 <p className={styles.heading}>Have a look at our schedule</p>
-                <div style={{ borderBottom: 3 }}>
+                <div style={{ borderBottom: 3, borderRadius:10 }} className="glassmorphism-light">
                     <Tabs value={tabIndex} onChange={handleTabChange}>
-                        <Tab label={<p className={styles.tab__heading}>Day-1</p>} sx={{ fontWeight: tabIndex === 0 ? 700 : 400, color: '#fff' }} />
-                        <Tab label={<p className={styles.tab__heading}>Day-2</p>} sx={{ fontWeight: tabIndex === 1 ? 700 : 400, color: '#fff' }} />
-                        <Tab label={<p className={styles.tab__heading}>Day-3</p>} sx={{ fontWeight: tabIndex === 2 ? 700 : 400, color: '#fff' }} />
+                        <Tab
+                            label={<p className={styles.tab__heading}>Day-1</p>}
+                            sx={{
+                                fontWeight: tabIndex === 0 ? 700 : 400,
+                                // color: "#fff",
+                            }}
+                        />
+                        <Tab
+                            label={<p className={styles.tab__heading}>Day-2</p>}
+                            sx={{
+                                fontWeight: tabIndex === 1 ? 700 : 400,
+                                // color: "#fff",
+                            }}
+                        />
+                        <Tab
+                            label={<p className={styles.tab__heading}>Day-3</p>}
+                            sx={{
+                                fontWeight: tabIndex === 2 ? 700 : 400,
+                                // color: "#fff",
+                            }}
+                        />
                     </Tabs>
                 </div>
 
                 <div className={styles.schedule}>
-                    <Calendar
-                        defaultDate={new Date(2023, 10, 3 + tabIndex)}
-                        localizer={localizer}
-                        events={getEvents()}
-                        className={styles.calendar}
-                        popup={true}
-                        onSelectEvent={handleSelectEvent}
-                        startAccessor={(event) =>
-                            new Date(event.start ?? Date.now())
-                        }
-                        endAccessor={(event) =>
-                            new Date(event.end ?? Date.now())
-                        }
-                        eventPropGetter={getEventClassByEvent}
-                        view="day"
-                        views={{
-                            day: true,
-                        }}
-                        dayLayoutAlgorithm={"no-overlap"}
-                    />
+                    {tabIndex === 0 ? (
+                        <Calendar
+                            date={new Date(2023, 10, 3)}
+                            onNavigate={(a, b, c) => {}}
+                            timeslots={6}
+                            localizer={localizer}
+                            events={getEvents()}
+                            className={styles.calendar}
+                            popup={true}
+                            onSelectEvent={handleSelectEvent}
+                            startAccessor={(event) =>
+                                new Date(event.start ?? Date.now())
+                            }
+                            endAccessor={(event) =>
+                                new Date(event.end ?? Date.now())
+                            }
+                            eventPropGetter={getEventClassByEvent}
+                            defaultView="day"
+                            views={{
+                                day: true,
+                            }}
+                            dayLayoutAlgorithm={"no-overlap"}
+                        />
+                    ) : tabIndex === 1 ? (
+                        <Calendar
+                            date={new Date(2023, 10, 4)}
+                            onNavigate={(a, b, c) => {}}
+                            timeslots={6}
+                            localizer={localizer}
+                            events={getEvents()}
+                            className={styles.calendar}
+                            popup={true}
+                            onSelectEvent={handleSelectEvent}
+                            startAccessor={(event) =>
+                                new Date(event.start ?? Date.now())
+                            }
+                            endAccessor={(event) =>
+                                new Date(event.end ?? Date.now())
+                            }
+                            eventPropGetter={getEventClassByEvent}
+                            defaultView="day"
+                            views={{
+                                day: true,
+                            }}
+                            dayLayoutAlgorithm={"no-overlap"}
+                        />
+                    ) : (
+                        <Calendar
+                            onNavigate={(a, b, c) => {}}
+                            date={new Date(2023, 10, 5)}
+                            timeslots={6}
+                            localizer={localizer}
+                            events={getEvents()}
+                            className={styles.calendar}
+                            popup={true}
+                            onSelectEvent={handleSelectEvent}
+                            startAccessor={(event) =>
+                                new Date(event.start ?? Date.now())
+                            }
+                            endAccessor={(event) =>
+                                new Date(event.end ?? Date.now())
+                            }
+                            eventPropGetter={getEventClassByEvent}
+                            defaultView="day"
+                            views={{
+                                day: true,
+                            }}
+                            dayLayoutAlgorithm={"no-overlap"}
+                        />
+                    )}
                 </div>
             </main>
         </PageLayout>
