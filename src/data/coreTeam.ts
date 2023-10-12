@@ -112,7 +112,7 @@ export const coreTeam = {
             Type: "Head",
             Committee: "Publicity",
             Name: "Deepanshu Gond",
-            Photo: "/team/Publicity_ Deepanshu.jpg",
+            Photo: "/team/Publicity_Deepanshu.jpg",
             Instagram: "https://www.instagram.com/its_deepanshu15",
             Linkedin: "NA",
             Contact: 9855987897,
