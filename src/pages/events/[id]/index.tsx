@@ -95,7 +95,7 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                 // ["Team Name", "Name", "Email Id", "College", "Contact"],
                 name: session.user.name,
                 email: session.user.email,
-                college: userData?.college,
+                college: userData?.college ?? "",
                 contact: userData?.mobile,
             });
             // add event in user register
@@ -237,7 +237,7 @@ function EventDetails({ event, registered }: EventDetailsProps) {
     ];
 
     return (
-        <PageLayout title={`${event.name} | PECFEST'23`} >
+        <PageLayout title={`${event.name} | PECFEST'23`}>
             <Dialog open={open} onClose={handleClose}>
                 <DialogContent>
                     <DialogContentText>
@@ -482,19 +482,29 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                             })}
                         </div>
 
-                        <Button
-                            variant="contained"
-                            onClick={() => {
-                                handleRegister();
-                            }}
-                            disabled={loading || alreadyRegistered}
-                        >
-                            {loading
-                                ? "Loading..."
-                                : alreadyRegistered
-                                ? "Registered"
-                                : "Register"}
-                        </Button>
+                        {!alreadyRegistered ? (
+                            <Button
+                                variant="contained"
+                                onClick={() => {
+                                    handleRegister();
+                                }}
+                                disabled={loading}
+                            >
+                                {loading ? "Loading..." : "Register"}
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    bgcolor: "green",
+                                    ":hover": {
+                                        bgcolor: "green",
+                                    },
+                                }}
+                            >
+                                {alreadyRegistered ? "Registered" : "Register"}
+                            </Button>
+                        )}
                         <hr className={styles.line} />
 
                         <div className={styles.description}>
@@ -521,6 +531,30 @@ export const getServerSideProps = async (
     const { req } = context;
     const session = await getSession({ req });
 
+    if (session == null) {
+        return {
+            redirect: {
+                destination: "/auth/signin",
+                permanent: true,
+            },
+        };
+    }
+
+    const email = session.user?.email ?? "a";
+
+    const docRefReg = doc(db, "registrations", email);
+    const data = (await getDoc(docRefReg)).data();
+    const mobileNumber = data?.mobile;
+
+    if (!mobileNumber) {
+        return {
+            redirect: {
+                destination: "/auth/new-user",
+                permanent: true,
+            },
+        };
+    }
+
     const eventId = context.params?.id ?? "";
     const docRef = doc(db, `events/${eventId}`);
 
@@ -530,6 +564,7 @@ export const getServerSideProps = async (
         collection(db, `registrations/${session?.user?.email ?? "e"}/events`),
         where("eventId", "==", eventId)
     );
+
     const eventRegData = (await getDocs(eventColRef)).docs.length;
     let registered = false;
 

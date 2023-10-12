@@ -428,18 +428,27 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                             </p>
                         )}
 
-                        <Button
-                            type="submit"
-                            variant="contained"
-                            className={styles.registerButton}
-                            disabled={loading || alreadyRegistered}
-                        >
-                            {loading
-                                ? "Loading..."
-                                : alreadyRegistered
-                                ? "Registered"
-                                : "Register"}
-                        </Button>
+                        {!alreadyRegistered ? (
+                            <Button
+                                variant="contained"
+                                type="submit"
+                                disabled={loading}
+                            >
+                                {loading ? "Loading..." : "Register"}
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="contained"
+                                sx={{
+                                    bgcolor: "green",
+                                    ":hover": {
+                                        bgcolor: "green",
+                                    },
+                                }}
+                            >
+                                {alreadyRegistered ? "Registered" : "Register"}
+                            </Button>
+                        )}
                     </form>
                 </div>
                 <Snackbar
@@ -465,6 +474,30 @@ export default MegashowRegisteration;
 export const getServerSideProps = async (context: any) => {
     const { req } = context;
     const session = await getSession({ req });
+
+    if (session == null) {
+        return {
+            redirect: {
+                destination: "/auth/signin",
+                permanent: true,
+            },
+        };
+    }
+
+    const email = session.user?.email ?? "a";
+
+    const docRefReg = doc(db, "registrations", email);
+    const data = (await getDoc(docRefReg)).data();
+    const mobileNumber = data?.mobile;
+
+    if (!mobileNumber) {
+        return {
+            redirect: {
+                destination: "/auth/new-user",
+                permanent: true,
+            },
+        };
+    }
 
     const eventId = context.params.id;
     const docRef = doc(db, "events", eventId);
