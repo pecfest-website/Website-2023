@@ -27,6 +27,7 @@ import { DropzoneArea } from "mui-file-dropzone";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { getSession } from "next-auth/react";
 import { bankDetails } from "@/data/paymentDetails";
+import { toast } from "react-toastify";
 
 interface EventDetailsProps {
     event: Event;
@@ -164,13 +165,18 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                     }
                 );
             })
-        ).then(() => {
-            setFormValues(defaultRegistrantObj);
-            setTeamSize(1);
-            setTeamName("");
-            setRegistered(true);
-            setLoading(false);
-        });
+        )
+            .then(() => {
+                setFormValues(defaultRegistrantObj);
+                setTeamSize(1);
+                setTeamName("");
+                setRegistered(true);
+                setLoading(false);
+                toast.info("Registered Successfully");
+            })
+            .catch(() => {
+                toast.error("Something went wrong, try again later");
+            });
     };
 
     const handleSnackbarClose = () => {

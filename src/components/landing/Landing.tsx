@@ -62,10 +62,8 @@ function Landing() {
                 <ambientLight intensity={2} position={[0, 0, 0]} />
 
                 <Suspense fallback={<Loader />}>
-                    {/* <OrbitControls /> */}
                     <Sky />
                     <Ocean />
-                    {/* <Sun pos={[0, 0, -30]} /> */}
                     {width > 720 ? (
                         <Layers
                             pos={[0, 15, -30]}

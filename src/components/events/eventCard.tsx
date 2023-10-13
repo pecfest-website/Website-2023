@@ -3,6 +3,8 @@ import styles from "@/styles/Events/eventCard.module.css";
 import { Event } from "@/types/Event";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { Chip } from "@mui/material";
+import LoyaltyIcon from "@mui/icons-material/Loyalty";
 
 interface EventCardProps {
     event: Event;
@@ -36,14 +38,15 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
                         <div className={styles.eventName}>{event.name}</div>
                         <div className={styles.tags}>
                             {event.tags?.map((category, index) => (
-                                <p className={styles.tagList} key={index}>
-                                    {category}
-                                    {index < event.tags.length - 1 && (
-                                        <span
-                                            className={styles.seperator}
-                                        ></span>
-                                    )}
-                                </p>
+                                <Chip
+                                    key={index}
+                                    variant={"outlined"}
+                                    label={category}
+                                    color={"primary"}
+                                    icon={<LoyaltyIcon />}
+                                    clickable
+                                    sx={{ mr: 1, fontWeight: 600 }}
+                                />
                             ))}
                         </div>
                     </div>

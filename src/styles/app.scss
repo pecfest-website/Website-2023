@@ -1,0 +1,17 @@
+@import "./globals.scss";
+@import "./Schedule/schedule-calendar.scss";
+
+@font-face {
+    font-family: Montserrat;
+    src: url("/assets/fonts/Mont/Montserrat-Regular.ttf");
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url("/assets/fonts/Mont/Montserrat-Bold.ttf");
+    font-weight: bold;
+}
+
+* {
+    font-family: Montserrat;
+}

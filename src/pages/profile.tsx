@@ -17,17 +17,22 @@ function Profile({ user }: Props) {
     const { data: session } = useSession();
 
     return (
-        <PageLayout title="Profile | PECFEST'23" >
+        <PageLayout title="Profile | PECFEST'23">
             <main className={styles.main}>
                 <div className={`${styles.main__box} glassmorphism`}>
                     <div className={styles.left_section}>
-                        <Image height={100} width={100} src={user.photoUrl} alt="" />
+                        <Image
+                            height={100}
+                            width={100}
+                            src={user.photoUrl}
+                            alt=""
+                        />
                     </div>
                     <div className={styles.right_section}>
                         <p>{user.name}</p>
                         <p>{user.mobile}</p>
                         <p>{user.college}</p>
-                        <p>{user.sid}</p>
+                        {user.sid === "NA" ? null : <p>{user.sid}</p>}
                         <Button
                             variant="contained"
                             fullWidth={false}

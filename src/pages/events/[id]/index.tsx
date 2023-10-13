@@ -34,6 +34,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
+import { toast } from "react-toastify";
 
 interface Registrant {
     name: string;
@@ -84,31 +85,42 @@ function EventDetails({ event, registered }: EventDetailsProps) {
         }
         if (event.type === "Individual") {
             setLoading(true);
-            // get user deets
-            const userData = (
-                await getDoc(
-                    doc(db, "registrations", session?.user.email ?? "")
-                )
-            ).data();
-            // add in event register
-            await addDoc(collection(db, `events/${event.id}/registrations`), {
-                // ["Team Name", "Name", "Email Id", "College", "Contact"],
-                name: session.user.name,
-                email: session.user.email,
-                college: userData?.college ?? "",
-                contact: userData?.mobile,
-            });
-            // add event in user register
-            await addDoc(
-                collection(db, `registrations/${session.user.email}/events`),
-                {
-                    name: event.name,
-                    eventId: event.id,
-                    eventImage: event.image,
-                }
-            );
-            setLoading(false);
-            setRegistered(true);
+            try {
+                // get user deets
+                const userData = (
+                    await getDoc(
+                        doc(db, "registrations", session?.user.email ?? "")
+                    )
+                ).data();
+                // add in event register
+                await addDoc(
+                    collection(db, `events/${event.id}/registrations`),
+                    {
+                        // ["Team Name", "Name", "Email Id", "College", "Contact"],
+                        name: session.user.name,
+                        email: session.user.email,
+                        college: userData?.college ?? "",
+                        contact: userData?.mobile,
+                    }
+                );
+                // add event in user register
+                await addDoc(
+                    collection(
+                        db,
+                        `registrations/${session.user.email}/events`
+                    ),
+                    {
+                        name: event.name,
+                        eventId: event.id,
+                        eventImage: event.image,
+                    }
+                );
+                setLoading(false);
+                setRegistered(true);
+                toast.info("Registered Successfully");
+            } catch (e) {
+                toast.error("Something went wrong, try again later");
+            }
             return;
         } else {
             setOpen(true);
@@ -118,12 +130,27 @@ function EventDetails({ event, registered }: EventDetailsProps) {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-        for (let formValue of formValues) {
+        try {
+            for (let formValue of formValues) {
+                if (
+                    formValue.name.length === 0 ||
+                    !formValue.phoneNumber ||
+                    formValue.phoneNumber === 0 ||
+                    formValue.userId?.length === 0
+                ) {
+                    setError(true);
+                    setTimeout(() => {
+                        setError(false);
+                    }, 3000);
+                    return;
+                }
+            }
+
             if (
-                formValue.name.length === 0 ||
-                !formValue.phoneNumber ||
-                formValue.phoneNumber === 0 ||
-                formValue.userId?.length === 0
+                event.type == "Team" &&
+                (teamName?.length === 0 ||
+                    (teamSize ?? 0) > event.maxTeamSize ||
+                    (teamSize ?? 0) < event.minTeamSize)
             ) {
                 setError(true);
                 setTimeout(() => {
@@ -131,53 +158,43 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                 }, 3000);
                 return;
             }
+
+            setError(false);
+            const registrantData = {
+                teamName: teamName,
+                teamSize: teamSize,
+                usersData: [...formValues],
+            };
+
+            // ["Team Name", "Name", "Email Id", "College", "Contact"],
+
+            // add registration in events
+            await addDoc(collection(db, `events/${event.id}/registrations`), {
+                ...registrantData,
+            });
+
+            // add entry in user's events
+            registrantData.usersData.map(async (userData) => {
+                await addDoc(
+                    collection(db, `registrations/${userData.userId}/events`),
+                    {
+                        name: event.name,
+                        eventId: event.id,
+                        eventImage: event.image,
+                    }
+                );
+            });
+
+            setFormValues([defaultRegistrantObj]);
+            setTeamSize(1);
+            setTeamName("");
+            setOpen(false);
+            setRegistered(true);
+            setLoading(false);
+            toast.info("Registered Successfully");
+        } catch (e) {
+            toast.error("Something went wrong, try again later");
         }
-
-        if (
-            event.type == "Team" &&
-            (teamName?.length === 0 ||
-                (teamSize ?? 0) > event.maxTeamSize ||
-                (teamSize ?? 0) < event.minTeamSize)
-        ) {
-            setError(true);
-            setTimeout(() => {
-                setError(false);
-            }, 3000);
-            return;
-        }
-
-        setError(false);
-        const registrantData = {
-            teamName: teamName,
-            teamSize: teamSize,
-            usersData: [...formValues],
-        };
-
-        // ["Team Name", "Name", "Email Id", "College", "Contact"],
-
-        // add registration in events
-        await addDoc(collection(db, `events/${event.id}/registrations`), {
-            ...registrantData,
-        });
-
-        // add entry in user's events
-        registrantData.usersData.map(async (userData) => {
-            await addDoc(
-                collection(db, `registrations/${userData.userId}/events`),
-                {
-                    name: event.name,
-                    eventId: event.id,
-                    eventImage: event.image,
-                }
-            );
-        });
-
-        setFormValues([defaultRegistrantObj]);
-        setTeamSize(1);
-        setTeamName("");
-        setOpen(false);
-        setRegistered(true);
-        setLoading(false);
     };
 
     const formatDate = () => {
@@ -231,7 +248,7 @@ function EventDetails({ event, registered }: EventDetailsProps) {
         },
         {
             Icon: MenuBookIcon,
-            link: event.ruleBook,
+            link: event.ruleBook.length == 0 ? "" : event.ruleBook,
             text: "Rulebook",
         },
     ];
@@ -448,7 +465,10 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                         </div>
                         <div className={styles.details__info}>
                             {info.map(({ text, Icon, link }, i) => {
-                                if (i == 4 && event.type === "Individual") {
+                                if (
+                                    (i == 4 && event.type === "Individual") ||
+                                    (i == 5 && event.ruleBook.length == 0)
+                                ) {
                                     return null;
                                 }
                                 if (link) {
@@ -464,6 +484,11 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                                                 href={link}
                                                 target="_blank"
                                                 referrerPolicy="no-referrer"
+                                                style={{
+                                                    color: "#301934",
+                                                    fontWeight: 900,
+                                                    textDecoration: "underline",
+                                                }}
                                             >
                                                 {text}
                                             </a>

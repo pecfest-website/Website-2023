@@ -17,7 +17,15 @@ export function Boat({ pos, onClick, img }: any) {
 
     return (
         <>
-            {width < 720 ? null : (
+            {width < 720 ? (
+                <HoverBox
+                    title={"About"}
+                    description={"Discover PECFEST"}
+                    pos={[pos[0], pos[1]+2, pos[2]+8]}
+                    args={[4, 2]}
+                    img={img}
+                />
+            ) : (
                 <HoverBox
                     title={"About"}
                     description={"Discover PECFEST"}

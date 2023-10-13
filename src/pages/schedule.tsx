@@ -71,28 +71,28 @@ function Schedule({ schedule }: Props) {
     return (
         <PageLayout title="Schedule | PECFEST'23">
             <main className={styles.main}>
-                <p className={styles.heading}>Have a look at our schedule</p>
-                <div style={{ borderBottom: 3, borderRadius:10 }} className="glassmorphism-light">
+                {/* <p className={styles.heading}>Have a look at our schedule</p> */}
+                <div
+                    // style={{ borderBottom: 3, borderRadius: 10 }}
+                    className={`${styles.tab__container} glassmorphism-light`}
+                >
                     <Tabs value={tabIndex} onChange={handleTabChange}>
                         <Tab
-                            label={<p className={styles.tab__heading}>Day-1</p>}
+                            label={<p className={styles.tab__heading}>Day 1</p>}
                             sx={{
                                 fontWeight: tabIndex === 0 ? 700 : 400,
-                                // color: "#fff",
                             }}
                         />
                         <Tab
-                            label={<p className={styles.tab__heading}>Day-2</p>}
+                            label={<p className={styles.tab__heading}>Day 2</p>}
                             sx={{
                                 fontWeight: tabIndex === 1 ? 700 : 400,
-                                // color: "#fff",
                             }}
                         />
                         <Tab
-                            label={<p className={styles.tab__heading}>Day-3</p>}
+                            label={<p className={styles.tab__heading}>Day 3</p>}
                             sx={{
                                 fontWeight: tabIndex === 2 ? 700 : 400,
-                                // color: "#fff",
                             }}
                         />
                     </Tabs>
@@ -103,7 +103,7 @@ function Schedule({ schedule }: Props) {
                         <Calendar
                             date={new Date(2023, 10, 3)}
                             onNavigate={(a, b, c) => {}}
-                            timeslots={6}
+                            timeslots={4}
                             localizer={localizer}
                             events={getEvents()}
                             className={styles.calendar}
@@ -126,7 +126,7 @@ function Schedule({ schedule }: Props) {
                         <Calendar
                             date={new Date(2023, 10, 4)}
                             onNavigate={(a, b, c) => {}}
-                            timeslots={6}
+                            timeslots={4}
                             localizer={localizer}
                             events={getEvents()}
                             className={styles.calendar}
@@ -149,7 +149,7 @@ function Schedule({ schedule }: Props) {
                         <Calendar
                             onNavigate={(a, b, c) => {}}
                             date={new Date(2023, 10, 5)}
-                            timeslots={6}
+                            timeslots={4}
                             localizer={localizer}
                             events={getEvents()}
                             className={styles.calendar}
@@ -189,7 +189,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         const event = {
             start: startDate,
             end: endDate,
-            title: doc.data().name,
+            title: doc.data().name + " - " + doc.data().venue,
             resource: [doc.data().category, doc.id, doc.data().description],
         };
 
