@@ -1,8 +1,5 @@
-import Loader from "@/components/Loader";
-import { RouterProgressBar } from "@/components/common/RouterProgressBar";
 import PageLoader from "@/components/layout/PageLoader";
-import "@/styles/globals.css";
-import "@/styles/Schedule/schedule-calendar.scss";
+import "@/styles/app.scss";
 import createEmotionCache from "@/utils/createEmotionCache";
 import theme from "@/utils/theme";
 import { CacheProvider, ThemeProvider } from "@emotion/react";
@@ -13,10 +10,8 @@ import localFont from "next/font/local";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const poc = localFont({ src: "../lib/Caribbean.ttf" });
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -25,7 +20,6 @@ export default function App({
     Component,
     pageProps: { session, emotionCache = clientSideEmotionCache, ...pageProps },
 }: AppProps) {
-    // TODO can add font here
     const router = useRouter();
     const [isLoading, setIsLoading] = React.useState(false);
 
