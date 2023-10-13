@@ -38,7 +38,7 @@ function Ocean() {
             sunDirection: new THREE.Vector3(),
             sunColor: 0xeb8934,
             waterColor: 0x0064b5,
-            distortionScale: 1.5,
+            distortionScale: 2.5,
             fog: true,
             format: gl.outputColorSpace,
         }),
