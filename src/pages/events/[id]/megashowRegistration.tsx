@@ -332,7 +332,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                     variant="outlined"
                                     key={`person-${id}-userId`}
                                     name={`person-${id}-userId`}
-                                    label={`Person-${id + 1} UserId`}
+                                    label={`Person-${id + 1} Email Id`}
                                     sx={{ my: 1 }}
                                     fullWidth
                                     required
