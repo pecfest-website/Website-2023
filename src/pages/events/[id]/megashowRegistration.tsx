@@ -139,6 +139,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             teamSize: teamSize,
             usersData: [...formValues.registrants],
             paymentProof: eventPaymentUrl,
+            paymentId: paymentId
         };
 
         // ["Team Name", "Name", "Email Id", "College", "Contact"],
