@@ -6,7 +6,6 @@ import { CacheProvider, ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
-import localFont from "next/font/local";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
