@@ -55,6 +55,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
 
     const [teamSize, setTeamSize] = useState<number>(1);
     const [teamName, setTeamName] = useState<string>("");
+    const [paymentId, setPaymentId] = useState<string>("");
     const [formValues, setFormValues] =
         useState<FormValues>(defaultRegistrantObj);
 
@@ -91,12 +92,6 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         const downloadUrl = await getDownloadURL(storageRef);
         return downloadUrl;
     };
-
-    const addUserData = async ({
-        usersData,
-    }: {
-        usersData: Registrant[];
-    }) => {};
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -170,6 +165,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 setFormValues(defaultRegistrantObj);
                 setTeamSize(1);
                 setTeamName("");
+                setPaymentId("");
                 setRegistered(true);
                 setLoading(false);
                 toast.info("Registered Successfully");
@@ -420,6 +416,20 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                 onChange={handleImageChange}
                             />
                         </div>
+
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            label="Payment Id"
+                            type="text"
+                            fullWidth
+                            variant="outlined"
+                            required
+                            value={paymentId}
+                            onChange={(event: any) => {
+                                setPaymentId(event.target.value);
+                            }}
+                        />
 
                         {error && (
                             <span className={styles.errorText}>

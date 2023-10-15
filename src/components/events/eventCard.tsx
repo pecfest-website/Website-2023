@@ -37,7 +37,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
                     <div className={styles.eventDetailContainer}>
                         <div className={styles.eventName}>{event.name}</div>
                         <div className={styles.tags}>
-                            {event.tags?.map((category, index) => (
+                            {event.tags?.slice(0, 2).map((category, index) => (
                                 <Chip
                                     key={index}
                                     variant={"outlined"}
