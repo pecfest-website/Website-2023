@@ -89,7 +89,7 @@
 
                 .nav_link {
                     font-weight: 600;
-                    font-family: 'Chelsea Market', cursive;
+                    font-family: 'Chelsea Market';
                     transition: 0.2s;
                     color: white;
                     &:hover {
@@ -104,7 +104,7 @@
                 button {
                     background: none;
                     border: none;
-                    font-family: 'Chelsea Market', cursive;
+                    font-family: 'Chelsea Market';
                     color: $acm-primary;
                     font-weight: 700;
                     cursor: pointer;

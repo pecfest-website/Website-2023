@@ -20,7 +20,6 @@ const Organiser = ({ organiser }: Props) => {
                 <Image
                     height={100}
                     width={100}
-                    loading="lazy"
                     src={organiser.Photo}
                     className={styles.card__image}
                     alt={organiser.Name}
@@ -39,7 +38,6 @@ const Organiser = ({ organiser }: Props) => {
                             alt="Display Image circle"
                             height={100}
                             width={100}
-                            loading="lazy"
                         />
                         <div className={styles.card__header__text}>
                             <h3 className={styles.card__title}>
