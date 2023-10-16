@@ -18,8 +18,8 @@ const Organiser = ({ organiser }: Props) => {
         <div className={styles.wrapper}>
             <div className={styles.card}>
                 <Image
-                    height={100}
-                    width={100}
+                    height={300}
+                    width={300}
                     src={organiser.Photo}
                     className={styles.card__image}
                     alt={organiser.Name}
@@ -36,8 +36,8 @@ const Organiser = ({ organiser }: Props) => {
                             className={styles.card__thumb}
                             src={organiser.Photo}
                             alt="Display Image circle"
-                            height={100}
-                            width={100}
+                            height={200}
+                            width={200}
                         />
                         <div className={styles.card__header__text}>
                             <h3 className={styles.card__title}>

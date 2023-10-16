@@ -7,23 +7,28 @@ import styles from "@/styles/Contacts/contacts.module.css";
 
 const getSocialIconSpan = () => {
     const spans = SOCIALICONS.map((socialIcon, id) => (
-        <a href={socialIcon.link} key={id} className={styles.socialIcon}>
+        <a
+            href={socialIcon.link}
+            key={id}
+            className={styles.socialIcon}
+            target="_blank"
+            referrerPolicy="no-referrer"
+        >
             {socialIcon.icon}
         </a>
-    ))
+    ));
 
-    return (
-        <div className={styles.socialWrapper}>
-            {spans}
-        </div>
-    )
-}
+    return <div className={styles.socialWrapper}>{spans}</div>;
+};
 
 export const CONTACTUSINFO = [
     {
         heading: "Call us directly at",
         icon: <PhoneSharpIcon fontSize="large" />,
-        paras: ["Harshpreet Singh Johar: 96461 70170", "Ishwarendra Jha: 99151 06579"],
+        paras: [
+            "Harshpreet Singh Johar: 96461 70170",
+            "Ishwarendra Jha: 99151 06579",
+        ],
     },
 
     {
@@ -39,6 +44,6 @@ export const CONTACTUSINFO = [
     {
         heading: "Follow Us on Social",
         icon: <BookMark fontSize="large" />,
-        paras: [getSocialIconSpan()]
-    }
+        paras: [getSocialIconSpan()],
+    },
 ];
