@@ -92,8 +92,13 @@
 }
 
 @media only screen and (min-width: 200px) and (max-width: 767px) {
+    .aboutMain {
+        margin: 20px auto;
+        width: 90vw;
+    }
     .aboutBoxes {
         flex-direction: column;
         align-items: center;
+        margin: 0;
     }
 }

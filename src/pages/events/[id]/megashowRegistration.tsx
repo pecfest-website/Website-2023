@@ -410,7 +410,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                 dropzoneText={"Attach Payment Proof"}
                                 filesLimit={1}
                                 Icon={UploadFileIcon}
-                                maxFileSize={204800}
+                                maxFileSize={3145728}
                                 clearOnUnmount
                                 key={formValues.dropzoneKey}
                                 fileObjects={undefined}

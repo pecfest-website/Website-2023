@@ -55,10 +55,18 @@
   font-family: caribbean, sans-serif;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
+  .main__box {
+    width: 80%;
+    padding: 40px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
   .main__box {
     flex-direction: column;
-    padding: 40px;
+    justify-content: center;
+    /* padding: 40px; */
   }
 
   .right_section p {
