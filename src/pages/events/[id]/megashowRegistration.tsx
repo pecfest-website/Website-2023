@@ -212,6 +212,9 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                             <Typography>
                                 Branch Code : {bankDetails.branchCode}
                             </Typography>
+                            <Typography>
+                                Acount Holder Name : {bankDetails.accountName}
+                            </Typography>
                         </DialogContent>
                     </Dialog>
                     <form onSubmit={handleSubmit}>

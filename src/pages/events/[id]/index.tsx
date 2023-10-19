@@ -31,7 +31,7 @@ import MyLocationIcon from "@mui/icons-material/MyLocation";
 import PhoneForwardedIcon from "@mui/icons-material/PhoneForwarded";
 import GroupsIcon from "@mui/icons-material/Groups";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { getSession, useSession } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { toast } from "react-toastify";
@@ -86,6 +86,19 @@ function EventDetails({ event, registered }: EventDetailsProps) {
         if (event.type === "Individual") {
             setLoading(true);
             try {
+                const docRefReg = doc(
+                    db,
+                    "registrations",
+                    session.user.email ?? "a"
+                );
+                const data = (await getDoc(docRefReg)).data();
+                const mobileNumber = data?.mobile;
+
+                if (!mobileNumber) {
+                    router.push("/auth/signin");
+                    return;
+                }
+
                 // get user deets
                 const userData = (
                     await getDoc(
@@ -555,30 +568,6 @@ export const getServerSideProps = async (
 ) => {
     const { req } = context;
     const session = await getSession({ req });
-
-    if (session == null) {
-        return {
-            redirect: {
-                destination: "/auth/signin",
-                permanent: true,
-            },
-        };
-    }
-
-    const email = session.user?.email ?? "a";
-
-    const docRefReg = doc(db, "registrations", email);
-    const data = (await getDoc(docRefReg)).data();
-    const mobileNumber = data?.mobile;
-
-    if (!mobileNumber) {
-        return {
-            redirect: {
-                destination: "/auth/new-user",
-                permanent: true,
-            },
-        };
-    }
 
     const eventId = context.params?.id ?? "";
     const docRef = doc(db, `events/${eventId}`);
