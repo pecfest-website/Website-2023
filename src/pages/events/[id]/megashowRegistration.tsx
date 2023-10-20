@@ -28,6 +28,9 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { getSession } from "next-auth/react";
 import { bankDetails } from "@/data/paymentDetails";
 import { toast } from "react-toastify";
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 interface EventDetailsProps {
     event: Event;
@@ -67,6 +70,8 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const [eventCreationStatus, setEventCreationStatus] = useState<
         string | null
     >(null);
+
+    const [accomodation, setAccomodation] = useState(false);
 
     const handleImageChange = (event: File[]) => {
         const img = document.createElement("img");
@@ -139,7 +144,8 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             teamSize: teamSize,
             usersData: [...formValues.registrants],
             paymentProof: eventPaymentUrl,
-            paymentId: paymentId
+            paymentId: paymentId,
+            accomodation: accomodation
         };
 
         // ["Team Name", "Name", "Email Id", "College", "Contact"],
@@ -169,6 +175,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 setPaymentId("");
                 setRegistered(true);
                 setLoading(false);
+                setAccomodation(false);
                 toast.info("Registered Successfully");
             })
             .catch(() => {
@@ -406,6 +413,19 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                 />
                             </div>
                         ))}
+
+                        <FormGroup>
+                            <FormControlLabel control={
+                                <Checkbox 
+                                    checked={accomodation}
+                                    onChange={(e: any) => {
+                                        setAccomodation(e.target.checked);
+                                    }} />}
+                                    label="Require Accomodation?"
+                                    labelPlacement="end"
+                                    sx={{ paddingLeft: '12px' }}
+                            />
+                        </FormGroup>
 
                         <div className={styles.dropzoneArea}>
                             <DropzoneArea
