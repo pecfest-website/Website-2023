@@ -119,7 +119,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         }
 
         if (
-            event.type == "Team" &&
+            event.type === "Team" &&
             (teamName?.length === 0 ||
                 (teamSize ?? 0) > event.maxTeamSize ||
                 (teamSize ?? 0) < event.minTeamSize)
