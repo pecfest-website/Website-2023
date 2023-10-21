@@ -156,7 +156,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             paymentId: paymentId,
             accomodation: accomodation
         };
-
+        
         // ["Team Name", "Name", "Email Id", "College", "Contact"],
 
         // add registration in events
@@ -166,7 +166,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
 
         // add entry in user's events
         Promise.all(
-            registrantData.usersData.map((userData) => {
+            registrantData.usersData.map((userData) => 
                 addDoc(
                     collection(db, `registrations/${userData.userId}/events`),
                     {
@@ -174,8 +174,8 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                         eventId: event.id,
                         eventImage: event.image,
                     }
-                );
-            })
+                )
+            )
         )
             .then(() => {
                 setFormValues(defaultRegistrantObj);
