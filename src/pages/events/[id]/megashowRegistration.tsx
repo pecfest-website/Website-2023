@@ -139,6 +139,15 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             eventPaymentUrl = await uploadImage();
         }
 
+        if (eventPaymentUrl.length === 0) {
+            setError(true);
+            setTimeout(() => {
+                setError(false);
+            }, 3000);
+            setLoading(false);
+            return;
+        }
+
         const registrantData = {
             teamName: teamName,
             teamSize: teamSize,
@@ -430,7 +439,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                         <div className={styles.dropzoneArea}>
                             <DropzoneArea
                                 acceptedFiles={["image/jpeg"]}
-                                dropzoneText={"Attach Payment Proof"}
+                                dropzoneText={"Attach Payment Proof *"}
                                 filesLimit={1}
                                 Icon={UploadFileIcon}
                                 maxFileSize={3145728}
