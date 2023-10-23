@@ -10,7 +10,7 @@ import {
     query,
     where,
 } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "@/styles/Events/eventRegistration.module.css";
 import {
     Alert,
@@ -18,6 +18,7 @@ import {
     Dialog,
     DialogContent,
     DialogContentText,
+    Fab,
     Snackbar,
     TextField,
     Typography,
@@ -28,10 +29,12 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { getSession } from "next-auth/react";
 import { bankDetails } from "@/data/paymentDetails";
 import { toast } from "react-toastify";
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import { useRouter } from "next/router";
+import { useWindowSize } from "usehooks-ts";
+import { AddPhotoAlternate } from "@mui/icons-material";
 
 interface EventDetailsProps {
     event: Event;
@@ -58,7 +61,8 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     };
 
     const router = useRouter();
-    
+    const size = useWindowSize();
+
     const [teamSize, setTeamSize] = useState<number>(1);
     const [teamName, setTeamName] = useState<string>("");
     const [paymentId, setPaymentId] = useState<string>("");
@@ -70,6 +74,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const [errorMsg, setErrorMsg] = useState("");
     const [alreadyRegistered, setRegistered] = useState(registered);
     const [open, setOpen] = useState(false);
+    const [file, setFile] = useState<any>();
 
     const [eventCreationStatus, setEventCreationStatus] = useState<
         string | null
@@ -161,9 +166,9 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             usersData: [...formValues.registrants],
             paymentProof: eventPaymentUrl,
             paymentId: paymentId,
-            accomodation: accomodation
+            accomodation: accomodation,
         };
-        
+
         // ["Team Name", "Name", "Email Id", "College", "Contact"],
 
         // add registration in events
@@ -173,7 +178,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
 
         // add entry in user's events
         Promise.all(
-            registrantData.usersData.map((userData) => 
+            registrantData.usersData.map((userData) =>
                 addDoc(
                     collection(db, `registrations/${userData.userId}/events`),
                     {
@@ -193,7 +198,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 setLoading(false);
                 setAccomodation(false);
                 toast.info("Registered Successfully");
-                router.push(`/events/${event.id}`)
+                router.push(`/events/${event.id}`);
             })
             .catch(() => {
                 toast.error("Something went wrong, try again later");
@@ -203,6 +208,10 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const handleSnackbarClose = () => {
         setEventCreationStatus(null);
     };
+
+    useEffect(() => {
+        console.log(formValues);
+    }, [formValues]);
 
     return (
         <PageLayout title={`${event.name} Registeration | PECFEST'23`}>
@@ -432,30 +441,52 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                         ))}
 
                         <FormGroup>
-                            <FormControlLabel control={
-                                <Checkbox 
-                                    checked={accomodation}
-                                    onChange={(e: any) => {
-                                        setAccomodation(e.target.checked);
-                                    }} />}
-                                    label="Require Accomodation?"
-                                    labelPlacement="end"
-                                    sx={{ paddingLeft: '12px' }}
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={accomodation}
+                                        onChange={(e: any) => {
+                                            setAccomodation(e.target.checked);
+                                        }}
+                                    />
+                                }
+                                label="Require Accomodation?"
+                                labelPlacement="end"
+                                sx={{ paddingLeft: "12px" }}
                             />
                         </FormGroup>
 
                         <div className={styles.dropzoneArea}>
-                            <DropzoneArea
-                                acceptedFiles={["image/jpeg", "image/png"]}
-                                dropzoneText={"Attach Payment Proof *"}
-                                filesLimit={1}
-                                Icon={UploadFileIcon}
-                                maxFileSize={3145728}
-                                clearOnUnmount
-                                key={formValues.dropzoneKey}
-                                fileObjects={undefined}
-                                onChange={handleImageChange}
-                            />
+                            {size.width > 700 ? (
+                                <DropzoneArea
+                                    acceptedFiles={["image/jpeg"]}
+                                    dropzoneText={"Attach Payment Proof *"}
+                                    filesLimit={1}
+                                    Icon={UploadFileIcon}
+                                    maxFileSize={3145728}
+                                    clearOnUnmount
+                                    key={formValues.dropzoneKey}
+                                    fileObjects={undefined}
+                                    onChange={handleImageChange}
+                                />
+                            ) : (
+                                <>
+                                <Typography>
+                                    Payment Proof (only jpeg)
+                                </Typography>
+                                    <input
+                                        type="file"
+                                        accept=".jpg"
+                                        onChange={(event) => {
+                                            setFormValues({
+                                                ...formValues,
+                                                paymentProof:
+                                                    event.target.files?.[0],
+                                            });
+                                        }}
+                                    />
+                                </>
+                            )}
                         </div>
 
                         <TextField

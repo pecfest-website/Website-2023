@@ -4077,6 +4077,13 @@ mui-file-dropzone@^4.0.2:
     clsx "^1.0.2"
     react-dropzone "^10.2.1"
 
+mui-file-input@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/mui-file-input/-/mui-file-input-3.0.2.tgz#e3c13d0e7688d7e8b7caa240438d942cf2b53629"
+  integrity sha512-58Jp3+f5MUXjhZjlLfYFOEOBICnLoFC4x0G1+y411JsGBjZQ1lgICv7KQVgP5aF+IRvhJ1vfI6KpbnmqwRKXoA==
+  dependencies:
+    pretty-bytes "^6.1.1"
+
 nan@^2.17.0:
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.18.0.tgz#26a6faae7ffbeb293a39660e88a76b82e30b7554"
@@ -4449,6 +4456,11 @@ prelude-ls@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.1.2.tgz#21932a549f5e52ffd9a827f570e04be62a97da54"
   integrity sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==
+
+pretty-bytes@^6.1.1:
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-6.1.1.tgz#38cd6bb46f47afbf667c202cfc754bffd2016a3b"
+  integrity sha512-mQUvGU6aUFQ+rNvTIAcZuWGRT9a6f6Yrg9bHs4ImKF+HZCEK+plBvnAZYSIQztknZF2qnzNtr6F8s0+IuptdlQ==
 
 pretty-format@^3.8.0:
   version "3.8.0"
