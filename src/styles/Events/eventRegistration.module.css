@@ -10,7 +10,7 @@
 }
 
 .registerationForm {
-    width: 70%;
+    width: 80%;
     padding: 10px 20px;
     height: 100%;
 }
@@ -23,9 +23,15 @@
 }
 
 .registerationForm button {
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .registerButton:disabled, .registerButton[disabled] {
     background-color: #fff;
+}
+
+@media screen and (max-width: 786px) {
+    .registerationForm h1 {
+        font-size: 24px;
+    }
 }

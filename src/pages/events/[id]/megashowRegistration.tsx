@@ -41,7 +41,7 @@ interface EventDetailsProps {
 interface Registrant {
     name: string;
     userId: string;
-    phoneNumber: number | string;
+    phoneNumber: string;
 }
 
 interface FormValues {
@@ -52,7 +52,7 @@ interface FormValues {
 
 function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const defaultRegistrantObj: FormValues = {
-        registrants: [{ name: "", userId: "", phoneNumber: 0 }],
+        registrants: [{ name: "", userId: "", phoneNumber: "" }],
         paymentProof: null,
         dropzoneKey: 1,
     };
@@ -109,8 +109,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             if (
                 formValue.name.length === 0 ||
                 !formValue.phoneNumber ||
-                formValue.phoneNumber === 0 ||
-                formValue.phoneNumber === '0' ||
+                formValue.phoneNumber === '' ||
                 formValue.userId?.length === 0
             ) {
                 setError(true);
