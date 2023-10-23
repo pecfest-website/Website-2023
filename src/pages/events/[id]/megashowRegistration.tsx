@@ -31,6 +31,7 @@ import { toast } from "react-toastify";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { useRouter } from "next/router";
 
 interface EventDetailsProps {
     event: Event;
@@ -56,6 +57,8 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         dropzoneKey: 1,
     };
 
+    const router = useRouter();
+    
     const [teamSize, setTeamSize] = useState<number>(1);
     const [teamName, setTeamName] = useState<string>("");
     const [paymentId, setPaymentId] = useState<string>("");
@@ -186,6 +189,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 setLoading(false);
                 setAccomodation(false);
                 toast.info("Registered Successfully");
+                router.push(`/events/${event.id}`)
             })
             .catch(() => {
                 toast.error("Something went wrong, try again later");
