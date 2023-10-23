@@ -142,7 +142,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             eventPaymentUrl = await uploadImage();
         }
 
-        if (eventPaymentUrl.length === 0) {
+        if (eventPaymentUrl.length === 0 && formValues.paymentProof == null) {
             setError(true);
             setTimeout(() => {
                 setError(false);
