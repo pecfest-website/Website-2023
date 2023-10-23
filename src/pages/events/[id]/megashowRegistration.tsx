@@ -67,6 +67,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
     const [alreadyRegistered, setRegistered] = useState(registered);
     const [open, setOpen] = useState(false);
 
@@ -113,6 +114,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 formValue.userId.length === 0
             ) {
                 setError(true);
+                setErrorMsg("name, phone Number, or email id missing");
                 setTimeout(() => {
                     setError(false);
                 }, 3000);
@@ -128,6 +130,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 (teamSize ?? 0) < event.minTeamSize)
         ) {
             setError(true);
+            setErrorMsg("issue in team size");
             setTimeout(() => {
                 setError(false);
             }, 3000);
@@ -144,6 +147,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
 
         if (eventPaymentUrl.length === 0 && formValues.paymentProof == null) {
             setError(true);
+            setErrorMsg("payemnt issue");
             setTimeout(() => {
                 setError(false);
             }, 3000);
@@ -442,7 +446,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
 
                         <div className={styles.dropzoneArea}>
                             <DropzoneArea
-                                acceptedFiles={["image/jpeg"]}
+                                acceptedFiles={["image/jpeg", "image/png"]}
                                 dropzoneText={"Attach Payment Proof *"}
                                 filesLimit={1}
                                 Icon={UploadFileIcon}
@@ -470,7 +474,8 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
 
                         {error && (
                             <span className={styles.errorText}>
-                                ❌ One or more fields incorrectly filled!
+                                {/* ❌ One or more fields incorrectly filled!  */}
+                                {errorMsg}
                             </span>
                         )}
 
