@@ -109,8 +109,8 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             if (
                 formValue.name.length === 0 ||
                 !formValue.phoneNumber ||
-                formValue.phoneNumber === '' ||
-                formValue.userId?.length === 0
+                formValue.phoneNumber.length === 0 ||
+                formValue.userId.length === 0
             ) {
                 setError(true);
                 setTimeout(() => {
