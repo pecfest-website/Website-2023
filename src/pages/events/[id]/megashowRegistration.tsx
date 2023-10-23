@@ -41,7 +41,7 @@ interface EventDetailsProps {
 interface Registrant {
     name: string;
     userId: string;
-    phoneNumber: number;
+    phoneNumber: number | string;
 }
 
 interface FormValues {
@@ -110,6 +110,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 formValue.name.length === 0 ||
                 !formValue.phoneNumber ||
                 formValue.phoneNumber === 0 ||
+                formValue.phoneNumber === '0' ||
                 formValue.userId?.length === 0
             ) {
                 setError(true);
