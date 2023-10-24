@@ -74,7 +74,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const [errorMsg, setErrorMsg] = useState("");
     const [alreadyRegistered, setRegistered] = useState(registered);
     const [open, setOpen] = useState(false);
-    const [file, setFile] = useState<any>();
+    const [address, setAddress] = useState<string>("");
 
     const [eventCreationStatus, setEventCreationStatus] = useState<
         string | null
@@ -167,6 +167,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             paymentProof: eventPaymentUrl,
             paymentId: paymentId,
             accomodation: accomodation,
+            address: address
         };
 
         // ["Team Name", "Name", "Email Id", "College", "Contact"],
@@ -471,9 +472,9 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                 />
                             ) : (
                                 <>
-                                <Typography>
-                                    Payment Proof (only jpeg)
-                                </Typography>
+                                    <Typography>
+                                        Payment Proof (only jpeg)
+                                    </Typography>
                                     <input
                                         type="file"
                                         accept=".jpg"
@@ -500,6 +501,21 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                             value={paymentId}
                             onChange={(event: any) => {
                                 setPaymentId(event.target.value);
+                            }}
+                            />
+
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            helperText={`Address is needed to create an invoice.`}
+                            label="Billing Address"
+                            type="text"
+                            fullWidth
+                            variant="outlined"
+                            required
+                            value={address}
+                            onChange={(event: any) => {
+                                setAddress(event.target.value);
                             }}
                         />
 
