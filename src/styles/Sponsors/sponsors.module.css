@@ -3,10 +3,10 @@
     font-family: caribbean;
 }
 
-@font-face {
+/* @font-face {
     font-family: caribbean;
     src: url("/assets/fonts/scb/Skullsandcrossbones.ttf");
-}
+} */
 
 .main {
     display: flex;

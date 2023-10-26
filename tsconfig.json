@@ -16,7 +16,6 @@
     "incremental": true,
     "paths": {
       "@/*": ["./src/*"],
-      "use-sound": ["./generated-types/"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

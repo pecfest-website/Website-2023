@@ -55,6 +55,14 @@
   font-family: caribbean, sans-serif;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  margin: 10px 0;
+  padding: 0 20px;
+}
 @media only screen and (max-width: 1200px) {
   .main__box {
     width: 80%;

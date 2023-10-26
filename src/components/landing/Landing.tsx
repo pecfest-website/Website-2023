@@ -6,8 +6,7 @@ import Sky from "./Sky";
 import { Layers } from "./util/LayerComponent";
 import * as THREE from "three";
 import { useWindowSize } from "usehooks-ts";
-import { Boat, Ship, Sun } from "./util/Ship";
-import useSound from "use-sound";
+import { Boat, Ship } from "./util/Ship";
 import { useRouter } from "next/router";
 
 import logo from "./assets/logo.png";
@@ -33,7 +32,6 @@ function Rig() {
 
 function Landing() {
     const { width } = useWindowSize();
-    const [play] = useSound("/assets/audio/ocean.mp3");
     const router = useRouter();
 
     const pushRoute = (route: string) => {
