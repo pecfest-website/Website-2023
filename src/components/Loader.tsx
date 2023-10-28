@@ -1,4 +1,5 @@
 import { Html } from "@react-three/drei";
+import Image from "next/image";
 import React from "react";
 
 function Loader() {
@@ -16,7 +17,9 @@ function Loader() {
             }}
         >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
+                height={100}
+                width={100}
                 style={{
                     width: "100vw",
                     height: "100vh",

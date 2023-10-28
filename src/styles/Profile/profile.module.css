@@ -17,14 +17,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 
 .main__box {
   margin-top: 5%;
   height: 60%;
-  width: 60%;
-  border-radius: 20px;
+  width: 40%;
+  border-radius: 40px;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 
@@ -52,7 +56,15 @@
   color: white;
   padding: 0 30px;
   font-size: 24px;
-  font-family: caribbean, sans-serif;
+  /* font-family: caribbean, sans-serif; */
+}
+
+.right_section .user__id {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 5px;
 }
 
 .buttons {
@@ -63,6 +75,32 @@
   margin: 10px 0;
   padding: 0 20px;
 }
+
+.event__box {
+  margin-top: 5%;
+  height: 60%;
+  width: 20%;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.event__box h1 {
+  font-size: 16px;
+  color: white;
+  background-color: #FFBC11;
+  padding: 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.events__accordion__wrapper {
+  color: white;
+}
+
 @media only screen and (max-width: 1200px) {
   .main__box {
     width: 80%;
