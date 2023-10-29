@@ -210,10 +210,6 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
         setEventCreationStatus(null);
     };
 
-    useEffect(() => {
-        console.log(formValues);
-    }, [formValues]);
-
     return (
         <PageLayout title={`${event.name} Registeration | PECFEST'23`}>
             <main className={styles.main}>

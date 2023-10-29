@@ -89,7 +89,7 @@ export default function Home() {
                 <LandingNavbar />
                 <NoSSRWrapper>
                     <Countdown
-                        date={Date.parse("2023-11-03")}
+                        date={Date.parse("2023-11-17")}
                         renderer={renderer}
                     />
                 </NoSSRWrapper>

@@ -1,17 +1,12 @@
 import PageLayout from "@/components/layout/PageLayout";
 import { db } from "@/serverless/firebase";
 import {
+    Accordion,
+    AccordionDetails,
+    AccordionSummary,
     Button,
-    Dialog,
-    DialogContent,
-    DialogContentText,
     IconButton,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
+    Typography,
 } from "@mui/material";
 import {
     collection,
@@ -30,27 +25,28 @@ import Image from "next/image";
 import { IoMdClipboard } from "react-icons/io";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import EventTile from "@/components/profile/EventTile";
 
 interface UserEvents {
-    eventId: string;
+    id: string;
     name: string;
 }
+
+export interface EventProp {
+    id: string;
+    startDate: string;
+    endDate: string;
+    name: string;
+}
+
 interface Props {
     id: string;
     user: User;
     events: UserEvents[];
+    eventsList: EventProp[];
 }
 
-function Profile({ user, id, events }: Props) {
-    const handleOpen = () => {
-        setOpenDialog(true);
-    };
-
-    const handleClose = () => {
-        setOpenDialog(false);
-    };
-
-    const [openDialog, setOpenDialog] = useState(false);
+function Profile({ user, id, events, eventsList }: Props) {
     const router = useRouter();
 
     const copyUserId = () => {
@@ -58,62 +54,44 @@ function Profile({ user, id, events }: Props) {
         toast.info("User Id copied to clipboard");
     };
 
+    const getDate = (event: EventProp) => {
+        return new Date(Date.parse(event.startDate));
+    };
+
+    function getDayWiseEvents() {
+        const filteredEvents = eventsList.filter((event) =>
+            events.map((e) => e.id).includes(event.id)
+        );
+
+        let res: {
+            "Day 1": EventProp[];
+            "Day 2": EventProp[];
+            "Day 3": EventProp[];
+        } = {
+            "Day 1": [],
+            "Day 2": [],
+            "Day 3": [],
+        };
+
+        filteredEvents.map((event) => {
+            const date = getDate(event);
+
+            if (date.getDate() === 3) {
+                res["Day 1"].push(event);
+            }
+            if (date.getDate() === 4) {
+                res["Day 2"].push(event);
+            }
+            if (date.getDate() === 5) {
+                res["Day 3"].push(event);
+            }
+        });
+        return res;
+    }
+
     return (
         <PageLayout title="Profile | PECFEST'23">
             <main className={styles.main}>
-                <Dialog open={openDialog} onClose={handleClose}>
-                    <DialogContent>
-                        <DialogContentText>Registered Events</DialogContentText>
-                        <TableContainer>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell align="center">
-                                            S.No.
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            Event Name
-                                        </TableCell>
-                                        <TableCell align="center">
-                                            Link
-                                        </TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {events &&
-                                        events.length &&
-                                        events.map((event, idx) => {
-                                            return (
-                                                <TableRow key={idx}>
-                                                    <TableCell>
-                                                        {idx + 1}
-                                                    </TableCell>
-                                                    <TableCell align="center">
-                                                        {event.name}{" "}
-                                                    </TableCell>
-                                                    <TableCell
-                                                        align="center"
-                                                        onClick={() => {
-                                                            router.push(
-                                                                `/events/${event.eventId}`
-                                                            );
-                                                        }}
-                                                        sx={{
-                                                            cursor: "pointer",
-                                                            textDecoration:
-                                                                "underline",
-                                                        }}
-                                                    >
-                                                        Go to event
-                                                    </TableCell>
-                                                </TableRow>
-                                            );
-                                        })}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </DialogContent>
-                </Dialog>
                 <div className={`${styles.main__box} glassmorphism`}>
                     <div className={styles.left_section}>
                         <Image
@@ -128,19 +106,18 @@ function Profile({ user, id, events }: Props) {
                         <p>{user.mobile}</p>
                         <p>{user.college}</p>
                         {user.sid === "NA" ? null : <p>{user.sid}</p>}
-                        <IconButton onClick={() => copyUserId()}>
-                            Copy UserID
-                            <IoMdClipboard />
-                        </IconButton>
-                        <div className={styles.buttons}>
-                            <Button
-                                variant="contained"
-                                color="secondary"
-                                fullWidth={false}
-                                onClick={() => handleOpen()}
+                        <p className={styles.user__id}>
+                            {id}
+                            <IconButton
+                                onClick={copyUserId}
+                                sx={{
+                                    color: "white",
+                                }}
                             >
-                                Registered Events
-                            </Button>
+                                <IoMdClipboard />
+                            </IconButton>
+                        </p>
+                        <div className={styles.buttons}>
                             <Button
                                 variant="contained"
                                 fullWidth={false}
@@ -149,6 +126,109 @@ function Profile({ user, id, events }: Props) {
                                 Signout
                             </Button>
                         </div>
+                    </div>
+                </div>
+                <div className={`${styles.event__box} glassmorphism`}>
+                    <h1>Your Registered Events</h1>
+                    <div className={styles.events__accordion__wrapper}>
+                        <Accordion
+                            defaultExpanded
+                            sx={{
+                                background: "transparent",
+                            }}
+                        >
+                            <AccordionSummary
+                                onClick={getDayWiseEvents}
+                                sx={{
+                                    background: "rgba(255, 255, 255, 0.4)",
+                                    backdropFilter: "blur(8px)",
+                                    boxShadow:
+                                        "0 8px 32px 0 rgba(0, 0, 0, 0.18)",
+                                    zIndex: 4,
+                                    color: "white",
+                                    textTransform: "uppercase",                                    
+                                }}
+                            >
+                                <Typography fontWeight={800}>Day 1</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails
+                                sx={{
+                                    background: "none",
+                                    zIndex: 4,
+                                    padding: 0,
+                                    height: "200px",
+                                    overflow: "scroll",
+                                    scrollbarWidth: 0
+
+                                }}
+                            >
+                                {getDayWiseEvents()["Day 1"].map((event) => (
+                                    <EventTile event={event} key={event.id} />
+                                ))}
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion
+                            sx={{
+                                background: "transparent",
+                            }}
+                        >
+                            <AccordionSummary
+                                onClick={getDayWiseEvents}
+                                sx={{
+                                    background: "rgba(255, 255, 255, 0.4)",
+                                    backdropFilter: "blur(8px)",
+                                    boxShadow:
+                                        "0 8px 32px 0 rgba(0, 0, 0, 0.18)",
+                                    zIndex: 4,
+                                    color: "white",
+                                    textTransform: "uppercase",
+                                }}
+                            >
+                                <Typography fontWeight={800}>Day 2</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails
+                                sx={{
+                                    background: "none",
+                                    zIndex: 4,
+                                    padding: 0,
+                                }}
+                            >
+                                {getDayWiseEvents()["Day 2"].map((event) => (
+                                    <EventTile event={event} key={event.id} />
+                                ))}
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion
+                            sx={{
+                                background: "transparent",
+                            }}
+                        >
+                            <AccordionSummary
+                                onClick={getDayWiseEvents}
+                                sx={{
+                                    background: "rgba(255, 255, 255, 0.4)",
+                                    backdropFilter: "blur(8px)",
+                                    boxShadow:
+                                        "0 8px 32px 0 rgba(0, 0, 0, 0.18)",
+                                    zIndex: 4,
+                                    color: "white",
+                                    textTransform: "uppercase",
+                                }}
+                            >
+                                <Typography fontWeight={800}>Day 3</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails
+                                sx={{
+                                    background: "none",
+                                    zIndex: 4,
+                                    padding: 0,
+                                }}
+                            >
+                                {getDayWiseEvents()["Day 3"].map((event) => (
+                                    <EventTile event={event} key={event.id} />
+                                ))}
+                            </AccordionDetails>
+                        </Accordion>
                     </div>
                 </div>
             </main>
@@ -179,6 +259,17 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const data = docData.data();
     const mobileNumber = data?.mobile;
 
+    const eventsList = (await getDocs(collection(db, "events"))).docs.map(
+        (doc) => {
+            return {
+                id: doc.id,
+                startDate: doc.data().startDate,
+                endDate: doc.data().endDate,
+                name: doc.data().name,
+            };
+        }
+    );
+
     const userId = (
         await getDocs(
             query(collection(db, "users"), where("email", "==", data?.email))
@@ -189,7 +280,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         await getDocs(collection(db, `registrations/${email}/events`))
     ).docs.map((event) => {
         return {
-            ...event.data(),
+            id: event.data().eventId,
         };
     });
 
@@ -209,6 +300,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
                 ...data,
             },
             events,
+            eventsList,
         },
     };
 }
