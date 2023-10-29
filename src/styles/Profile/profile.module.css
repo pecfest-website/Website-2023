@@ -1,8 +1,7 @@
 @font-face {
-  font-family: caribbean;
-  src: url("/assets/fonts/poc/Caribbean.ttf");
+    font-family: caribbean;
+    src: url("/assets/fonts/poc/Caribbean.ttf");
 }
-
 
 .main {
     background-image: url("/assets/images/compressed/team.jpg");
@@ -21,101 +20,137 @@
 }
 
 .main__box {
-  margin-top: 5%;
-  height: 60%;
-  width: 40%;
-  border-radius: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+    margin-top: 5%;
+    height: 60%;
+    width: 40%;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .left_section {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .left_section img {
-  border-radius: 999px;
-  width: 200px;
-  height: 200px;
+    border-radius: 999px;
+    width: 200px;
+    height: 200px;
 }
 
 .right_section {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .right_section p {
-  color: white;
-  padding: 0 30px;
-  font-size: 24px;
-  /* font-family: caribbean, sans-serif; */
+    color: white;
+    padding: 0 30px;
+    font-size: 24px;
+    /* font-family: caribbean, sans-serif; */
 }
 
 .right_section .user__id {
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
-  gap: 5px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 5px;
 }
 
 .buttons {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 20px;
-  margin: 10px 0;
-  padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    margin: 10px 0;
+    padding: 0 20px;
 }
 
 .event__box {
-  margin-top: 5%;
-  height: 60%;
-  width: 20%;
-  border-radius: 40px;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  justify-content: flex-start;
-  gap: 20px;
+    margin-top: 5%;
+    height: 60%;
+    width: 20%;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: flex-start;
+    gap: 20px;
 }
 
 .event__box h1 {
-  font-size: 16px;
-  color: white;
-  background-color: #FFBC11;
-  padding: 10px;
-  border-radius: 20px;
-  text-transform: uppercase;
+    font-size: 16px;
+    color: white;
+    background-color: #ffbc11;
+    padding: 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
 }
 
 .events__accordion__wrapper {
-  color: white;
+    color: white;
+    height: 100%;
+    overflow: scroll;
 }
 
 @media only screen and (max-width: 1200px) {
-  .main__box {
-    width: 80%;
-    padding: 40px;
-  }
+    .main {
+        flex-direction: column;
+        padding: 100px; 
+        overflow: scroll;
+    }
+    .main__box {
+        width: 80%;
+        margin-top: 100px;
+        padding: 40px;
+        height: 100%;
+    }
+    .left_section img{
+      height: 100px;
+      width: 100px;
+    }
+    .event__box {
+        width: 80%;
+    }
 }
 
 @media only screen and (max-width: 900px) {
+    .main {
+        padding: 100px 10px;
+    }
+    .main__box {
+        justify-content: center;
+        width: 100%;
+        /* padding: 40px; */
+    }
+
+    .event__box {
+        width: 100%;
+    }
+
+    .right_section p {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 440px) {
   .main__box {
-    flex-direction: column;
-    justify-content: center;
-    /* padding: 40px; */
+    padding: 10px 0;
+  }
+  .right_section p {
+    font-size: 16px;
   }
 
-  .right_section p {
-    padding: 0;
+  .user__id {
+    font-size: 10px;
   }
 }

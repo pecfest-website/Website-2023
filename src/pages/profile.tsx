@@ -25,13 +25,14 @@ import Image from "next/image";
 import { IoMdClipboard } from "react-icons/io";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import EventTile from "@/components/profile/EventTile";
 
 interface UserEvents {
     id: string;
     name: string;
 }
 
-interface EventProp {
+export interface EventProp {
     id: string;
     startDate: string;
     endDate: string;
@@ -46,8 +47,6 @@ interface Props {
 }
 
 function Profile({ user, id, events, eventsList }: Props) {
-    console.log(events);
-    console.log(eventsList);
     const router = useRouter();
 
     const copyUserId = () => {
@@ -57,19 +56,6 @@ function Profile({ user, id, events, eventsList }: Props) {
 
     const getDate = (event: EventProp) => {
         return new Date(Date.parse(event.startDate));
-    };
-
-    const formatTime = (event: EventProp) => {
-        const s = new Intl.DateTimeFormat("en-US", {
-            hour: "numeric",
-            minute: "2-digit",
-        }).format(new Date(Date.parse(event.startDate)));
-
-        const e = new Intl.DateTimeFormat("en-US", {
-            hour: "numeric",
-            minute: "2-digit",
-        }).format(new Date(Date.parse(event.endDate)));
-        return `${s} - ${e}`;
     };
 
     function getDayWiseEvents() {
@@ -89,8 +75,6 @@ function Profile({ user, id, events, eventsList }: Props) {
 
         filteredEvents.map((event) => {
             const date = getDate(event);
-
-            console.log(date.getDate());
 
             if (date.getDate() === 3) {
                 res["Day 1"].push(event);
@@ -162,49 +146,87 @@ function Profile({ user, id, events, eventsList }: Props) {
                                         "0 8px 32px 0 rgba(0, 0, 0, 0.18)",
                                     zIndex: 4,
                                     color: "white",
-                                    textTransform: "uppercase",
+                                    textTransform: "uppercase",                                    
                                 }}
                             >
-                                <Typography>Day 1</Typography>
+                                <Typography fontWeight={800}>Day 1</Typography>
                             </AccordionSummary>
                             <AccordionDetails
+                                sx={{
+                                    background: "none",
+                                    zIndex: 4,
+                                    padding: 0,
+                                    height: "200px",
+                                    overflow: "scroll",
+                                    scrollbarWidth: 0
+
+                                }}
+                            >
+                                {getDayWiseEvents()["Day 1"].map((event) => (
+                                    <EventTile event={event} key={event.id} />
+                                ))}
+                            </AccordionDetails>
+                        </Accordion>
+                        <Accordion
+                            sx={{
+                                background: "transparent",
+                            }}
+                        >
+                            <AccordionSummary
+                                onClick={getDayWiseEvents}
                                 sx={{
                                     background: "rgba(255, 255, 255, 0.4)",
                                     backdropFilter: "blur(8px)",
                                     boxShadow:
                                         "0 8px 32px 0 rgba(0, 0, 0, 0.18)",
                                     zIndex: 4,
+                                    color: "white",
+                                    textTransform: "uppercase",
                                 }}
                             >
-                                <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Suspendisse malesuada lacus
-                                    ex, sit amet blandit leo lobortis eget.
-                                </Typography>
+                                <Typography fontWeight={800}>Day 2</Typography>
+                            </AccordionSummary>
+                            <AccordionDetails
+                                sx={{
+                                    background: "none",
+                                    zIndex: 4,
+                                    padding: 0,
+                                }}
+                            >
+                                {getDayWiseEvents()["Day 2"].map((event) => (
+                                    <EventTile event={event} key={event.id} />
+                                ))}
                             </AccordionDetails>
                         </Accordion>
-                        <Accordion>
-                            <AccordionSummary>
-                                <Typography>Day 2</Typography>
+                        <Accordion
+                            sx={{
+                                background: "transparent",
+                            }}
+                        >
+                            <AccordionSummary
+                                onClick={getDayWiseEvents}
+                                sx={{
+                                    background: "rgba(255, 255, 255, 0.4)",
+                                    backdropFilter: "blur(8px)",
+                                    boxShadow:
+                                        "0 8px 32px 0 rgba(0, 0, 0, 0.18)",
+                                    zIndex: 4,
+                                    color: "white",
+                                    textTransform: "uppercase",
+                                }}
+                            >
+                                <Typography fontWeight={800}>Day 3</Typography>
                             </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Suspendisse malesuada lacus
-                                    ex, sit amet blandit leo lobortis eget.
-                                </Typography>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion>
-                            <AccordionSummary>
-                                <Typography>Day 3</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Typography>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Suspendisse malesuada lacus
-                                    ex, sit amet blandit leo lobortis eget.
-                                </Typography>
+                            <AccordionDetails
+                                sx={{
+                                    background: "none",
+                                    zIndex: 4,
+                                    padding: 0,
+                                }}
+                            >
+                                {getDayWiseEvents()["Day 3"].map((event) => (
+                                    <EventTile event={event} key={event.id} />
+                                ))}
                             </AccordionDetails>
                         </Accordion>
                     </div>
@@ -261,8 +283,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             id: event.data().eventId,
         };
     });
-
-    console.log(events);
 
     if (!mobileNumber) {
         return {
