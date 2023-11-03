@@ -79,7 +79,7 @@ function EventDetails({ event, registered }: EventDetailsProps) {
             router.push("/auth/signin");
             return;
         }
-        if (event.category === "Mega Shows") {
+        if (event.category === "Mega Shows" || event.paidRegistration) {
             router.push(`/events/${event.id}/megashowRegistration`);
             return;
         }

@@ -98,7 +98,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     const uploadImage = async () => {
         const storageRef = ref(
             storage,
-            `registrations/megashows/${event.name}/${teamName}_payment.jpeg`
+            `registrations/megashows/${event.name}/${teamName}_${teamSize}_payment.jpeg`
         );
         await uploadBytes(storageRef, formValues.paymentProof, {
             contentType: "image/jpeg",
@@ -119,7 +119,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 formValue.userId.length === 0
             ) {
                 setError(true);
-                setErrorMsg("name, phone Number, or email id missing");
+                setErrorMsg("Name, Phone Number, or Email Id missing");
                 setTimeout(() => {
                     setError(false);
                 }, 3000);
@@ -135,7 +135,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                 (teamSize ?? 0) < event.minTeamSize)
         ) {
             setError(true);
-            setErrorMsg("issue in team size");
+            setErrorMsg("Issue in team size");
             setTimeout(() => {
                 setError(false);
             }, 3000);
@@ -152,7 +152,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
 
         if (eventPaymentUrl.length === 0 && formValues.paymentProof == null) {
             setError(true);
-            setErrorMsg("payemnt issue");
+            setErrorMsg("Payment issue");
             setTimeout(() => {
                 setError(false);
             }, 3000);
@@ -167,7 +167,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             paymentProof: eventPaymentUrl,
             paymentId: paymentId,
             accomodation: accomodation,
-            address: address
+            address: address,
         };
 
         // ["Team Name", "Name", "Email Id", "College", "Contact"],
@@ -498,7 +498,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                             onChange={(event: any) => {
                                 setPaymentId(event.target.value);
                             }}
-                            />
+                        />
 
                         <TextField
                             autoFocus
