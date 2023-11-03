@@ -28,4 +28,5 @@ export interface Event {
     maxTeamSize: number;
     pocName: string;
     pocNumber: string;
+    paidRegistration: boolean;
 }
