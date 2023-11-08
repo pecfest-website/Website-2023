@@ -77,14 +77,14 @@ export const coreTeam = {
             Contact: 7834975811,
         },
         {
-            Email: "guptakaran550@gmail.com",
+            Email: "aryangautm@outlook.com",
             Type: "Head",
-            Committee: "Printing, Publishing and Stationary",
-            Name: "Karan Gupta",
-            Photo: "/team/Printing Publishing _ Stationery_Karan Gupta.jpeg",
-            Instagram: "NA",
+            Committee: "Creative",
+            Name: "Aryan Gautam",
+            Photo: "/team/CREATIVE_ARYAN GAUTAM Large.jpeg",
+            Instagram: "https://www.instagram.com/aryangautm",
             Linkedin: "NA",
-            Contact: 7986949653,
+            Contact: 7082362880,
         },
         {
             Name: "Harshpreet Singh Johar",
@@ -105,7 +105,6 @@ export const coreTeam = {
             Instagram: "https://www.instagram.com/mohitxdhiman",
             Linkedin: "NA",
             Contact: 8219372557,
-
         },
         {
             Email: "deepanshu.pecfest@gmail.com",
@@ -116,7 +115,6 @@ export const coreTeam = {
             Instagram: "https://www.instagram.com/its_deepanshu15",
             Linkedin: "NA",
             Contact: 9855987897,
-
         },
         {
             Email: "akagraravi@gmail.com",
@@ -127,7 +125,6 @@ export const coreTeam = {
             Instagram: "https://www.instagram.com/akagraravi",
             Linkedin: "NA",
             Contact: 9041336599,
-
         },
         {
             Email: "iamsnehil81@gmail.com",
@@ -410,14 +407,14 @@ export const coreTeam = {
             Contact: 6239746291,
         },
         {
-            Email: "aryangautm@outlook.com",
+            Email: "guptakaran550@gmail.com",
             Type: "Head",
-            Committee: "Creative",
-            Name: "Aryan Gautam",
-            Photo: "/team/CREATIVE_ARYAN GAUTAM Large.jpeg",
-            Instagram: "https://www.instagram.com/aryangautm",
+            Committee: "Printing, Publishing and Stationary",
+            Name: "Karan Gupta",
+            Photo: "/team/Printing Publishing _ Stationery_Karan Gupta.jpeg",
+            Instagram: "NA",
             Linkedin: "NA",
-            Contact: 7082362880,
+            Contact: 7986949653,
         },
         {
             Email: "01.sagarrrr@gmail.com",
@@ -439,7 +436,6 @@ export const coreTeam = {
             Linkedin: "NA",
             Contact: 7056558441,
         },
-
     ],
 };
 
