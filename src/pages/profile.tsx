@@ -132,7 +132,6 @@ function Profile({ user, id, events, eventsList }: Props) {
                     <h1>Your Registered Events</h1>
                     <div className={styles.events__accordion__wrapper}>
                         <Accordion
-                            defaultExpanded
                             sx={{
                                 background: "transparent",
                             }}
