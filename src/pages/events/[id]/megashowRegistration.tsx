@@ -81,6 +81,7 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
     >(null);
 
     const [accomodation, setAccomodation] = useState(false);
+    const [needMaterial, setNeedMaterial] = useState(false);
 
     const handleImageChange = (event: File[]) => {
         const img = document.createElement("img");
@@ -150,7 +151,13 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
             eventPaymentUrl = await uploadImage();
         }
 
-        if (eventPaymentUrl.length === 0 && formValues.paymentProof == null) {
+        if (
+            (eventPaymentUrl.length === 0 &&
+                !event.paidRegistraionOnlyIfMaterialRequired) ||
+            (eventPaymentUrl.length === 0 &&
+                event.paidRegistraionOnlyIfMaterialRequired &&
+                needMaterial)
+        ) {
             setError(true);
             setErrorMsg("Payment issue");
             setTimeout(() => {
@@ -451,54 +458,75 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                                 labelPlacement="end"
                                 sx={{ paddingLeft: "12px" }}
                             />
+                            {event.paidRegistraionOnlyIfMaterialRequired ? (
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={needMaterial}
+                                            onChange={(e) =>
+                                                setNeedMaterial(
+                                                    e.target.checked
+                                                )
+                                            }
+                                        />
+                                    }
+                                    label="Need Material"
+                                    labelPlacement="end"
+                                    sx={{ paddingLeft: "12px" }}
+                                />
+                            ) : null}
                         </FormGroup>
 
-                        <div className={styles.dropzoneArea}>
-                            {size.width > 700 ? (
-                                <DropzoneArea
-                                    acceptedFiles={["image/jpeg"]}
-                                    dropzoneText={"Attach Payment Proof *"}
-                                    filesLimit={1}
-                                    Icon={UploadFileIcon}
-                                    maxFileSize={3145728}
-                                    clearOnUnmount
-                                    key={formValues.dropzoneKey}
-                                    fileObjects={undefined}
-                                    onChange={handleImageChange}
-                                />
-                            ) : (
-                                <>
-                                    <Typography>
-                                        Payment Proof (only jpeg)
-                                    </Typography>
-                                    <input
-                                        type="file"
-                                        accept=".jpg"
-                                        onChange={(event) => {
-                                            setFormValues({
-                                                ...formValues,
-                                                paymentProof:
-                                                    event.target.files?.[0],
-                                            });
-                                        }}
+                        {needMaterial ? (
+                            <div className={styles.dropzoneArea}>
+                                {size.width > 700 ? (
+                                    <DropzoneArea
+                                        acceptedFiles={["image/jpeg"]}
+                                        dropzoneText={"Attach Payment Proof *"}
+                                        filesLimit={1}
+                                        Icon={UploadFileIcon}
+                                        maxFileSize={3145728}
+                                        clearOnUnmount
+                                        key={formValues.dropzoneKey}
+                                        fileObjects={undefined}
+                                        onChange={handleImageChange}
                                     />
-                                </>
-                            )}
-                        </div>
+                                ) : (
+                                    <>
+                                        <Typography>
+                                            Payment Proof (only jpeg)
+                                        </Typography>
+                                        <input
+                                            type="file"
+                                            accept=".jpg"
+                                            onChange={(event) => {
+                                                setFormValues({
+                                                    ...formValues,
+                                                    paymentProof:
+                                                        event.target.files?.[0],
+                                                });
+                                            }}
+                                        />
+                                    </>
+                                )}
+                            </div>
+                        ) : null}
 
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            label="Payment Id"
-                            type="text"
-                            fullWidth
-                            variant="outlined"
-                            required
-                            value={paymentId}
-                            onChange={(event: any) => {
-                                setPaymentId(event.target.value);
-                            }}
-                        />
+                        {needMaterial ? (
+                            <TextField
+                                autoFocus
+                                margin="dense"
+                                label="Payment Id"
+                                type="text"
+                                fullWidth
+                                variant="outlined"
+                                required
+                                value={paymentId}
+                                onChange={(event: any) => {
+                                    setPaymentId(event.target.value);
+                                }}
+                            />
+                        ) : null}
 
                         <TextField
                             autoFocus

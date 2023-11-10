@@ -29,4 +29,5 @@ export interface Event {
     pocName: string;
     pocNumber: string;
     paidRegistration: boolean;
+    paidRegistraionOnlyIfMaterialRequired?: boolean;
 }

@@ -76,13 +76,13 @@ function Profile({ user, id, events, eventsList }: Props) {
         filteredEvents.map((event) => {
             const date = getDate(event);
 
-            if (date.getDate() === 3) {
+            if (date.getDate() === 17) {
                 res["Day 1"].push(event);
             }
-            if (date.getDate() === 4) {
+            if (date.getDate() === 18) {
                 res["Day 2"].push(event);
             }
-            if (date.getDate() === 5) {
+            if (date.getDate() === 19) {
                 res["Day 3"].push(event);
             }
         });

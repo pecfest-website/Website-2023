@@ -101,7 +101,7 @@ function Schedule({ schedule }: Props) {
                 <div className={styles.schedule}>
                     {tabIndex === 0 ? (
                         <Calendar
-                            date={new Date(2023, 10, 3)}
+                            date={new Date(2023, 10, 17)}
                             onNavigate={(a, b, c) => {}}
                             timeslots={4}
                             localizer={localizer}
@@ -124,7 +124,7 @@ function Schedule({ schedule }: Props) {
                         />
                     ) : tabIndex === 1 ? (
                         <Calendar
-                            date={new Date(2023, 10, 4)}
+                            date={new Date(2023, 10, 18)}
                             onNavigate={(a, b, c) => {}}
                             timeslots={4}
                             localizer={localizer}
@@ -148,7 +148,7 @@ function Schedule({ schedule }: Props) {
                     ) : (
                         <Calendar
                             onNavigate={(a, b, c) => {}}
-                            date={new Date(2023, 10, 5)}
+                            date={new Date(2023, 10, 19)}
                             timeslots={4}
                             localizer={localizer}
                             events={getEvents()}
