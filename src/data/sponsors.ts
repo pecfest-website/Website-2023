@@ -1,164 +1,267 @@
 export const sponsors: { [key: string]: { Logo: string; Name: string }[] } = {
-    "Title Sponsor": [{
-            "Name": "Trident",
-            "Logo": "/assets/logos/logo.png"
-        }
-    ],
-    "Driven By": [{
-            "Name": "Sparx",
-            "Logo": "/assets/logos/logo.png"
-        }
-    ],
-    "Co Sponsor": [{
-            "Name": "Golmedal",
-            "Logo": "/assets/logos/logo.png"
-        }
-    ],
-    "Associate Partner":[{
-            "Name": "JLPL",
-            "Logo": "/assets/logos/logo.png"
-        },   
-        {
-            "Name": "Quark City",
-            "Logo": "/assets/logos/logo.png"
+    // "Title Sponsor": [{
+    //         "Name": "Trident",
+    //         "Logo": "/sponsor/"
+    //     }
+    // ],
+    // "Driven By": [{
+    //         "Name": "Sparx",
+    //         "Logo": "/sponsor/"
+    //     }
+    // ],
+    // "Co Sponsor": [{
+    //         "Name": "Golmedal",
+    //         "Logo": "/sponsor/"
+    //     }
+    // ],
+    "Associate Sponsor":[{
+            "Name": "Crimson",
+            "Logo": "/sponsor/crimson.avif"
         },
+    ],
+    "Immigration Partner":[
         {
-            "Name": "Jubilee Group",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Liz Batra's IEGC",
+            "Logo": "/sponsor/liz.jpg"
+        }
+    ],
+    "Entertainment Partner":[
+        {
+            "Name": "HopUp",
+            "Logo": "/sponsor/hopup.jpg"
+        }
+    ],
+    "Moment Partner":[
+        {
+            "Name": "Fuji Films",
+            "Logo": "/sponsor/fujifilm.jpg"
         }
     ],
     "Corporate Partner":[{
-            "Name": "Venus Education",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "SBI",
+            "Logo": "/sponsor/sbi.jpg"
         },
         {
-            "Name": "Hit Bulls Eye",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "IDFC First Bank",
+            "Logo": "/sponsor/idfcbank.jpg"
         },
         {
-            "Name": "Xeam",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "VI",
+            "Logo": "/sponsor/vi.jpg"
         },
         {
-            "Name": "IBS",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "SBP",
+            "Logo": "/sponsor/sbp.jpg"
         },
         {
-            "Name": "Trishla City",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Canam Consultants",
+            "Logo": "/sponsor/canam.jpg"
         },
         {
-            "Name": "Zoom Car",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Union Bank of India",
+            "Logo": "/sponsor/unionbank.jpg"
         },
         {
-            "Name": "Union Bank",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "TC Global",
+            "Logo": "/sponsor/tcglobal.jpg"
         },
         {
-            "Name": "HLP Galleria",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "ICICI Bank",
+            "Logo": "/sponsor/icicibank.jpg"
         },
         {
-            "Name": "JSW Steel",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Haryana Tourism",
+            "Logo": "/sponsor/haryanatour.jpg"
         },
         {
-            "Name": "Canara",
-            "Logo": "/assets/logos/logo.png"
-        }
+            "Name": "Canara Bank",
+            "Logo": "/sponsor/canara.jpg"
+        },
+        {
+            "Name": "ALC",
+            "Logo": "/sponsor/alc.jpg"
+        },
+        {
+            "Name": "Scott Edil",
+            "Logo": "/sponsor/scottedit.jpg"
+        },
+        {
+            "Name": "Coffee Chat",
+            "Logo": "/sponsor/coffeechat.jpg"
+        },
+        {
+            "Name": "PETA India",
+            "Logo": "/sponsor/petaindia.jpg"
+        },
+        {
+            "Name": "RBA Visa World",
+            "Logo": "/sponsor/rba.jpg"
+        },
+        {
+            "Name": "Chetan Bharat Learning",
+            "Logo": "/sponsor/cbl.jpg"
+        },
+        {
+            "Name": "Samsung",
+            "Logo": "/sponsor/samsung.jpg"
+        },
+        {
+            "Name": "Easy Way Consultancy",
+            "Logo": "/sponsor/easyway.jpg"
+        },
+        {
+            "Name": "Ham Made",
+            "Logo": "/sponsor/hammade.jpg"
+        },
+        {
+            "Name": "Marbella Grand",
+            "Logo": "/sponsor/marbellagrand.png"
+        },
+        {
+            "Name": "Nimbus IAS Academy",
+            "Logo": "/sponsor/nimbusias.jpg"
+        },
+        
+        
     ],
-    "Merchandise Partner":[{
-            "Name": "Bonkers Corner",
-            "Logo": "/assets/logos/logo.png"
-    }],
-    "Engagement Partner":[{
-            "Name": "100 things in Ldh",
-            "Logo": "/assets/logos/logo.png"
+    "Media Partner":[
+        {
+            "Name": "Chandigarh X",
+            "Logo": "/sponsor/chandigarhx.jpg"
         },
+        {
+            "Name": "Chandigarh Life",
+            "Logo": "/sponsor/chdlife.jpg"
+        },
+
+    ],
+    "Youth Engagement Partner":[
         {
             "Name": "Chandigarh Bytes",
-            "Logo": "/assets/logos/logo.png"
+            "Logo": "/sponsor/chdbytes.jpg"
+        },
+    ],
+    "Weebing Partner":[
+        {
+            "Name": "Indian Weebs",
+            "Logo": "/sponsor/indianweeb.png"
+        },
+    ],
+
+   
+    "Merchandise Partner":[{
+            "Name": "Bonkers Corner",
+            "Logo": "/sponsor/bonkercorner.jpg"
+    }],
+    // "Engagement Partner":[{
+    //         "Name": "100 things in Ldh",
+    //         "Logo": "/sponsor/"
+    //     },
+    //     {
+    //         "Name": "Chandigarh Bytes",
+    //         "Logo": "/sponsor/"
+    //     }
+    // ],
+    "Gifting Partner":[
+        {
+            "Name": "Kalakari Film Festival",
+            "Logo": "/sponsor/kalakari.jpg"
         }
     ],
-    "Experience Partner":[{
-            "Name": "Tinder",
-            "Logo": "/assets/logos/logo.png"
-        }
-    ],
-    "Official Hydration Partner": [{
-            "Name": "Jal",
-            "Logo": "/assets/logos/logo.png"
-        }
-    ],
-    "Official Snack Partner": [{
-            "Name": "Crax",
-            "Logo": "/assets/logos/logo.png"
-        }
-    ],
-    "Official Hospitality Partner": [{
-        "Name": "Lalit Chnadigarh",
-        "Logo": "/assets/logos/logo.png"
-    }
-  ],
-    "Photography Partner": [{
-            "Name": "Instax",
-            "Logo": "/assets/logos/logo.png"
-        }
-    ],
-    "Official Payment Partner": [{
-            "Name": "SBI",
-            "Logo": "/assets/logos/logo.png"
-        }
-    ],
+//     "Experience Partner":[{
+//             "Name": "Tinder",
+//             "Logo": "/sponsor/"
+//         }
+//     ],
+//     "Official Hydration Partner": [{
+//             "Name": "Jal",
+//             "Logo": "/sponsor/"
+//         }
+//     ],
+//     "Official Snack Partner": [{
+//             "Name": "Crax",
+//             "Logo": "/sponsor/"
+//         }
+//     ],
+//     "Official Hospitality Partner": [{
+//         "Name": "Lalit Chnadigarh",
+//         "Logo": "/sponsor/"
+//     }
+//   ],
+//     "Photography Partner": [{
+//             "Name": "Instax",
+//             "Logo": "/sponsor/"
+//         }
+//     ],
+//     "Official Payment Partner": [{
+//             "Name": "SBI",
+//             "Logo": "/sponsor/"
+//         }
+//     ],
     "Event Sponsors":[{
-            "Name": "Canva",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Wise Bucks",
+            "Logo": "/sponsor/wisebucks.jpg"
         },
-        {
-            "Name": "Crimsoune",
-            "Logo": "/assets/logos/logo.png"
-        },
-        {
-            "Name": "Roadies Koffeehouz",
-            "Logo": "/assets/logos/logo.png"
-        },
-        {
-            "Name": "Ikarus 3D",
-            "Logo": "/assets/logos/logo.png"
-        }
     ],
     "Food Partner": [{
-            "Name": "Le Burger",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Hunger Punger",
+            "Logo": "/sponsor/hungerpunger.png"
         },
         {
-            "Name": "Awadhi Central",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Thekka Coffee",
+            "Logo": "/sponsor/thekacoffee.png"
         },
         {
-            "Name": "Baker's In",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Pav Bhaji Express",
+            "Logo": "/sponsor/pavbhajiexpress.jpg"
         },
         {
-            "Name": "Birinj",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Hash Guys",
+            "Logo": "/sponsor/hashguys.jpg"
         },
         {
-            "Name": "Hangry",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Bon Bon",
+            "Logo": "/sponsor/bonbon.jpg"
         },
         {
-            "Name": "Peggy",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Verka",
+            "Logo": "/sponsor/verka.jpg"
         },
         {
-            "Name": "Chaat Current",
-            "Logo": "/assets/logos/logo.png"
+            "Name": "Love At First Bite",
+            "Logo": "/sponsor/lovebite.jpg"
         },
         {
-            "Name": "Tandoori Zaika",
-            "Logo": "/assets/logos/logo.png"
-        }
+            "Name": "Markfed",
+            "Logo": "/sponsor/markfed.jpg"
+        },
+        {
+            "Name": "Jack N Grill",
+            "Logo": "/sponsor/jackngrill.jpg"
+        },
+        {
+            "Name": "Belgian Waffles",
+            "Logo": "/sponsor/belgianwaffle.jpg"
+        },
+        {
+            "Name": "Bad Boys",
+            "Logo": "/sponsor/badboys.jpg"
+        },
+        {
+            "Name": "Churi House",
+            "Logo": "/sponsor/churihouse.jpg"
+        },
+        {
+            "Name": "Panna Sweets",
+            "Logo": "/sponsor/panna.jpg"
+        },
+        {
+            "Name": "New Ellcanes",
+            "Logo": "/sponsor/newellcanes.jpg"
+        },
+        {
+            "Name": "Hash Uncle",
+            "Logo": "/sponsor/hashuncle.jpg"
+        },
     ]
   }

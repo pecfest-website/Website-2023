@@ -13,9 +13,10 @@ function Sponsors() {
                 <div className={styles.sectionDesign}>
                     {sponsors[`${title}`].map((item, index) => {
                         return (
-                            <div key={index}>
+                            <div key={index} style={{marginBottom:10}}>
                                 <div className={`${styles.subSection}`}>
                                     <Image
+                                        style={{objectFit:"scale-down"}}
                                         src={item["Logo"]}
                                         height={200}
                                         width={200}
