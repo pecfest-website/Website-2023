@@ -477,7 +477,9 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                             ) : null}
                         </FormGroup>
 
-                        {needMaterial ? (
+                        {(event.paidRegistraionOnlyIfMaterialRequired &&
+                            needMaterial) ||
+                        !event.paidRegistraionOnlyIfMaterialRequired ? (
                             <div className={styles.dropzoneArea}>
                                 {size.width > 700 ? (
                                     <DropzoneArea
@@ -512,7 +514,9 @@ function MegashowRegisteration({ event, registered }: EventDetailsProps) {
                             </div>
                         ) : null}
 
-                        {needMaterial ? (
+                        {(event.paidRegistraionOnlyIfMaterialRequired &&
+                            needMaterial) ||
+                        !event.paidRegistraionOnlyIfMaterialRequired ? (
                             <TextField
                                 autoFocus
                                 margin="dense"
