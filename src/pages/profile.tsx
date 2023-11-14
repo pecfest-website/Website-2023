@@ -94,7 +94,9 @@ function Profile({ user, id, events, eventsList }: Props) {
             <main className={styles.main}>
                 <div className={`${styles.main__box} glassmorphism`}>
                     <div className={styles.left_section}>
-                        <Image
+                        {/* Neccessary to save bandwidth */}
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
                             height={100}
                             width={100}
                             src={user.photoUrl}
