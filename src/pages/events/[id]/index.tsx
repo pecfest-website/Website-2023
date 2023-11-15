@@ -104,11 +104,16 @@ function EventDetails({ event, registered }: EventDetailsProps) {
                 }
 
                 // get user deets
-                const userData = (
-                    await getDoc(
-                        doc(db, "registrations", session?.user.email ?? "")
-                    )
-                ).data();
+                const userDoc = await getDoc(
+                    doc(db, "registrations", session?.user.email ?? "")
+                );
+
+                if (!userDoc) {
+                    router.push("/auth/new-user");
+                    return;
+                }
+
+                const userData = userDoc.data();
                 // add in event register
                 await addDoc(
                     collection(db, `events/${event.id}/registrations`),

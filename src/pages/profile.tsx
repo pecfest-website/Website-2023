@@ -147,7 +147,7 @@ function Profile({ user, id, events, eventsList }: Props) {
                                         "0 8px 32px 0 rgba(0, 0, 0, 0.18)",
                                     zIndex: 4,
                                     color: "white",
-                                    textTransform: "uppercase",                                    
+                                    textTransform: "uppercase",
                                 }}
                             >
                                 <Typography fontWeight={800}>Day 1</Typography>
@@ -159,8 +159,7 @@ function Profile({ user, id, events, eventsList }: Props) {
                                     padding: 0,
                                     height: "200px",
                                     overflow: "scroll",
-                                    scrollbarWidth: 0
-
+                                    scrollbarWidth: 0,
                                 }}
                             >
                                 {getDayWiseEvents()["Day 1"].map((event) => (
@@ -258,6 +257,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const docData = await getDoc(docRef);
     const data = docData.data();
+
+    if (!data) {
+        return {
+            redirect: {
+                destination: "/auth/new-user",
+                permanent: true,
+            },
+        };
+    }
+
     const mobileNumber = data?.mobile;
 
     const eventsList = (await getDocs(collection(db, "events"))).docs.map(
@@ -271,11 +280,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         }
     );
 
-    const userId = (
-        await getDocs(
-            query(collection(db, "users"), where("email", "==", data?.email))
-        )
-    ).docs[0].id;
+    const userRegInfo = await getDocs(
+        query(collection(db, "users"), where("email", "==", data?.email))
+    );
+
+    const userId = userRegInfo.docs[0].id;
 
     const events = (
         await getDocs(collection(db, `registrations/${email}/events`))
