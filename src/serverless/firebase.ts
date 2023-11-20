@@ -5,12 +5,12 @@ import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDort0dfixFdPjExyMnfhhyJ960P1GZh28",
+  apiKey: "",
   authDomain: "pecfest-23.firebaseapp.com",
   projectId: "pecfest-23",
   storageBucket: "pecfest-23.appspot.com",
   messagingSenderId: "617124874776",
-  appId: "1:617124874776:web:9adc3b248f4ea9d3d6d16d",
+  appId: "",
   measurementId: "G-ZP625R1TCQ",
 };
 
