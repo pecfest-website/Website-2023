@@ -4,5 +4,3 @@
   <source src="./demo.mp4" type="video/mp4">
 <img src='./demo.png'>
 </video>
-
-./demo.mp4
